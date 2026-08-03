@@ -43,7 +43,7 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
 
   return (
     <section data-hero-root className="gridContainer relative z-[1] h-full overflow-hidden bg-card-foreground">
-      <div className="fluid relative h-full min-h-[400px] sm:min-h-[460px] md:min-h-[480px]">
+      <div className="fluid relative h-full min-h-0">
         <Swiper
           modules={[A11y, Autoplay, EffectFade, Keyboard, Parallax]}
           a11y={{ enabled: true }}
@@ -52,7 +52,7 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
               ? { enabled: true, delay: 6500, disableOnInteraction: false, pauseOnMouseEnter: false }
               : false
           }
-          className="home-hero-swiper h-[min(70vh,640px)] min-h-[400px] w-full sm:h-[min(78vh,720px)] sm:min-h-[460px] md:h-[min(82vh,760px)] md:min-h-[480px]"
+          className="home-hero-swiper h-full min-h-0 w-full"
           effect="fade"
           fadeEffect={{ crossFade: true }}
           keyboard={{ enabled: true, onlyInViewport: true, pageUpDown: true }}
