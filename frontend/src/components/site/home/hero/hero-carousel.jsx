@@ -14,6 +14,16 @@ import "swiper/css/parallax";
 /** Shared right inset — pagination + nav align to the same edge. */
 const CHROME_RIGHT = "right-4 sm:right-5 md:right-6 lg:right-8";
 
+const AUTOPLAY = {
+  enabled: true,
+  delay: 5000,
+  disableOnInteraction: false,
+  pauseOnMouseEnter: false,
+  // Fade animates slide opacity, not the wrapper — waiting for wrapper transitionend stalls autoplay.
+  waitForTransition: false,
+  stopOnLastSlide: false,
+};
+
 /**
  * Fade + crossfade (800ms) + parallax.
  * Rewind (not Swiper loop): few slides + fade disables loop; rewind still wraps forever.
@@ -29,16 +39,26 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
   const showChrome = items.length > 1;
   const progress = ((activeIndex + 1) / items.length) * 100;
 
+  function restartAutoplay() {
+    const swiper = swiperRef.current;
+    if (!swiper?.autoplay || !showChrome) return;
+    swiper.autoplay.stop();
+    swiper.autoplay.start();
+  }
+
   function goTo(index) {
     swiperRef.current?.slideTo(index);
+    restartAutoplay();
   }
 
   function slidePrev() {
     swiperRef.current?.slidePrev();
+    restartAutoplay();
   }
 
   function slideNext() {
     swiperRef.current?.slideNext();
+    restartAutoplay();
   }
 
   return (
@@ -47,11 +67,7 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
         <Swiper
           modules={[A11y, Autoplay, EffectFade, Keyboard, Parallax]}
           a11y={{ enabled: true }}
-          autoplay={
-            showChrome
-              ? { enabled: true, delay: 6500, disableOnInteraction: false, pauseOnMouseEnter: false }
-              : false
-          }
+          autoplay={showChrome ? AUTOPLAY : false}
           className="home-hero-swiper h-full min-h-0 w-full"
           effect="fade"
           fadeEffect={{ crossFade: true }}
@@ -62,6 +78,9 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
           speed={800}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
+            if (showChrome && swiper.autoplay && !swiper.autoplay.running) {
+              swiper.autoplay.start();
+            }
           }}
           onSlideChange={(swiper) => {
             setActiveIndex(swiper.realIndex);
@@ -76,16 +95,9 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
 
         {showChrome ? (
           <>
-            <HeroSidePagination
-              activeIndex={activeIndex}
-              total={items.length}
-              onSelect={goTo}
-              className={`absolute top-1/2 z-30 -translate-y-1/2 ${CHROME_RIGHT}`}
-            />
+            <HeroSidePagination activeIndex={activeIndex} total={items.length} onSelect={goTo} className={`absolute top-1/2 z-30 -translate-y-1/2 ${CHROME_RIGHT}`} />
 
-            <div
-              className={`pointer-events-auto absolute bottom-5 z-30 flex items-center gap-3 sm:bottom-7 sm:gap-4 md:bottom-8 ${CHROME_RIGHT}`}
-            >
+            <div className={`pointer-events-auto absolute bottom-5 z-30 flex items-center gap-3 sm:bottom-7 sm:gap-4 md:bottom-8 ${CHROME_RIGHT}`}>
               <button
                 type="button"
                 aria-label={labels.prevSlide}
@@ -97,10 +109,7 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
               </button>
 
               <div aria-hidden="true" className="relative h-px w-12 bg-white/30 sm:w-16 md:w-20">
-                <span
-                  className="absolute inset-y-0 left-0 bg-white transition-[width] duration-300 ease-out"
-                  style={{ width: `${progress}%` }}
-                />
+                <span className="absolute inset-y-0 left-0 bg-white transition-[width] duration-300 ease-out" style={{ width: `${progress}%` }} />
               </div>
 
               <button
