@@ -17,7 +17,7 @@ export async function HomeHero({ slides }) {
         readMore: t("readMore"),
         prevSlide: t("prevSlide"),
         nextSlide: t("nextSlide"),
-        scrollHint: t("scrollHint")
+        upNext: t("upNext")
       }}
       slides={slides}
     />

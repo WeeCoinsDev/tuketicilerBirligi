@@ -13,7 +13,7 @@ export function Field({ label, error, children, hint }) {
 
 export function inputClassName(className) {
   return cn(
-    "focus-ring min-h-11 w-full rounded-[8px] border border-line bg-white px-3 py-2 text-sm text-ink shadow-sm transition placeholder:text-muted/70 focus:border-primary-dark",
+    "focus-ring min-h-11 w-full rounded-[8px] border border-line bg-white px-3 py-2 text-sm text-ink shadow-xs transition placeholder:text-muted/70 focus:border-primary-dark",
     className
   );
 }

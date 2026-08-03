@@ -71,7 +71,7 @@ export function NestedHoveredLink({
 
       {submenu && showSubmenu ? (
         <div
-          className="absolute top-0 left-full z-[60] min-w-48 pl-1"
+          className="absolute top-0 left-full z-60 min-w-48 pl-1"
           onMouseEnter={open}
           onMouseLeave={close}
         >

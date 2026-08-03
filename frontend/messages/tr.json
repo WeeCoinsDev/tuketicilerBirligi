@@ -34,8 +34,9 @@
   },
   "Hero": {
     "readMore": "Devamını Oku",
-    "prevSlide": "Önceki slayt",
-    "nextSlide": "Sonraki slayt",
+    "prevSlide": "Önceki",
+    "nextSlide": "Sonraki",
+    "upNext": "Sıradaki",
     "scrollHint": "Kaydır",
     "categoryNews": "Haber",
     "categoryAnnouncement": "Duyuru",

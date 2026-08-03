@@ -62,7 +62,7 @@ function CommandInput({ className, ...props }) {
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-12 w-full bg-transparent font-sans text-sm text-ink outline-none placeholder:text-muted focus:outline-none focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-12 w-full bg-transparent font-sans text-sm text-ink outline-hidden placeholder:text-muted focus:outline-hidden focus-visible:outline-hidden focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         {...props}
@@ -76,7 +76,7 @@ function CommandList({ className, ...props }) {
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        "max-h-[min(22rem,50vh)] scroll-py-2 overflow-x-hidden overflow-y-auto p-2 outline-none",
+        "max-h-[min(22rem,50vh)] scroll-py-2 overflow-x-hidden overflow-y-auto p-2 outline-hidden",
         className
       )}
       {...props}
@@ -99,7 +99,7 @@ function CommandGroup({ className, ...props }) {
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden text-ink **:[[cmdk-group-heading]]:px-2.5 **:[[cmdk-group-heading]]:pb-2 **:[[cmdk-group-heading]]:pt-1.5 **:[[cmdk-group-heading]]:font-heading **:[[cmdk-group-heading]]:text-[11px] **:[[cmdk-group-heading]]:font-semibold **:[[cmdk-group-heading]]:uppercase **:[[cmdk-group-heading]]:tracking-[0.08em] **:[[cmdk-group-heading]]:text-muted",
+        "overflow-hidden text-ink [[cmdk-group-heading]]:**:px-2.5 [[cmdk-group-heading]]:**:pb-2 [[cmdk-group-heading]]:**:pt-1.5 [[cmdk-group-heading]]:**:font-heading [[cmdk-group-heading]]:**:text-[11px] [[cmdk-group-heading]]:**:font-semibold [[cmdk-group-heading]]:**:uppercase [[cmdk-group-heading]]:**:tracking-[0.08em] [[cmdk-group-heading]]:**:text-muted",
         className
       )}
       {...props}
@@ -122,7 +122,7 @@ function CommandItem({ className, children, ...props }) {
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-pointer items-center gap-3 rounded-md px-2.5 py-2 font-sans text-sm text-ink outline-none select-none transition-colors data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-ink/[0.045] data-[selected=true]:text-ink",
+        "group/command-item relative flex cursor-pointer items-center gap-3 rounded-md px-2.5 py-2 font-sans text-sm text-ink outline-hidden select-none transition-colors data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-ink/4.5 data-[selected=true]:text-ink",
         className
       )}
       {...props}

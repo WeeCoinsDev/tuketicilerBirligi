@@ -4,7 +4,7 @@ export function Card({ className, ...props }) {
   return (
     <article
       className={cn(
-        "rounded-[8px] border border-line bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft",
+        "rounded-[8px] border border-line bg-white p-5 shadow-xs transition hover:-translate-y-0.5 hover:shadow-soft",
         className
       )}
       {...props}
@@ -15,7 +15,7 @@ export function Card({ className, ...props }) {
 export function StaticCard({ className, ...props }) {
   return (
     <div
-      className={cn("rounded-[8px] border border-line bg-white p-5 shadow-sm", className)}
+      className={cn("rounded-[8px] border border-line bg-white p-5 shadow-xs", className)}
       {...props}
     />
   );
