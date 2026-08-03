@@ -23,7 +23,7 @@ export function HeroPinStage({ children, className }) {
       <div
         data-hero-pin-stage
         className={cn(
-          "sticky top-0 z-0 w-full overflow-hidden",
+          "sticky top-0 z-[1] w-full overflow-hidden",
           STAGE_H,
           "motion-reduce:relative motion-reduce:h-auto",
           "[&_.fluid]:h-full [&_.fluid]:min-h-0",

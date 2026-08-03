@@ -3,7 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] px-4 py-2 font-heading text-sm font-semibold transition",
+  "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] px-4 py-2 font-sans text-sm font-semibold transition",
   {
     variants: {
       variant: {

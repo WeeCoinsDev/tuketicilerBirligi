@@ -39,7 +39,7 @@ export async function Header({ settings }) {
               </div>
 
               <Link
-                className="focus-ring hidden rounded-full bg-secondary px-4 py-2 font-heading text-sm font-semibold text-ink shadow-soft transition hover:bg-secondary-dark hover:text-white md:inline-flex"
+                className="focus-ring hidden rounded-full bg-secondary px-4 py-2 font-sans text-sm font-semibold text-ink shadow-soft transition hover:bg-secondary-dark hover:text-white md:inline-flex"
                 href="/basvuru-rehberi"
               >
                 {t("cta")}
