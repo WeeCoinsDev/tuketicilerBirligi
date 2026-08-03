@@ -1,0 +1,42 @@
+{
+  "Header": {
+    "cta": "Başvuru Rehberi",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "mainNav": "Ana menü",
+    "mobileNav": "Mobil menü",
+    "tagline": "Kurumsal web platformu"
+  },
+  "Nav": {
+    "home": "Anasayfa",
+    "corporate": "Kurumsal",
+    "guides": "Hak Rehberleri",
+    "news": "Haberler",
+    "announcements": "Duyurular",
+    "applicationGuide": "Başvuru Rehberi",
+    "contact": "İletişim"
+  },
+  "LanguageSwitcher": {
+    "turkish": "Türkçe",
+    "english": "English",
+    "label": "Dil seçimi"
+  },
+  "Search": {
+    "placeholder": "Sayfa veya içerik ara...",
+    "empty": "Sonuç bulunamadı.",
+    "title": "Site araması",
+    "trigger": "Ara",
+    "pages": "Sayfalar",
+    "noResults": "Sonuç bulunamadı."
+  },
+  "Hero": {
+    "readMore": "Devamını Oku",
+    "prevSlide": "Önceki slayt",
+    "nextSlide": "Sonraki slayt",
+    "scrollHint": "Kaydır",
+    "categoryNews": "Haber",
+    "categoryAnnouncement": "Duyuru",
+    "categoryGuide": "Rehber",
+    "categoryEvent": "Etkinlik"
+  }
+}

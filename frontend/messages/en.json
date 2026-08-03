@@ -1,0 +1,42 @@
+{
+  "Header": {
+    "cta": "Application Guide",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNav": "Main menu",
+    "mobileNav": "Mobile menu",
+    "tagline": "Institutional web platform"
+  },
+  "Nav": {
+    "home": "Home",
+    "corporate": "About",
+    "guides": "Consumer Guides",
+    "news": "News",
+    "announcements": "Announcements",
+    "applicationGuide": "Application Guide",
+    "contact": "Contact"
+  },
+  "LanguageSwitcher": {
+    "turkish": "Türkçe",
+    "english": "English",
+    "label": "Language"
+  },
+  "Search": {
+    "placeholder": "Search pages or content...",
+    "empty": "No results found.",
+    "title": "Site search",
+    "trigger": "Search",
+    "pages": "Pages",
+    "noResults": "No results found."
+  },
+  "Hero": {
+    "readMore": "Read more",
+    "prevSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "scrollHint": "Scroll",
+    "categoryNews": "News",
+    "categoryAnnouncement": "Announcement",
+    "categoryGuide": "Guide",
+    "categoryEvent": "Event"
+  }
+}

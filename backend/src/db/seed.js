@@ -1,0 +1,156 @@
+const bcrypt = require("bcryptjs");
+const env = require("../config/env");
+const pool = require("./pool");
+const { slugify } = require("../utils/clean");
+
+const settings = [
+  ["tr", "organizationName", "Tüketiciler Birliği", "string"],
+  ["tr", "shortName", "Tüketiciler Birliği", "string"],
+  [
+    "tr",
+    "description",
+    "Kurum tanıtımı, ekip ve çalışma alanları için özgün metinler içerik ekibi tarafından hazırlanacaktır.",
+    "string"
+  ],
+  ["tr", "phone", "Telefon bilgisi eklenecek", "string"],
+  ["tr", "email", "iletisim@ornek-domain.org", "string"],
+  ["tr", "kep", "KEP adresi eklenecek", "string"],
+  ["tr", "address", "Açık adres bilgisi eklenecek", "string"],
+  ["tr", "workingHours", "Hafta içi çalışma saatleri eklenecek", "string"],
+  ["tr", "mapQuery", "Ankara", "string"],
+  ["tr", "socialLinks", JSON.stringify({ x: "", facebook: "", instagram: "", youtube: "" }), "json"]
+];
+
+const contents = [
+  {
+    type: "guide",
+    title: "Ayıplı Mal ve Hizmet Başvuruları",
+    summary:
+      "Bu rehberin nihai metni hukuk ve içerik ekibi tarafından özgün olarak hazırlanacaktır.",
+    body:
+      "İçerik ekibi notu: Başvuru şartları, gerekli belgeler, süreler ve tüketicinin izleyeceği adımlar sade bir dille anlatılmalıdır.",
+    isFeatured: true
+  },
+  {
+    type: "guide",
+    title: "Mesafeli Satışlarda Cayma Hakkı",
+    summary:
+      "E-ticaret alışverişlerinde cayma hakkına dair özgün kurum içeriği için yer tutucu.",
+    body:
+      "İçerik ekibi notu: Cayma hakkı süresi, istisnalar, iade süreci ve başvuru kanalları netleştirilmelidir.",
+    isFeatured: true
+  },
+  {
+    type: "news",
+    title: "Tüketici Hakları Bilgilendirme İçerikleri Hazırlanıyor",
+    summary:
+      "Haber alanı için örnek kayıt. Yayına alınmadan önce kurumun gerçek haberiyle değiştirilmelidir.",
+    body:
+      "Bu alan, kurumun güncel haber ve faaliyet metinleri için ayrılmıştır. Görseller ve metinler ekip tarafından sağlanacaktır.",
+    isFeatured: true
+  },
+  {
+    type: "announcement",
+    title: "İletişim Kanalları Güncellenecek",
+    summary:
+      "Telefon, e-posta, KEP, adres ve sosyal medya bilgileri admin panelinden tamamlanmalıdır.",
+    body:
+      "İletişim bilgilerinin açık, doğrulanmış ve her sayfadan erişilebilir olması ilk sürümün ana kabul kriteridir.",
+    isFeatured: true
+  },
+  {
+    type: "faq",
+    title: "Başvuru için ücret ödenir mi?",
+    summary:
+      "Bu cevap kurumun resmi prosedürüne göre içerik ekibi tarafından netleştirilmelidir.",
+    body:
+      "İçerik ekibi notu: Başvuru ücreti, belge gereklilikleri ve başvuru sonrasında izlenecek süreç açık şekilde yazılmalıdır.",
+    isFeatured: false
+  }
+];
+
+async function upsertUser({ name, email, password, role }) {
+  const passwordHash = await bcrypt.hash(password, 12);
+
+  await pool.execute(
+    `INSERT INTO admin_users (name, email, password_hash, role)
+     VALUES (?, ?, ?, ?)
+     ON DUPLICATE KEY UPDATE name = VALUES(name), role = VALUES(role), is_active = 1`,
+    [name, email, passwordHash, role]
+  );
+}
+
+async function seedSettings() {
+  for (const [locale, keyName, value, valueType] of settings) {
+    await pool.execute(
+      `INSERT INTO site_settings (locale, key_name, value, value_type)
+       VALUES (?, ?, ?, ?)
+       ON DUPLICATE KEY UPDATE value = VALUES(value), value_type = VALUES(value_type)`,
+      [locale, keyName, value, valueType]
+    );
+  }
+}
+
+async function seedContent() {
+  for (const item of contents) {
+    const slug = slugify(item.title);
+
+    await pool.execute(
+      `INSERT INTO content_items
+        (type, locale, title, slug, summary, body, status, is_featured, published_at, meta_title, meta_description)
+       VALUES (?, 'tr', ?, ?, ?, ?, 'published', ?, NOW(), ?, ?)
+       ON DUPLICATE KEY UPDATE
+        summary = VALUES(summary),
+        body = VALUES(body),
+        status = VALUES(status),
+        is_featured = VALUES(is_featured),
+        meta_title = VALUES(meta_title),
+        meta_description = VALUES(meta_description)`,
+      [
+        item.type,
+        item.title,
+        slug,
+        item.summary,
+        item.body,
+        item.isFeatured ? 1 : 0,
+        item.title,
+        item.summary
+      ]
+    );
+  }
+}
+
+async function seed() {
+  await upsertUser({
+    name: "Sistem Yöneticisi",
+    email: env.seed.adminEmail,
+    password: env.seed.adminPassword,
+    role: "super_admin"
+  });
+
+  await upsertUser({
+    name: "İçerik Editörü",
+    email: env.seed.editorEmail,
+    password: env.seed.editorPassword,
+    role: "editor"
+  });
+
+  await seedSettings();
+  await seedContent();
+}
+
+if (require.main === module) {
+  seed()
+    .then(async () => {
+      console.log("Seed tamamlandı.");
+      await pool.end();
+    })
+    .catch(async (error) => {
+      console.error(error);
+      await pool.end();
+      process.exit(1);
+    });
+}
+
+module.exports = seed;
+
