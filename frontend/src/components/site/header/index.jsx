@@ -14,10 +14,10 @@ export async function Header({ settings }) {
 
   return (
     <header className="contents">
-      <div className="gridContainer bg-ink text-white">
+      <div className="gridContainer  bg-white text-ink">
         <div className="flex min-h-9 items-center justify-end gap-4 py-1.5">
           <SocialLinks settings={settings} />
-          <span aria-hidden="true" className="h-3 w-px bg-white/20" />
+          <span aria-hidden="true" className="h-3 w-px bg-line" />
           <Suspense fallback={<div className="h-4 w-12" />}>
             <LanguageSwitcher />
           </Suspense>

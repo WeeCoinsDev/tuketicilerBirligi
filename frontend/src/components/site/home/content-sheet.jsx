@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 /**
  * Overlap sheet that climbs over the pinned hero (Flexio-lite).
  */

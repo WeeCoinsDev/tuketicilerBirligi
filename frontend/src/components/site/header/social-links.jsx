@@ -21,7 +21,7 @@ export function buildSocialItems(settings) {
 
 function SocialLink({ href, label, icon: Icon }) {
   const className =
-    "focus-ring inline-flex cursor-pointer items-center justify-center p-1 text-white/55 transition-colors duration-200 hover:text-white";
+    "focus-ring inline-flex cursor-pointer items-center justify-center p-1 text-muted transition-colors duration-200 hover:text-ink";
 
   const icon = (
     <Icon aria-hidden="true" className="size-3.5" size={14} strokeWidth={1.75} />
