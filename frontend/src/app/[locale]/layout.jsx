@@ -2,6 +2,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { fontVariables } from "@/lib/fonts";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3401";
 
@@ -46,8 +47,8 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body>
+    <html className={fontVariables} lang={locale}>
+      <body className="font-sans antialiased">
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>
     </html>

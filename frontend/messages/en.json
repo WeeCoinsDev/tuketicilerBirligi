@@ -27,7 +27,10 @@
     "title": "Site search",
     "trigger": "Search",
     "pages": "Pages",
-    "noResults": "No results found."
+    "noResults": "No results found.",
+    "hint": "Navigation and pages",
+    "open": "Open",
+    "close": "Close"
   },
   "Hero": {
     "readMore": "Read more",

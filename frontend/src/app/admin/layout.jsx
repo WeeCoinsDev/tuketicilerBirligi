@@ -1,4 +1,5 @@
 import { AdminShell } from "@/components/admin/admin-shell";
+import { fontVariables } from "@/lib/fonts";
 import "../globals.css";
 
 export const metadata = {
@@ -11,8 +12,8 @@ export const metadata = {
 
 export default function AdminLayout({ children }) {
   return (
-    <html lang="tr">
-      <body>
+    <html className={fontVariables} lang="tr">
+      <body className="font-sans antialiased">
         <AdminShell>{children}</AdminShell>
       </body>
     </html>

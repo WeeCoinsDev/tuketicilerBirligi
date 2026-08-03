@@ -10,40 +10,9 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { HomeHero } from "@/components/site/home-hero";
+import { HomeHero, buildHeroSlides } from "@/components/site/home";
 import { getHomeData } from "@/lib/api";
 import { formatDate } from "@/lib/utils";
-
-function buildHeroSlides({ news, announcements, guides }, tHero) {
-  const categoryMap = {
-    news: tHero("categoryNews"),
-    announcement: tHero("categoryAnnouncement"),
-    guide: tHero("categoryGuide")
-  };
-
-  const hrefMap = {
-    news: (slug) => `/haberler/${slug}`,
-    announcement: () => "/duyurular",
-    guide: (slug) => `/hak-rehberleri/${slug}`
-  };
-
-  const pooled = [
-    ...news.slice(0, 2).map((item) => ({ ...item, type: "news" })),
-    ...announcements.slice(0, 1).map((item) => ({ ...item, type: "announcement" })),
-    ...guides.slice(0, 1).map((item) => ({ ...item, type: "guide" }))
-  ].slice(0, 3);
-
-  return pooled.map((item) => ({
-    id: item.id || item.slug,
-    slug: item.slug,
-    title: item.title,
-    summary: item.summary,
-    date: item.published_at,
-    category: categoryMap[item.type],
-    href: hrefMap[item.type](item.slug),
-    image: item.cover_image || item.image || null
-  }));
-}
 
 export default async function HomePage({ params }) {
   const { locale } = await params;

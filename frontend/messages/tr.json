@@ -27,7 +27,10 @@
     "title": "Site araması",
     "trigger": "Ara",
     "pages": "Sayfalar",
-    "noResults": "Sonuç bulunamadı."
+    "noResults": "Sonuç bulunamadı.",
+    "hint": "Navigasyon ve sayfalar",
+    "open": "Aç",
+    "close": "Kapat"
   },
   "Hero": {
     "readMore": "Devamını Oku",

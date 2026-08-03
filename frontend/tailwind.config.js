@@ -3,6 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "var(--font-sans)", "ui-sans-serif", "sans-serif"]
+      },
       colors: {
         primary: {
           DEFAULT: "#9fb8f4",

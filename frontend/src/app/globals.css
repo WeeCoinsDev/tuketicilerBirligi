@@ -35,9 +35,17 @@ body {
   margin: 0;
   background: #f7f9fc;
   color: #162033;
-  font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), var(--font-sans), ui-sans-serif, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -51,6 +59,7 @@ textarea,
 select {
   font: inherit;
 }
+
 
 ::selection {
   background: #b5e19c;
@@ -79,6 +88,7 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -91,17 +101,49 @@ select {
 
 .home-hero-bullet {
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 18px;
+  height: 1.5px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.28);
   cursor: pointer;
   transition:
-    width 0.25s ease,
-    background-color 0.25s ease;
+    width 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .home-hero-bullet-active {
-  width: 32px;
+  width: 36px;
   background: #b5e19c;
+}
+
+/* Search command list: custom thin scrollbar from lg up; native below. */
+@media (min-width: 1024px) {
+  .site-search-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(22, 32, 51, 0.22) transparent;
+  }
+
+  .site-search-scroll::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .site-search-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: 6px;
+  }
+
+  .site-search-scroll::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: rgba(22, 32, 51, 0.18);
+  }
+
+  .site-search-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(22, 32, 51, 0.32);
+  }
+
+  .site-search-scroll::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
