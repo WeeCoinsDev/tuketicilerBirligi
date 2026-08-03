@@ -15,7 +15,7 @@ export function HeroContent({ slide, labels, dateLocale, priority = false }) {
     <div data-hero-slide className="relative flex h-full min-h-[400px] items-center bg-card-foreground sm:min-h-[460px] md:min-h-[480px]">
       <Image alt="" className="object-cover object-right" fill priority={priority} sizes="100vw" src={slide.image || HERO_FALLBACK_IMAGE} />
 
-      <div className="absolute inset-0 bg-linear-to-tr from-card-foreground to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-tr from-card-foreground/85 from-30% to-transparent" />
       {/* <div className="absolute inset-0 bg-linear-to-t from-card-foreground/75 from-0% via-card-foreground/20 via-[26%] to-transparent to-[46%]" /> */}
 
       <div className="relative z-10 w-full py-20 sm:py-24 md:py-28 gridContainer">

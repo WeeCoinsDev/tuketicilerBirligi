@@ -51,7 +51,7 @@ export function LanguageSwitcher({ className }) {
     <TooltipProvider>
       <div aria-label={t("label")} className={cn("flex items-center gap-2", isPending && "pointer-events-none opacity-70", className)}>
         <LocaleFlagButton active={locale === "tr"} alt={t("turkish")} flagSrc="https://flagcdn.com/24x18/tr.png" label={t("turkish")} onClick={() => switchLocale("tr")} />
-        <span aria-hidden="true" className="h-2.5 w-px bg-line" />
+        <span aria-hidden="true" className="h-2.5 w-px bg-white/50" />
         <LocaleFlagButton active={locale === "en"} alt={t("english")} flagSrc="https://flagcdn.com/24x18/us.png" label={t("english")} onClick={() => switchLocale("en")} />
       </div>
     </TooltipProvider>

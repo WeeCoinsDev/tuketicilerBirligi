@@ -15,17 +15,14 @@ export function buildSocialItems(settings) {
     { href: links.facebook || null, label: "Facebook", icon: Facebook },
     { href: links.x || null, label: "X", icon: XIcon },
     { href: links.instagram || null, label: "Instagram", icon: Instagram },
-    { href: links.youtube || null, label: "YouTube", icon: Youtube }
+    { href: links.youtube || null, label: "YouTube", icon: Youtube },
   ];
 }
 
 function SocialLink({ href, label, icon: Icon }) {
-  const className =
-    "focus-ring inline-flex cursor-pointer items-center justify-center p-1 text-muted transition-colors duration-200 hover:text-ink";
+  const className = "focus-ring inline-flex cursor-pointer items-center justify-center p-1 text-white/50 transition-colors duration-200 hover:text-white";
 
-  const icon = (
-    <Icon aria-hidden="true" className="size-3.5" size={14} strokeWidth={1.75} />
-  );
+  const icon = <Icon aria-hidden="true" className="size-3.5" size={14} strokeWidth={1.75} />;
 
   if (!href) {
     return (
@@ -36,13 +33,7 @@ function SocialLink({ href, label, icon: Icon }) {
   }
 
   return (
-    <a
-      aria-label={label}
-      className={className}
-      href={href}
-      rel="noreferrer"
-      target="_blank"
-    >
+    <a aria-label={label} className={className} href={href} rel="noreferrer" target="_blank">
       {icon}
     </a>
   );
@@ -54,12 +45,7 @@ export function SocialLinks({ settings }) {
   return (
     <div className="flex items-center gap-3">
       {socials.map((item) => (
-        <SocialLink
-          href={item.href}
-          icon={item.icon}
-          key={item.label}
-          label={item.label}
-        />
+        <SocialLink href={item.href} icon={item.icon} key={item.label} label={item.label} />
       ))}
     </div>
   );
