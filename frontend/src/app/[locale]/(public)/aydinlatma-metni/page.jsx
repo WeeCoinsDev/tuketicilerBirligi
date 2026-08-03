@@ -1,4 +1,4 @@
-import { SectionHeading } from "@/components/ui/section-heading";
+import { DisclosurePageContent } from "@/components/site/disclosure";
 
 export const metadata = {
   title: "Aydınlatma Metni",
@@ -6,16 +6,5 @@ export const metadata = {
 };
 
 export default function DisclosurePage() {
-  return (
-    <section className="gridContainer bg-white py-14">
-      <div className="max-w-3xl">
-        <SectionHeading
-          eyebrow="KVKK"
-          title="Aydınlatma Metni"
-          description="Formlarda alınan kişisel veriler için resmi aydınlatma metni hukuk ekibi tarafından hazırlanmalıdır."
-        />
-      </div>
-    </section>
-  );
+  return <DisclosurePageContent />;
 }
-

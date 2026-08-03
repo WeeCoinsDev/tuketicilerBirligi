@@ -1,8 +1,18 @@
-/**
- * Home page section barrel.
- * Keep page.jsx thin: compose sections from here as the homepage grows.
- */
+import { getTranslations } from "next-intl/server";
+import { getHomeData } from "@/lib/api";
+import { HomeHero } from "./hero";
+import { HeroPinStage } from "./hero-pin-stage";
+import { HomeContentSheet } from "./content-sheet";
+import { HomeHighlights } from "./highlights";
+import { HomeGuides } from "./guides";
+import { HomeFeed } from "./feed";
+
 export { HomeHero } from "./hero";
+export { HeroPinStage } from "./hero-pin-stage";
+export { HomeContentSheet } from "./content-sheet";
+export { HomeHighlights } from "./highlights";
+export { HomeGuides } from "./guides";
+export { HomeFeed } from "./feed";
 
 export function buildHeroSlides({ news, announcements, guides }, tHero) {
   const categoryMap = {
@@ -33,4 +43,27 @@ export function buildHeroSlides({ news, announcements, guides }, tHero) {
     href: hrefMap[item.type](item.slug),
     image: item.cover_image || item.image || null
   }));
+}
+
+/**
+ * Full home composition — keeps the route page thin.
+ */
+export async function HomePageContent({ locale }) {
+  const tHero = await getTranslations("Hero");
+  const { guides, news, announcements } = await getHomeData(locale);
+  const slides = buildHeroSlides({ news, announcements, guides }, tHero);
+
+  return (
+    <>
+      <HeroPinStage>
+        <HomeHero slides={slides} />
+      </HeroPinStage>
+
+      <HomeContentSheet>
+        <HomeHighlights />
+        <HomeGuides guides={guides} />
+        <HomeFeed news={news} announcements={announcements} />
+      </HomeContentSheet>
+    </>
+  );
 }

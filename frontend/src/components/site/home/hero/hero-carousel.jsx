@@ -16,6 +16,7 @@ const CHROME_RIGHT = "right-4 sm:right-5 md:right-6 lg:right-8";
  * Client Swiper shell:
  * - pagination: vertically centered, right side
  * - navigation: bottom-right, same right inset as pagination
+ * Parent [data-hero-pin-stage] forces stage height via CSS (not full dvh).
  */
 export function HeroCarousel({ slides, labels, dateLocale }) {
   const swiperRef = useRef(null);
@@ -41,8 +42,11 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
   }
 
   return (
-    <section className="gridContainer relative overflow-hidden bg-card-foreground">
-      <div className="fluid relative">
+    <section
+      data-hero-root
+      className="gridContainer relative h-full overflow-hidden bg-card-foreground"
+    >
+      <div className="fluid relative h-full min-h-[400px] sm:min-h-[460px] md:min-h-[480px]">
         <Swiper
           modules={[Autoplay, EffectFade]}
           autoplay={{ delay: 6500, disableOnInteraction: false }}
@@ -62,7 +66,7 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
           }}
         >
           {items.map((slide, index) => (
-            <SwiperSlide key={slide.id || slide.slug}>
+            <SwiperSlide key={slide.id || slide.slug} className="h-full">
               <HeroContent
                 dateLocale={dateLocale}
                 labels={labels}
@@ -75,7 +79,6 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
 
         {showChrome ? (
           <>
-            {/* Vertically centered pagination — right edge */}
             <HeroSidePagination
               activeIndex={activeIndex}
               total={items.length}
@@ -83,7 +86,6 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
               className={`absolute top-1/2 z-20 -translate-y-1/2 ${CHROME_RIGHT}`}
             />
 
-            {/* Bottom-right nav — same right inset as pagination */}
             <div
               className={`pointer-events-auto absolute bottom-5 z-20 flex items-center gap-3 sm:bottom-7 sm:gap-4 md:bottom-8 ${CHROME_RIGHT}`}
             >

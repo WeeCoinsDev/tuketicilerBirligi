@@ -1,4 +1,4 @@
-import { SectionHeading } from "@/components/ui/section-heading";
+import { PrivacyPageContent } from "@/components/site/privacy";
 
 export const metadata = {
   title: "Gizlilik",
@@ -6,16 +6,5 @@ export const metadata = {
 };
 
 export default function PrivacyPage() {
-  return (
-    <section className="gridContainer bg-white py-14">
-      <div className="max-w-3xl">
-        <SectionHeading
-          eyebrow="Yasal"
-          title="Gizlilik Politikası"
-          description="Bu metin hukuk ve içerik ekibi tarafından hazırlanacak nihai gizlilik politikasıyla değiştirilmelidir."
-        />
-      </div>
-    </section>
-  );
+  return <PrivacyPageContent />;
 }
-

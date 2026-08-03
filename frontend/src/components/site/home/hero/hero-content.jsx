@@ -12,7 +12,10 @@ export function HeroContent({ slide, labels, dateLocale, priority = false }) {
   const hasMeta = Boolean(slide.category || slide.date);
 
   return (
-    <div className="relative flex h-full min-h-[400px] items-center bg-card-foreground sm:min-h-[460px] md:min-h-[480px]">
+    <div
+      data-hero-slide
+      className="relative flex h-full min-h-[400px] items-center bg-card-foreground sm:min-h-[460px] md:min-h-[480px]"
+    >
       <Image alt="" className="object-cover object-right" fill priority={priority} sizes="100vw" src={slide.image || HERO_FALLBACK_IMAGE} />
 
       <div className="absolute inset-0 bg-linear-to-r from-card-foreground from-[16%] via-card-foreground/85 via-[42%] to-transparent to-[78%]" />
