@@ -14,8 +14,8 @@ export default async function AnnouncementsPage({ params }) {
   const announcements = await getContents({ type: "announcement", locale });
 
   return (
-    <section className="bg-white py-14">
-      <div className="container-shell">
+    <section className="gridContainer bg-white py-14">
+      <div>
         <SectionHeading
           eyebrow="Duyurular"
           title="Öne çıkan bilgilendirmeler"

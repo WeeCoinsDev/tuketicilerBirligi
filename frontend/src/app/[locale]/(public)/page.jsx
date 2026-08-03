@@ -26,8 +26,8 @@ export default async function HomePage({ params }) {
     <>
       <HomeHero slides={slides} />
 
-      <section className="border-b border-line bg-surface py-10">
-        <div className="container-shell grid gap-4 md:grid-cols-3">
+      <section className="gridContainer border-b border-line bg-surface py-10">
+        <div className="grid gap-4 md:grid-cols-3">
           {[
             {
               icon: MessageSquareText,
@@ -54,8 +54,8 @@ export default async function HomePage({ params }) {
         </div>
       </section>
 
-      <section className="bg-white py-14">
-        <div className="container-shell grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+      <section className="gridContainer bg-white py-14">
+        <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
           <SectionHeading
             eyebrow="Hak rehberleri"
             title="Kurum ekibinin özgün içerikleri için hazır yayın alanı"
@@ -79,8 +79,8 @@ export default async function HomePage({ params }) {
         </div>
       </section>
 
-      <section className="border-y border-line bg-surface py-14">
-        <div className="container-shell grid gap-8 lg:grid-cols-2">
+      <section className="gridContainer border-y border-line bg-surface py-14">
+        <div className="grid gap-8 lg:grid-cols-2">
           <div>
             <SectionHeading eyebrow="Haberler" title="Güncel duyuru ve haber akışı" />
             <div className="mt-6 grid gap-4">

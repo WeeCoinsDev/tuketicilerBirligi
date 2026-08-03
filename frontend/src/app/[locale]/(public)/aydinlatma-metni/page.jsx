@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function DisclosurePage() {
   return (
-    <section className="bg-white py-14">
-      <div className="container-shell max-w-3xl">
+    <section className="gridContainer bg-white py-14">
+      <div className="max-w-3xl">
         <SectionHeading
           eyebrow="KVKK"
           title="Aydınlatma Metni"

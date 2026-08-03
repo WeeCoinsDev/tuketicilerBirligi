@@ -15,8 +15,8 @@ export default async function GuidesPage({ params }) {
   const guides = await getContents({ type: "guide", locale });
 
   return (
-    <section className="bg-white py-14">
-      <div className="container-shell">
+    <section className="gridContainer bg-white py-14">
+      <div>
         <SectionHeading
           eyebrow="Hak rehberleri"
           title="Tüketicilerin sık ihtiyaç duyduğu konular"

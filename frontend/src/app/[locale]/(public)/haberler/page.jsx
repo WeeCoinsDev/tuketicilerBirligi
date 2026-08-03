@@ -15,8 +15,8 @@ export default async function NewsPage({ params }) {
   const news = await getContents({ type: "news", locale });
 
   return (
-    <section className="bg-white py-14">
-      <div className="container-shell">
+    <section className="gridContainer bg-white py-14">
+      <div>
         <SectionHeading eyebrow="Haberler" title="Kurum haberleri ve faaliyetler" />
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           {news.map((item) => (

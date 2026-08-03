@@ -33,8 +33,8 @@ const steps = [
 
 export default function ApplicationGuidePage() {
   return (
-    <section className="bg-white py-14">
-      <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+    <section className="gridContainer bg-white py-14">
+      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <SectionHeading
             eyebrow="Başvuru rehberi"

@@ -22,8 +22,8 @@ export default async function NewsDetailPage({ params }) {
   if (!item || item.type !== "news") notFound();
 
   return (
-    <article className="bg-white py-14">
-      <div className="container-shell max-w-3xl">
+    <article className="gridContainer bg-white py-14">
+      <div className="max-w-3xl">
         <p className="text-sm font-semibold text-muted">{formatDate(item.published_at)}</p>
         <h1 className="mt-4 text-3xl font-bold leading-tight text-ink md:text-5xl">{item.title}</h1>
         <p className="mt-6 text-lg leading-8 text-muted">{item.summary}</p>

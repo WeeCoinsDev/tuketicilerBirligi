@@ -25,12 +25,12 @@ export default async function ContactPage({ params }) {
   };
 
   return (
-    <section className="bg-white py-14">
+    <section className="gridContainer bg-white py-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="container-shell">
+      <div>
         <SectionHeading
           eyebrow="İletişim"
           title="Kurumla iletişime geçmek için tüm kanallar"

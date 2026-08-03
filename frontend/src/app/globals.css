@@ -66,9 +66,23 @@ select {
   color: #162033;
 }
 
-.container-shell {
-  width: min(1180px, calc(100% - 32px));
-  margin-inline: auto;
+/*
+  Breakout grid (Tailwind v3 equivalent of @utility gridContainer).
+  Center column holds content; .fluid children span full width.
+*/
+@layer utilities {
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 1fr min(92%, 90rem) 1fr;
+  }
+
+  .gridContainer > * {
+    grid-column: 2;
+  }
+
+  .gridContainer > .fluid {
+    grid-column: 1 / -1;
+  }
 }
 
 .focus-ring {

@@ -23,8 +23,8 @@ export default async function GuideDetailPage({ params }) {
   if (!item || item.type !== "guide") notFound();
 
   return (
-    <article className="bg-white py-14">
-      <div className="container-shell max-w-3xl">
+    <article className="gridContainer bg-white py-14">
+      <div className="max-w-3xl">
         <Badge>Hak rehberi</Badge>
         <h1 className="mt-5 text-3xl font-bold leading-tight text-ink md:text-5xl">{item.title}</h1>
         <p className="mt-4 text-sm font-semibold text-muted">{formatDate(item.published_at)}</p>

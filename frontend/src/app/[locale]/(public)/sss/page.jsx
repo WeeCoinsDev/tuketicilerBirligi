@@ -12,8 +12,8 @@ export default async function FaqPage({ params }) {
   const items = await getContents({ type: "faq", locale });
 
   return (
-    <section className="bg-white py-14">
-      <div className="container-shell max-w-4xl">
+    <section className="gridContainer bg-white py-14">
+      <div className="max-w-4xl">
         <SectionHeading
           eyebrow="SSS"
           title="Sıkça sorulan sorular"

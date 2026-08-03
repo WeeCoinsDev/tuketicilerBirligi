@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function CorporatePage() {
   return (
-    <section className="bg-white py-14">
-      <div className="container-shell grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+    <section className="gridContainer bg-white py-14">
+      <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <SectionHeading
           eyebrow="Kurumsal"
           title="Kurum kimliği için net, sade ve özgün içerik alanı"
