@@ -13,7 +13,7 @@ export function AdminShell({ children }) {
   async function logout() {
     await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3402"}/api/auth/logout`, {
       method: "POST",
-      credentials: "include"
+      credentials: "include",
     });
     window.location.href = "/admin/login";
   }
@@ -23,7 +23,7 @@ export function AdminShell({ children }) {
   }
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-white">
       <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-line bg-white p-5 lg:block">
         <Link className="focus-ring flex items-center gap-3 rounded-[8px]" href="/admin">
           <Image alt="" height={42} src="/logo.svg" width={42} />
@@ -38,7 +38,7 @@ export function AdminShell({ children }) {
             <Link
               className={cn(
                 "focus-ring rounded-[8px] px-3 py-2.5 text-sm font-semibold text-muted transition hover:bg-primary-soft hover:text-primary-dark",
-                pathname === item.href && "bg-primary-soft text-primary-dark"
+                pathname === item.href && "bg-primary-soft text-primary-dark",
               )}
               href={item.href}
               key={item.href}
@@ -53,9 +53,7 @@ export function AdminShell({ children }) {
         <header className="sticky top-0 z-30 border-b border-line bg-white">
           <div className="flex min-h-16 items-center justify-between gap-4 px-4 md:px-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-primary-dark">
-                Admin
-              </p>
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-primary-dark">Admin</p>
               <h1 className="text-lg font-bold text-ink">İçerik ve başvuru yönetimi</h1>
             </div>
             <button
@@ -73,4 +71,3 @@ export function AdminShell({ children }) {
     </div>
   );
 }
-

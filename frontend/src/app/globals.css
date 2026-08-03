@@ -61,11 +61,11 @@
   display: grid;
   grid-template-columns: 1fr min(92%, 90rem) 1fr;
 
-  & > * {
+  &>* {
     grid-column: 2;
   }
 
-  & > .fluid {
+  &>.fluid {
     grid-column: 1 / -1;
   }
 }
@@ -94,6 +94,7 @@
   v4 default border color is currentcolor — keep v3-like borders for unstyled borders.
 */
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -113,7 +114,7 @@
   body {
     position: relative;
     margin: 0;
-    background: #f7f9fc;
+    background: #ffff;
     color: #162033;
     font-family: var(--font-sans);
   }
@@ -163,6 +164,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

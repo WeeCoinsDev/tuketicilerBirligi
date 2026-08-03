@@ -1,8 +1,11 @@
-import Image from "next/image";
-
 /**
  * Overlap sheet that climbs over the pinned hero (Flexio-lite).
+ * Top edge uses a tilted clip-path shape divider.
  */
 export function HomeContentSheet({ children }) {
-  return <div className="relative z-10 -mt-[75vh] bg-surface pt-10 md:-mt-[88vh] md:pt-14 motion-reduce:mt-0 motion-reduce:rounded-none motion-reduce:pt-0">{children}</div>;
+  return (
+    <div className="relative z-10 -mt-[75vh] bg-white pt-20 md:-mt-[88vh] md:pt-24 motion-reduce:mt-0 motion-reduce:pt-10 motion-reduce:[clip-path:none] [clip-path:polygon(0_2rem,100%_0,100%_100%,0_100%)] md:[clip-path:polygon(0_3rem,100%_0,100%_100%,0_100%)]">
+      {children}
+    </div>
+  );
 }

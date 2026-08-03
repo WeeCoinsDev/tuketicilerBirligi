@@ -14,7 +14,7 @@ export async function Header({ settings }) {
 
   return (
     <header className="contents">
-      <div className="gridContainer  bg-white text-ink">
+      {/* <div className="gridContainer  bg-white text-ink">
         <div className="flex min-h-9 items-center justify-end gap-4 py-1.5">
           <SocialLinks settings={settings} />
           <span aria-hidden="true" className="h-3 w-px bg-line" />
@@ -22,17 +22,18 @@ export async function Header({ settings }) {
             <LanguageSwitcher />
           </Suspense>
         </div>
-      </div>
+      </div> */}
 
       <StickyMainBar>
         <div className="gridContainer">
-          <div className="flex min-h-[76px] items-center justify-between gap-4 py-3">
+          <div className="grid min-h-[76px] grid-cols-[1fr_auto] items-center gap-4 py-3 xl:grid-cols-[1fr_auto_1fr]">
             <HeaderBrand shortName={settings.shortName} tagline={t("tagline")} />
-            <div className="hidden min-w-0 flex-1 justify-center xl:flex">
+
+            <div className="hidden justify-self-center xl:block">
               <SiteNavbar />
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-self-end gap-2">
               <div className="hidden sm:block">
                 <SiteSearch />
               </div>

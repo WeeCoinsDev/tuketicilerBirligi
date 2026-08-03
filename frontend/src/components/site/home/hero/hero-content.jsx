@@ -12,14 +12,11 @@ export function HeroContent({ slide, labels, dateLocale, priority = false }) {
   const hasMeta = Boolean(slide.category || slide.date);
 
   return (
-    <div
-      data-hero-slide
-      className="relative flex h-full min-h-[400px] items-center bg-card-foreground sm:min-h-[460px] md:min-h-[480px]"
-    >
+    <div data-hero-slide className="relative flex h-full min-h-[400px] items-center bg-card-foreground sm:min-h-[460px] md:min-h-[480px]">
       <Image alt="" className="object-cover object-right" fill priority={priority} sizes="100vw" src={slide.image || HERO_FALLBACK_IMAGE} />
 
-      <div className="absolute inset-0 bg-linear-to-r from-card-foreground from-[16%] via-card-foreground/85 via-[42%] to-transparent to-[78%]" />
-      <div className="absolute inset-0 bg-linear-to-t from-card-foreground/75 from-0% via-card-foreground/20 via-[26%] to-transparent to-[46%]" />
+      <div className="absolute inset-0 bg-linear-to-tr from-card-foreground to-transparent" />
+      {/* <div className="absolute inset-0 bg-linear-to-t from-card-foreground/75 from-0% via-card-foreground/20 via-[26%] to-transparent to-[46%]" /> */}
 
       <div className="relative z-10 w-full py-20 sm:py-24 md:py-28 gridContainer">
         <div className="max-w-xl lg:max-w-3xl">

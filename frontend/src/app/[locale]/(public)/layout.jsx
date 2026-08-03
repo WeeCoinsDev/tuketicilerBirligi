@@ -10,7 +10,7 @@ export default async function PublicLayout({ children, params }) {
   const settings = await getSiteSettings(locale);
 
   return (
-    <ReactLenis root options={{ autoRaf: true, syncTouch: false, lerp: 0.16 }}>
+    <ReactLenis root options={{ autoRaf: true, syncTouch: false, lerp: 0.15 }}>
       <Header settings={settings} />
       <main>{children}</main>
       <Footer settings={settings} />
