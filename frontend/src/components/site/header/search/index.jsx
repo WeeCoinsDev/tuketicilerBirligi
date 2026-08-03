@@ -1,26 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  BookOpen,
-  Building2,
-  FileText,
-  Home,
-  Megaphone,
-  Newspaper,
-  Phone,
-  Search
-} from "lucide-react";
+import { BookOpen, Building2, FileText, Home, Megaphone, Newspaper, Phone, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList
-} from "@/components/ui/command";
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { publicNavigation } from "@/lib/navigation";
 
 const navIcons = {
@@ -30,7 +14,7 @@ const navIcons = {
   news: Newspaper,
   announcements: Megaphone,
   applicationGuide: FileText,
-  contact: Phone
+  contact: Phone,
 };
 
 export function SiteSearch() {
@@ -65,17 +49,10 @@ export function SiteSearch() {
         onClick={() => setOpen(true)}
       >
         <Search size={18} strokeWidth={1.75} aria-hidden="true" />
-        <kbd className="pointer-events-none hidden font-sans text-[10px] font-medium tracking-wide text-muted sm:inline-flex">
-          ⌘K
-        </kbd>
+        <kbd className="pointer-events-none hidden font-sans text-[10px] font-medium tracking-wide text-muted sm:inline-flex">⌘K</kbd>
       </button>
 
-      <CommandDialog
-        description={t("placeholder")}
-        open={open}
-        title={t("title")}
-        onOpenChange={setOpen}
-      >
+      <CommandDialog description={t("placeholder")} open={open} title={t("title")} onOpenChange={setOpen}>
         <CommandInput placeholder={t("placeholder")} />
         <CommandList className="site-search-scroll">
           <CommandEmpty>{t("noResults")}</CommandEmpty>
@@ -84,16 +61,8 @@ export function SiteSearch() {
               const Icon = navIcons[item.key] || FileText;
 
               return (
-                <CommandItem
-                  key={item.href}
-                  value={tNav(item.key)}
-                  onSelect={() => goTo(item.href)}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    className="size-4 shrink-0 text-muted transition-[color] group-data-[selected=true]/command-item:text-ink"
-                    strokeWidth={1.5}
-                  />
+                <CommandItem key={item.href} value={tNav(item.key)} onSelect={() => goTo(item.href)}>
+                  <Icon aria-hidden="true" className="size-4 shrink-0 text-muted transition-[color] group-data-[selected=true]/command-item:text-ink" strokeWidth={1.5} />
                   <span className="flex-1">{tNav(item.key)}</span>
                 </CommandItem>
               );

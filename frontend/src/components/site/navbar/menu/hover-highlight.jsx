@@ -9,11 +9,5 @@ import { hoverTransition } from "./shared";
  * One visible instance per layoutId at a time → Motion morphs between them.
  */
 export function HoverHighlight({ layoutId, className }) {
-  return (
-    <motion.span
-      layoutId={layoutId}
-      className={cn("pointer-events-none absolute inset-0 -z-10 rounded-md bg-ink/4.5", className)}
-      transition={hoverTransition}
-    />
-  );
+  return <motion.span layoutId={layoutId} className={cn("pointer-events-none absolute inset-0 -z-10 rounded-md bg-ink/4.5", className)} transition={hoverTransition} />;
 }

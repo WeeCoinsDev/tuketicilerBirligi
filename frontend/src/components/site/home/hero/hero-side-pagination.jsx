@@ -13,9 +13,7 @@ export function HeroSidePagination({ activeIndex, total, onSelect, className = "
   const progress = ((activeIndex + 1) / total) * 100;
 
   return (
-    <div
-      className={`pointer-events-auto flex flex-col items-center gap-2.5 sm:gap-3 ${className}`}
-    >
+    <div className={`pointer-events-auto flex flex-col items-center gap-2.5 sm:gap-3 ${className}`}>
       <button
         type="button"
         aria-label={`${activeIndex + 1} / ${total}`}
@@ -26,11 +24,7 @@ export function HeroSidePagination({ activeIndex, total, onSelect, className = "
       </button>
 
       <div className="relative h-16 w-px bg-white/25 sm:h-24 md:h-28">
-        <span
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 w-px bg-white transition-[height] duration-300 ease-out"
-          style={{ height: `${progress}%` }}
-        />
+        <span aria-hidden="true" className="absolute inset-x-0 top-0 w-px bg-white transition-[height] duration-300 ease-out" style={{ height: `${progress}%` }} />
       </div>
 
       <button

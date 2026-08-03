@@ -3,14 +3,7 @@
 import { Menu as MenuIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger
-} from "@/components/ui/drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { navigationMenu } from "@/lib/navigation";
 import { MobileSection } from "./mobile-section";
 
@@ -19,10 +12,7 @@ export function MobileNavDrawer() {
 
   return (
     <Drawer swipeDirection="right">
-      <DrawerTrigger
-        aria-label={t("openMenu")}
-        className="focus-ring inline-flex size-11 items-center justify-center rounded-[8px] border border-line bg-white text-ink xl:hidden"
-      >
+      <DrawerTrigger aria-label={t("openMenu")} className="focus-ring inline-flex size-11 items-center justify-center rounded-[8px] border border-line bg-white text-ink xl:hidden">
         <MenuIcon size={20} aria-hidden="true" />
       </DrawerTrigger>
 
@@ -31,10 +21,7 @@ export function MobileNavDrawer() {
           <DrawerTitle className="font-heading text-ink">{t("mobileNav")}</DrawerTitle>
         </DrawerHeader>
 
-        <nav
-          aria-label={t("mobileNav")}
-          className="flex flex-1 flex-col gap-2 overflow-y-auto p-4"
-        >
+        <nav aria-label={t("mobileNav")} className="flex flex-1 flex-col gap-2 overflow-y-auto p-4">
           {navigationMenu.map((entry) => (
             <MobileSection key={entry.item} entry={entry} />
           ))}

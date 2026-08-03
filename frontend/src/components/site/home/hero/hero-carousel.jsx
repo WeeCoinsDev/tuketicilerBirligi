@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { HeroContent } from "./hero-content";
@@ -8,7 +9,6 @@ import { HeroSidePagination } from "./hero-side-pagination";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
-import Image from "next/image";
 
 /** Shared right inset — pagination + nav align to the same edge. */
 const CHROME_RIGHT = "right-4 sm:right-5 md:right-6 lg:right-8";
@@ -78,10 +78,11 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
               <button
                 type="button"
                 aria-label={labels.prevSlide}
-                className="focus-ring font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/75 transition-colors hover:text-white sm:text-[11px]"
+                className="focus-ring inline-flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white/75 transition-colors hover:text-white sm:text-[11px]"
                 onClick={slidePrev}
               >
-                ← {labels.prevSlide}
+                <HiChevronLeft aria-hidden="true" className="size-3.5 shrink-0" />
+                {labels.prevSlide}
               </button>
 
               <div aria-hidden="true" className="relative h-px w-12 bg-white/30 sm:w-16 md:w-20">
@@ -91,10 +92,11 @@ export function HeroCarousel({ slides, labels, dateLocale }) {
               <button
                 type="button"
                 aria-label={labels.nextSlide}
-                className="focus-ring font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/75 transition-colors hover:text-white sm:text-[11px]"
+                className="focus-ring inline-flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white/75 transition-colors hover:text-white sm:text-[11px]"
                 onClick={slideNext}
               >
-                {labels.nextSlide} →
+                {labels.nextSlide}
+                <HiChevronRight aria-hidden="true" className="size-3.5 shrink-0" />
               </button>
             </div>
           </>
