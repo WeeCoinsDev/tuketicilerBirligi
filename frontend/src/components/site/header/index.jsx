@@ -14,7 +14,8 @@ export async function Header({ settings }) {
 
   return (
     <header className="contents">
-      <div className="gridContainer bg-primary-foreground text-white">
+      {/* bu üst taraf şimdilik yorum satırı kalacak */}
+      {/* <div className="gridContainer bg-primary-foreground text-white">
         <div className="flex min-h-9 items-center justify-end gap-4 py-1.5">
           <SocialLinks settings={settings} />
           <span aria-hidden="true" className="h-3 w-px bg-white/50" />
@@ -22,7 +23,7 @@ export async function Header({ settings }) {
             <LanguageSwitcher />
           </Suspense>
         </div>
-      </div>
+      </div> */}
 
       <StickyMainBar>
         <div className="gridContainer">
