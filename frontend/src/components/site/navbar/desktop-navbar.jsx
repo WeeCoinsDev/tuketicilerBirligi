@@ -30,14 +30,14 @@ export function DesktopNavbar({
     <nav
       aria-label="Ana menü"
       className={cn(
-        "flex w-full items-center font-heading text-sm font-medium text-nowrap text-ink",
+        "flex w-full items-center font-sans text-sm font-medium text-nowrap text-ink",
         className
       )}
     >
       <Menu
         setActive={setActive}
         linkComponent={linkComponent}
-        className={cn("gap-0.5", menuClassName)}
+        className={cn("gap-1 md:gap-1.5 xl:gap-2", menuClassName)}
       >
         {items.map((entry) => {
           const hasDropdown = Array.isArray(entry.links) && entry.links.length > 0;

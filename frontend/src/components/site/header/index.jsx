@@ -27,20 +27,20 @@ export async function Header({ settings }) {
 
       <StickyMainBar>
         <div className="gridContainer">
-          <div className="grid min-h-[76px] grid-cols-[1fr_auto] items-center gap-4 py-3 xl:grid-cols-[1fr_auto_1fr]">
+          <div className="grid min-h-[88px] grid-cols-[1fr_auto] items-center gap-6 py-4 md:min-h-[96px] md:py-5 xl:grid-cols-[1fr_auto_1fr] xl:gap-10">
             <HeaderBrand shortName={settings.shortName} tagline={t("tagline")} />
 
             <div className="hidden justify-self-center xl:block">
               <SiteNavbar />
             </div>
 
-            <div className="flex items-center justify-self-end gap-2">
+            <div className="flex items-center justify-self-end gap-3 sm:gap-4">
               <div className="hidden sm:block">
                 <SiteSearch />
               </div>
 
               <Link
-                className="focus-ring hidden rounded-full bg-secondary px-4 py-2 font-sans text-sm font-semibold text-ink shadow-soft transition hover:bg-secondary-dark hover:text-white md:inline-flex"
+                className="focus-ring hidden rounded-full bg-secondary px-5 py-2.5 font-sans text-sm font-semibold text-ink shadow-soft transition hover:bg-secondary-dark hover:text-white md:inline-flex"
                 href="/basvuru-rehberi"
               >
                 {t("cta")}

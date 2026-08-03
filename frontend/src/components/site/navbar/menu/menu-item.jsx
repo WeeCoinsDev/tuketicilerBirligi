@@ -15,7 +15,7 @@ export function MenuItem({ setActive, active, item, href, hasDropdown, className
   const [isHovered, setIsHovered] = useState(false);
   const showDropdown = active === item && Boolean(children);
   const showHighlight = isHovered || showDropdown;
-  const triggerClassName = cn("relative z-0 inline-flex items-center gap-1 px-2.5 py-2 text-nowrap transition-colors duration-200 xl:px-3", showHighlight ? "text-ink" : "text-ink/80", className);
+  const triggerClassName = cn("relative z-0 inline-flex items-center gap-1.5 px-3.5 py-2.5 text-nowrap transition-colors duration-200 xl:px-4", showHighlight ? "text-ink" : "text-ink/75", className);
 
   const triggerContent = (
     <>
