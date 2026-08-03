@@ -39,7 +39,7 @@ export function MenuItem({ setActive, active, item, href, hasDropdown, className
 
       {showDropdown ? (
         <div
-          className={cn("absolute top-full left-1/2 z-50 -translate-x-1/2 pt-3", dropdownClassName)}
+          className={cn("absolute top-full left-1/2 z-50 -translate-x-1/2 pt-4", dropdownClassName)}
           onMouseEnter={() => hoverCtx?.registerHover?.()}
           onMouseLeave={() => hoverCtx?.unregisterHover?.()}
         >
@@ -47,7 +47,7 @@ export function MenuItem({ setActive, active, item, href, hasDropdown, className
             layoutId="active"
             layoutScroll
             transition={transition}
-            className={cn("relative w-max overflow-visible rounded-xl border border-line bg-white text-ink shadow-soft", dropdownPanelClassName)}
+            className={cn("relative w-max min-w-52 overflow-visible rounded-2xl border border-line bg-white px-1.5 py-2 text-ink shadow-soft", dropdownPanelClassName)}
           >
             <MenuContext.Provider value={{ setActive, currentItem: item }}>{children}</MenuContext.Provider>
           </motion.div>

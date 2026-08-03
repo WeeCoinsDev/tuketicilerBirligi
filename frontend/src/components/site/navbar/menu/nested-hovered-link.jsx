@@ -2,6 +2,7 @@
 
 import { useContext, useState } from "react";
 import { motion } from "motion/react";
+import { HiChevronRight } from "react-icons/hi2";
 import { cn } from "@/lib/utils";
 import { HoverHighlight } from "./hover-highlight";
 import { MenuContext, MenuHoverContext, NavAnchor, transition } from "./shared";
@@ -34,28 +35,30 @@ export function NestedHoveredLink({ children, className, submenu, submenuClassNa
     <div className="relative" onMouseEnter={open} onMouseLeave={close}>
       <NavAnchor
         href={href}
-        className={cn("group relative z-0 flex items-center justify-between gap-3 px-3.5 py-2 text-nowrap transition-colors duration-200", hovered ? "text-ink" : "text-ink/80", className)}
+        className={cn(
+          "group relative z-0 flex items-center justify-between gap-6 px-4 py-2.5 text-nowrap transition-colors duration-200",
+          hovered ? "text-ink" : "text-ink/75",
+          className
+        )}
         {...rest}
       >
-        {hovered ? <HoverHighlight layoutId={highlightId} className="rounded-md" /> : null}
+        {hovered ? <HoverHighlight layoutId={highlightId} className="rounded-lg" /> : null}
         <span className="relative">{children}</span>
         {submenu ? (
-          <svg aria-hidden="true" className="relative h-3.5 w-3.5 shrink-0 text-muted/70 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 5l7 7-7 7" />
-          </svg>
+          <HiChevronRight aria-hidden="true" className="relative size-3.5 shrink-0 opacity-45 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:opacity-70" />
         ) : null}
       </NavAnchor>
 
       {submenu && showSubmenu ? (
-        <div className="absolute top-0 left-full z-60 min-w-48 pl-1" onMouseEnter={open} onMouseLeave={close}>
+        <div className="absolute top-0 left-full z-60 min-w-52 pl-2" onMouseEnter={open} onMouseLeave={close}>
           <motion.div
             layoutScroll
             initial={{ x: 6 }}
             animate={{ x: 0 }}
             transition={transition}
-            className={cn("overflow-visible rounded-xl border border-line bg-white py-1 shadow-soft", submenuClassName)}
+            className={cn("overflow-visible rounded-2xl border border-line bg-white py-2 shadow-soft", submenuClassName)}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-0.5 px-1.5">
               {/* Submenu uses its own highlight id so it doesn’t fight the parent list. */}
               {submenu}
             </div>

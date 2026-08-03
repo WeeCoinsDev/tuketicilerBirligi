@@ -55,7 +55,7 @@ export function DesktopNavbar({
               dropdownPanelClassName={dropdownPanelClassName}
             >
               {hasDropdown ? (
-                <div className="flex flex-col py-1.5 font-sans text-sm">
+                <div className="flex flex-col gap-0.5 py-0.5 font-sans text-sm">
                   {entry.links.map((link, idx) => {
                     if (link.submenu?.length) {
                       return (
