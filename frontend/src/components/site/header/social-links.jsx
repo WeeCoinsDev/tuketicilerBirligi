@@ -20,13 +20,13 @@ export function buildSocialItems(settings) {
   ];
 }
 
-function SocialLink({ href, label, icon: Icon, tone = "light" }) {
+function SocialLink({ href, label, icon: Icon, tone = "light", iconClassName }) {
   const className = cn(
     "focus-ring inline-flex cursor-pointer items-center justify-center p-1 transition-colors duration-200",
     tone === "dark" ? "text-ink/45 hover:text-ink" : "text-white/50 hover:text-white"
   );
 
-  const icon = <Icon aria-hidden="true" className="size-3.5" size={14} strokeWidth={1.75} />;
+  const icon = <Icon aria-hidden="true" className={cn("size-3.5", iconClassName)} size={14} strokeWidth={1.75} />;
 
   if (!href) {
     return (
@@ -43,13 +43,20 @@ function SocialLink({ href, label, icon: Icon, tone = "light" }) {
   );
 }
 
-export function SocialLinks({ settings, tone = "light" }) {
+export function SocialLinks({ settings, tone = "light", className, iconClassName }) {
   const socials = buildSocialItems(settings);
 
   return (
-    <div className="flex items-center gap-3">
+    <div className={cn("flex items-center gap-3", className)}>
       {socials.map((item) => (
-        <SocialLink href={item.href} icon={item.icon} key={item.label} label={item.label} tone={tone} />
+        <SocialLink
+          href={item.href}
+          icon={item.icon}
+          iconClassName={iconClassName}
+          key={item.label}
+          label={item.label}
+          tone={tone}
+        />
       ))}
     </div>
   );

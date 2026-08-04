@@ -42,5 +42,16 @@
     "categoryAnnouncement": "Duyuru",
     "categoryGuide": "Rehber",
     "categoryEvent": "Etkinlik"
+  },
+  "Footer": {
+    "navLabel": "Site haritası",
+    "brandHome": "Anasayfaya git",
+    "contact": "İletişim",
+    "legal": "Yasal",
+    "rights": "Tüm hakları saklıdır.",
+    "privacy": "Gizlilik",
+    "disclosure": "Aydınlatma Metni",
+    "faq": "Sıkça Sorulan Sorular",
+    "socialLabel": "Sosyal medya"
   }
 }

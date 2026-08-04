@@ -96,6 +96,58 @@ export const publicNavigation = [
   { key: "contact", href: "/iletisim", title: "İletişim" }
 ];
 
+/** Legal / utility links for the fat footer. */
+export const footerLegalLinks = [
+  { label: "Gizlilik", href: "/gizlilik" },
+  { label: "Aydınlatma Metni", href: "/aydinlatma-metni" },
+  { label: "Sıkça Sorulan Sorular", href: "/sss" }
+];
+
+function flattenFooterLinks(links = []) {
+  const result = [];
+
+  for (const link of links) {
+    result.push({ label: link.label, href: link.href });
+    if (!Array.isArray(link.submenu)) continue;
+    for (const sub of link.submenu) {
+      result.push({ label: sub.label, href: sub.href });
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Multi-column footer sitemap derived from the desktop mega menu.
+ * Columns with only a top-level href become a single-link list.
+ */
+export function getFooterColumns(menu = navigationMenu) {
+  const columns = [];
+
+  for (const entry of menu) {
+    if (entry.item === "Anasayfa" || entry.item === "İletişim") continue;
+
+    if (Array.isArray(entry.links) && entry.links.length > 0) {
+      columns.push({
+        title: entry.item,
+        href: entry.href || null,
+        links: flattenFooterLinks(entry.links)
+      });
+      continue;
+    }
+
+    if (entry.href && entry.href !== "#") {
+      columns.push({
+        title: entry.item,
+        href: entry.href,
+        links: [{ label: entry.item, href: entry.href }]
+      });
+    }
+  }
+
+  return columns;
+}
+
 export const adminNavigation = [
   { title: "Özet", href: "/admin" },
   { title: "Hero", href: "/admin/hero" },

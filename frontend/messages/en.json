@@ -42,5 +42,16 @@
     "categoryAnnouncement": "Announcement",
     "categoryGuide": "Guide",
     "categoryEvent": "Event"
+  },
+  "Footer": {
+    "navLabel": "Site map",
+    "brandHome": "Go to homepage",
+    "contact": "Contact",
+    "legal": "Legal",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "disclosure": "Privacy Notice",
+    "faq": "Frequently Asked Questions",
+    "socialLabel": "Social media"
   }
 }
