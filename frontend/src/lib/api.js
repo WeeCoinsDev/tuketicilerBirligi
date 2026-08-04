@@ -1,4 +1,9 @@
-import { fallbackContents, fallbackSettings, getFallbackContent } from "./fallback-data";
+import {
+  fallbackContents,
+  fallbackSettings,
+  getFallbackContent,
+  getFallbackHeroSlides
+} from "./fallback-data";
 
 const apiBaseUrl =
   process.env.API_BASE_URL ||
@@ -35,6 +40,7 @@ export async function getHomeData(locale = "tr") {
 
   return {
     settings: fallbackSettings,
+    heroSlides: getFallbackHeroSlides(locale),
     guides: getFallbackContent("guide"),
     news: getFallbackContent("news"),
     announcements: getFallbackContent("announcement")

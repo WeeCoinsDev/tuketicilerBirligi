@@ -69,6 +69,33 @@ const contents = [
   }
 ];
 
+const heroSlides = [
+  {
+    titleTr: "Tüketici Hakları Bilgilendirme İçerikleri Hazırlanıyor",
+    titleEn: "Consumer Rights Information Content Is Being Prepared",
+    summaryTr:
+      "Hero alanı için örnek Türkçe kayıt. Yönetim panelinden gerçek metin ve görselle güncellenmelidir.",
+    summaryEn:
+      "Sample English record for the hero area. It should be replaced with the real copy and image from the admin panel.",
+    ctaLabelTr: "Devamını Oku",
+    ctaLabelEn: "Read More",
+    ctaHref: "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
+    sortOrder: 0
+  },
+  {
+    titleTr: "Başvuru Rehberi İçeriği Editoryal Olarak Yönetilecek",
+    titleEn: "Application Guide Content Will Be Managed Editorially",
+    summaryTr:
+      "Hero slaytları artık içerik tiplerinden türetilmek yerine ayrı bir yönetim ekranı üzerinden düzenlenebilir olacak.",
+    summaryEn:
+      "Hero slides will no longer be inferred from content types and will instead be manageable from a dedicated admin screen.",
+    ctaLabelTr: "Başvuru Rehberi",
+    ctaLabelEn: "Application Guide",
+    ctaHref: "/basvuru-rehberi",
+    sortOrder: 1
+  }
+];
+
 async function upsertUser({ name, email, password, role }) {
   const passwordHash = await bcrypt.hash(password, 12);
 
@@ -120,6 +147,47 @@ async function seedContent() {
   }
 }
 
+async function seedHeroSlides() {
+  const [heroRows] = await pool.execute(
+    `SELECT id FROM hero_slides
+     ORDER BY id ASC
+     LIMIT 1`
+  );
+
+  if (heroRows[0]) {
+    return;
+  }
+
+  const [mediaRows] = await pool.execute(
+    `SELECT id FROM media_assets
+     ORDER BY created_at ASC, id ASC
+     LIMIT 1`
+  );
+
+  if (!mediaRows[0]) {
+    return;
+  }
+
+  for (const item of heroSlides) {
+    await pool.execute(
+      `INSERT INTO hero_slides
+        (title_tr, title_en, summary_tr, summary_en, cta_label_tr, cta_label_en, cta_href, media_id, is_active, sort_order)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?)`,
+      [
+        item.titleTr,
+        item.titleEn,
+        item.summaryTr,
+        item.summaryEn,
+        item.ctaLabelTr,
+        item.ctaLabelEn,
+        item.ctaHref,
+        mediaRows[0].id,
+        item.sortOrder
+      ]
+    );
+  }
+}
+
 async function seed() {
   await upsertUser({
     name: "Sistem Yöneticisi",
@@ -137,6 +205,7 @@ async function seed() {
 
   await seedSettings();
   await seedContent();
+  await seedHeroSlides();
 }
 
 if (require.main === module) {

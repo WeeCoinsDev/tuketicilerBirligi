@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, createElement, useContext } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -52,9 +52,14 @@ export function NavAnchor({ href, className, children, ...rest }) {
     );
   }
 
-  return (
-    <NavLink className={className} href={href} prefetch {...rest}>
-      {children}
-    </NavLink>
+  return createElement(
+    NavLink,
+    {
+      className,
+      href,
+      prefetch: true,
+      ...rest
+    },
+    children
   );
 }

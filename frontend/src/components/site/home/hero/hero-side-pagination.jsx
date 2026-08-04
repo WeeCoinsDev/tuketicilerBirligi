@@ -1,7 +1,6 @@
 "use client";
 
 import CornerShape from "@/components/common/cornerShape";
-
 function padIndex(value) {
   return String(value).padStart(2, "0");
 }
@@ -15,9 +14,9 @@ export function HeroSidePagination({ activeIndex, total, onSelect, className = "
   const progress = ((activeIndex + 1) / total) * 100;
 
   return (
-    <div className={`pointer-events-auto flex flex-col items-center gap-2.5 sm:gap-3 bg-white py-2.5 pl-2.5 pr-1.5 rounded-l-xl ${className}`}>
-      <CornerShape className="absolute -top-3.5 -rotate-90 left-auto right-0 w-3.5 h-3.5 text-white" />
-      <CornerShape className="absolute -bottom-3.5 top-auto -rotate-180 left-auto right-0 w-3.5 h-3.5 text-white" />
+    <div className={`pointer-events-auto flex flex-col items-center gap-2.5 rounded-tl-xl md:rounded-l-xl bg-white py-2.5 pl-2.5 pr-1.5 sm:gap-3 ${className}`}>
+      <CornerShape className="absolute -top-3.5 -rotate-90 left-auto right-0 h-3.5 w-3.5 text-white" />
+      <CornerShape className="absolute bottom-0 md:-bottom-3.5 top-auto -rotate-90 md:-rotate-180 -left-3.5 right-auto md:left-auto md:right-0 h-3.5 w-3.5 text-white" />
       <button
         type="button"
         aria-label={`${activeIndex + 1} / ${total}`}

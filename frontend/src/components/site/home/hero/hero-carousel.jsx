@@ -60,8 +60,8 @@ export function HeroCarousel({ slides, labels }) {
   }
 
   return (
-    <section data-hero-root className="gridContainer relative z-1 h-full mx-8 rounded-2xl bg-white">
-      <div className="fluid relative h-full min-h-0 bg-white rounded-2xl">
+    <section data-hero-root className="gridContainer relative z-1 h-full bg-white">
+      <div className="fluid relative min-h-[28rem] overflow-hidden rounded-2xl bg-white mx-4 sm:mx-6 lg:mx-8 lg:min-h-[36rem]">
         <Swiper
           modules={[A11y, Autoplay, EffectFade, Keyboard, Parallax]}
           a11y={{ enabled: true }}
@@ -93,11 +93,11 @@ export function HeroCarousel({ slides, labels }) {
 
         {showChrome ? (
           <>
-            <HeroSidePagination activeIndex={activeIndex} total={items.length} onSelect={goTo} className={`absolute top-1/2 z-30 -translate-y-1/2 right-0`} />
+            <HeroSidePagination activeIndex={activeIndex} total={items.length} onSelect={goTo} className="absolute top-auto bottom-0 md:bottom-auto md:top-1/2 right-0 z-30 md:-translate-y-1/2" />
 
-            <article className={`pointer-events-auto absolute bottom-0 z-30 flex items-center gap-3 sm:gap-4 bottom-0 right-0 bg-white pb-2 pt-3.5 pl-2.5 pr-1.5 text-black rounded-tl-xl`}>
-              <CornerShape className="absolute -top-3.5 -rotate-90 left-auto right-0 w-3.5 h-3.5 text-white" />
-              <CornerShape className="absolute bottom-0 top-auto -rotate-90 -left-3.5 w-3.5 h-3.5 text-white" />
+            <article className="pointer-events-auto absolute inset-x-4 bottom-4 z-30 hidden md:flex items-center justify-between gap-3 rounded-xl bg-white px-3 py-3 text-black sm:inset-x-auto sm:right-0 sm:bottom-0 sm:justify-start sm:gap-4 sm:rounded-tl-xl sm:rounded-tr-none sm:rounded-br-none sm:rounded-bl-none sm:px-2.5 sm:pt-3.5 sm:pb-2 sm:pr-1.5 sm:pl-2.5">
+              <CornerShape className="absolute hidden -top-3.5 -rotate-90 left-auto right-0 w-3.5 h-3.5 text-white sm:block" />
+              <CornerShape className="absolute hidden bottom-0 top-auto -rotate-90 -left-3.5 w-3.5 h-3.5 text-white sm:block" />
               <button
                 type="button"
                 aria-label={labels.prevSlide}
@@ -108,7 +108,7 @@ export function HeroCarousel({ slides, labels }) {
                 {labels.prevSlide}
               </button>
 
-              <div aria-hidden="true" className="relative h-px w-12 bg-black/20 sm:w-16 md:w-20">
+              <div aria-hidden="true" className="relative h-px min-w-8 flex-1 bg-black/20 sm:w-16 sm:min-w-0 sm:flex-none md:w-20">
                 <span className="absolute inset-y-0 left-0 bg-black transition-[width] duration-300 ease-out" style={{ width: `${progress}%` }} />
               </div>
 

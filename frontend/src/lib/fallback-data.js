@@ -95,3 +95,36 @@ export function getFallbackContent(type) {
   return fallbackContents.filter((content) => content.type === type);
 }
 
+export function getFallbackHeroSlides(locale = "tr") {
+  const isEnglish = locale === "en";
+
+  return [
+    {
+      id: "fallback-hero-1",
+      title: isEnglish
+        ? "Consumer Rights Information Content Is Being Prepared"
+        : "Tüketici Hakları Bilgilendirme İçerikleri Hazırlanıyor",
+      summary: isEnglish
+        ? "Sample hero content for the homepage. It should be replaced with real editorial copy from the admin panel."
+        : "Ana sayfa için örnek hero içeriği. Yönetim panelinden gerçek editoryal içerikle güncellenmelidir.",
+      ctaLabel: isEnglish ? "Read More" : "Devamını Oku",
+      href: isEnglish
+        ? "/news/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor"
+        : "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
+      image: null
+    },
+    {
+      id: "fallback-hero-2",
+      title: isEnglish
+        ? "Application Guidance Will Be Managed From The Admin Panel"
+        : "Başvuru Rehberi İçeriği Yönetim Panelinden Yönetilecek",
+      summary: isEnglish
+        ? "Hero slides will become independently manageable with bilingual copy, image selection, and ordering."
+        : "Hero slaytları çift dilli metin, görsel seçimi ve sıralama desteğiyle bağımsız olarak yönetilebilecek.",
+      ctaLabel: isEnglish ? "Application Guide" : "Başvuru Rehberi",
+      href: "/basvuru-rehberi",
+      image: null
+    }
+  ];
+}
+

@@ -96,6 +96,7 @@ export const publicNavigation = [
 
 export const adminNavigation = [
   { title: "Özet", href: "/admin" },
+  { title: "Hero", href: "/admin/hero" },
   { title: "İçerikler", href: "/admin/icerikler" },
   { title: "Formlar", href: "/admin/formlar" },
   { title: "Medya", href: "/admin/medya" },

@@ -43,6 +43,19 @@ function mapContent(row) {
   };
 }
 
+function mapHeroSlide(row, locale) {
+  const isEnglish = locale === "en";
+
+  return {
+    id: row.id,
+    title: isEnglish ? row.title_en : row.title_tr,
+    summary: isEnglish ? row.summary_en : row.summary_tr,
+    ctaLabel: isEnglish ? row.cta_label_en : row.cta_label_tr,
+    href: row.cta_href,
+    image: row.public_url
+  };
+}
+
 async function readSettings(locale = "tr") {
   const [rows] = await pool.execute(
     `SELECT locale, key_name, value, value_type
@@ -70,6 +83,14 @@ const getSiteSettings = asyncHandler(async (req, res) => {
 const getHome = asyncHandler(async (req, res) => {
   const locale = req.query.locale || "tr";
   const settings = await readSettings(locale);
+  const [heroRows] = await pool.execute(
+    `SELECT hs.*, ma.public_url
+     FROM hero_slides hs
+     JOIN media_assets ma ON ma.id = hs.media_id
+     WHERE hs.is_active = 1
+     ORDER BY hs.sort_order ASC, hs.id ASC
+     LIMIT 8`
+  );
 
   const [contentRows] = await pool.execute(
     `SELECT * FROM content_items
@@ -83,6 +104,7 @@ const getHome = asyncHandler(async (req, res) => {
 
   res.json({
     settings,
+    heroSlides: heroRows.map((row) => mapHeroSlide(row, locale)),
     guides: items.filter((item) => item.type === "guide").slice(0, 6),
     news: items.filter((item) => item.type === "news").slice(0, 6),
     announcements: items.filter((item) => item.type === "announcement").slice(0, 6)

@@ -1,5 +1,6 @@
 const express = require("express");
 const adminContentController = require("../controllers/adminContentController");
+const adminHeroController = require("../controllers/adminHeroController");
 const formSubmissionController = require("../controllers/formSubmissionController");
 const mediaController = require("../controllers/mediaController");
 const settingsController = require("../controllers/settingsController");
@@ -15,6 +16,12 @@ router.get("/content", adminContentController.listContent);
 router.post("/content", adminContentController.createContent);
 router.patch("/content/:id", adminContentController.updateContent);
 router.delete("/content/:id", adminContentController.deleteContent);
+
+router.get("/hero-slides", adminHeroController.listHeroSlides);
+router.post("/hero-slides", adminHeroController.createHeroSlide);
+router.post("/hero-slides/translate", adminHeroController.translateHeroSlide);
+router.patch("/hero-slides/:id", adminHeroController.updateHeroSlide);
+router.delete("/hero-slides/:id", adminHeroController.deleteHeroSlide);
 
 router.get("/media", mediaController.listMedia);
 router.post("/media", upload.single("file"), mediaController.uploadMedia);

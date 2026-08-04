@@ -97,6 +97,29 @@ const statements = [
     CONSTRAINT fk_settings_updated_by FOREIGN KEY (updated_by) REFERENCES admin_users(id) ON DELETE SET NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
 
+  `CREATE TABLE IF NOT EXISTS hero_slides (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title_tr VARCHAR(220) NOT NULL,
+    title_en VARCHAR(220) NOT NULL,
+    summary_tr TEXT NULL,
+    summary_en TEXT NULL,
+    cta_label_tr VARCHAR(80) NULL,
+    cta_label_en VARCHAR(80) NULL,
+    cta_href VARCHAR(500) NULL,
+    media_id BIGINT UNSIGNED NOT NULL,
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
+    sort_order INT NOT NULL DEFAULT 0,
+    created_by BIGINT UNSIGNED NULL,
+    updated_by BIGINT UNSIGNED NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_hero_sort (sort_order, id),
+    INDEX idx_hero_active_sort (is_active, sort_order, id),
+    CONSTRAINT fk_hero_media FOREIGN KEY (media_id) REFERENCES media_assets(id) ON DELETE RESTRICT,
+    CONSTRAINT fk_hero_created_by FOREIGN KEY (created_by) REFERENCES admin_users(id) ON DELETE SET NULL,
+    CONSTRAINT fk_hero_updated_by FOREIGN KEY (updated_by) REFERENCES admin_users(id) ON DELETE SET NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+
   `CREATE TABLE IF NOT EXISTS audit_logs (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     admin_user_id BIGINT UNSIGNED NULL,

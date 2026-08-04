@@ -34,6 +34,7 @@ export function buildHeroSlides({ news, announcements, guides }, tHero) {
     slug: item.slug,
     title: item.title,
     summary: item.summary,
+    ctaLabel: tHero("readMore"),
     date: item.published_at,
     category: categoryMap[item.type],
     href: hrefMap[item.type](item.slug),
@@ -46,8 +47,20 @@ export function buildHeroSlides({ news, announcements, guides }, tHero) {
  */
 export async function HomePageContent({ locale }) {
   const tHero = await getTranslations("Hero");
-  const { guides, news, announcements } = await getHomeData(locale);
-  const slides = buildHeroSlides({ news, announcements, guides }, tHero);
+  const { guides, heroSlides, news, announcements } = await getHomeData(locale);
+  const slides =
+    heroSlides?.length
+      ? heroSlides.map((slide) => ({
+          id: slide.id,
+          title: slide.title,
+          summary: slide.summary,
+          ctaLabel: slide.ctaLabel,
+          href: slide.href,
+          image: slide.image || null,
+          category: null,
+          date: null
+        }))
+      : buildHeroSlides({ news, announcements, guides }, tHero);
 
   return (
     <>

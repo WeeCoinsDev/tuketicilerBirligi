@@ -34,3 +34,58 @@ export const preApplicationSchema = z.object({
   companyName: z.string().optional()
 });
 
+export const heroSlideSchema = z.object({
+  titleTr: z
+    .string()
+    .trim()
+    .min(2, "Türkçe başlık en az 2 karakter olmalı.")
+    .max(220, "Türkçe başlık en fazla 220 karakter olabilir."),
+  titleEn: z
+    .string()
+    .trim()
+    .min(2, "İngilizce başlık en az 2 karakter olmalı.")
+    .max(220, "İngilizce başlık en fazla 220 karakter olabilir."),
+  summaryTr: z
+    .string()
+    .trim()
+    .max(4000, "Türkçe özet en fazla 4000 karakter olabilir.")
+    .optional()
+    .or(z.literal("")),
+  summaryEn: z
+    .string()
+    .trim()
+    .max(4000, "İngilizce özet en fazla 4000 karakter olabilir.")
+    .optional()
+    .or(z.literal("")),
+  ctaLabelTr: z
+    .string()
+    .trim()
+    .max(80, "Türkçe buton metni en fazla 80 karakter olabilir.")
+    .optional()
+    .or(z.literal("")),
+  ctaLabelEn: z
+    .string()
+    .trim()
+    .max(80, "İngilizce buton metni en fazla 80 karakter olabilir.")
+    .optional()
+    .or(z.literal("")),
+  ctaHref: z
+    .string()
+    .trim()
+    .max(500, "Bağlantı en fazla 500 karakter olabilir.")
+    .optional()
+    .or(z.literal(""))
+    .refine((value) => !value || value.startsWith("/") || /^https?:\/\//.test(value), {
+      message: "Bağlantı / ile başlamalı veya tam bir http/https URL olmalı."
+    }),
+  mediaId: z.number({
+    invalid_type_error: "Hero görseli seçmelisiniz."
+  }).int().positive("Hero görseli seçmelisiniz."),
+  isActive: z.boolean().default(true),
+  sortOrder: z.coerce
+    .number()
+    .int("Sıra tam sayı olmalı.")
+    .min(0, "Sıra 0 veya daha büyük olmalı.")
+    .max(999, "Sıra en fazla 999 olabilir.")
+});
+

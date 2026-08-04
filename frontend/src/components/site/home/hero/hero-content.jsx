@@ -22,8 +22,8 @@ export function HeroContent({ slide, labels, priority = false }) {
 
       <div aria-hidden="true" className="absolute inset-0 bg-linear-to-tr from-card-foreground/85 from-30% to-transparent" />
 
-      <div className="relative z-10 w-full py-20 sm:py-24 md:py-28 gridContainer">
-        <div className="max-w-xl lg:max-w-3xl">
+      <div className="gridContainer relative z-10 w-full py-16 sm:py-20 md:py-24 lg:py-28">
+        <div className="max-w-xl pr-4 sm:pr-10 lg:max-w-3xl">
           {hasMeta ? (
             <div
               className="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10px] font-medium uppercase tracking-[0.16em] text-white/55 sm:text-[11px]"
@@ -62,7 +62,7 @@ export function HeroContent({ slide, labels, priority = false }) {
                 className="focus-ring group inline-flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white/75 transition-colors hover:text-white sm:text-[11px]"
                 href={slide.href}
               >
-                {labels.readMore}
+                {slide.ctaLabel || labels.readMore}
                 <HiArrowRight aria-hidden="true" className="size-3.5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             </div>
