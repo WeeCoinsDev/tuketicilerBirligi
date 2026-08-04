@@ -60,7 +60,7 @@ export function HeroCarousel({ slides, labels }) {
   }
 
   return (
-    <section data-hero-root className="gridContainer relative z-1 h-full mx-6 rounded-2xl bg-white">
+    <section data-hero-root className="gridContainer relative z-1 h-full mx-8 rounded-2xl bg-white">
       <div className="fluid relative h-full min-h-0 bg-white rounded-2xl">
         <Swiper
           modules={[A11y, Autoplay, EffectFade, Keyboard, Parallax]}

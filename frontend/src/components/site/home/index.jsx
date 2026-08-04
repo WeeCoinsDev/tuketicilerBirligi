@@ -55,7 +55,7 @@ export async function HomePageContent({ locale }) {
         <HomeHero slides={slides} />
       </section>
 
-      <section className="bg-white pt-16 md:pt-20">
+      <section className="bg-white pt-12 md:pt-16">
         <HomeHighlights />
         <HomeGuides guides={guides} />
         <HomeFeed news={news} announcements={announcements} />

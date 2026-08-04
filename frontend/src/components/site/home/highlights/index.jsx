@@ -5,18 +5,18 @@ const HIGHLIGHTS = [
   {
     icon: MessageSquareText,
     title: "Açık iletişim",
-    text: "Telefon, e-posta, adres, form ve harita bilgileri tek sayfada toplanır."
+    text: "Telefon, e-posta, adres, form ve harita bilgileri tek sayfada toplanır.",
   },
   {
     icon: FileCheck2,
     title: "Başvuru rehberi",
-    text: "Başvuru öncesi gerekli bilgiler, belgeler ve kanallar sade şekilde anlatılır."
+    text: "Başvuru öncesi gerekli bilgiler, belgeler ve kanallar sade şekilde anlatılır.",
   },
   {
     icon: ShieldCheck,
     title: "Hak rehberleri",
-    text: "Tüketicilerin en çok ihtiyaç duyduğu konular kategori bazlı yayınlanır."
-  }
+    text: "Tüketicilerin en çok ihtiyaç duyduğu konular kategori bazlı yayınlanır.",
+  },
 ];
 
 export function HomeHighlights() {
