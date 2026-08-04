@@ -44,7 +44,7 @@ export function SiteSearch() {
     <>
       <button
         aria-label={t("trigger")}
-        className="focus-ring inline-flex h-10 items-center gap-2 px-1.5 text-ink/70 transition-colors hover:text-ink sm:pr-2"
+        className="focus-ring cursor-pointer inline-flex h-10 items-center gap-2 px-1.5 text-ink/70 transition-colors hover:text-ink sm:pr-2"
         type="button"
         onClick={() => setOpen(true)}
       >
