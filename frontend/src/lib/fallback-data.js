@@ -91,6 +91,84 @@ export const fallbackContents = [
   }
 ];
 
+const fallbackProvinceEntries = [
+  {
+    id: "fallback-province-1",
+    locale: "tr",
+    provinceCode: 6,
+    provinceName: "Ankara",
+    title: "Ankara'da tüketici hakları bilgilendirme çalışması",
+    summary: "Başkentte tüketici başvuru yolları ve temel haklara yönelik bilgilendirme içeriği.",
+    category: "news",
+    categoryLabel: "Haber",
+    linkLabel: "Habere git",
+    linkHref: "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
+    eventDate: "2026-07-10",
+    status: "published",
+    sortOrder: 0
+  },
+  {
+    id: "fallback-province-2",
+    locale: "tr",
+    provinceCode: 34,
+    provinceName: "İstanbul",
+    title: "İstanbul için ayıplı mal başvuru rehberi",
+    summary: "Ayıplı mal ve hizmet süreçlerinde izlenecek adımlar için il bazlı rehber bağlantısı.",
+    category: "guide",
+    categoryLabel: "Rehber",
+    linkLabel: "Rehbere git",
+    linkHref: "/hak-rehberleri/ayipli-mal-ve-hizmet-basvurulari",
+    eventDate: "2026-07-01",
+    status: "published",
+    sortOrder: 1
+  },
+  {
+    id: "fallback-province-3",
+    locale: "tr",
+    provinceCode: 35,
+    provinceName: "İzmir",
+    title: "İzmir'de mesafeli satışlarda cayma hakkı bilgilendirmesi",
+    summary: "E-ticaret alışverişlerinde cayma hakkı ve iade sürecine dair özet içerik.",
+    category: "guide",
+    categoryLabel: "Rehber",
+    linkLabel: "Rehbere git",
+    linkHref: "/hak-rehberleri/mesafeli-satislarda-cayma-hakki",
+    eventDate: "2026-07-02",
+    status: "published",
+    sortOrder: 2
+  },
+  {
+    id: "fallback-province-4",
+    locale: "tr",
+    provinceCode: 42,
+    provinceName: "Konya",
+    title: "Konya tüketici bilgilendirme buluşması",
+    summary: "Tüketicilerin sık yaşadığı başvuru sorunlarına yönelik yerel bilgilendirme kaydı.",
+    category: "activity",
+    categoryLabel: "Faaliyet",
+    linkLabel: "Habere git",
+    linkHref: "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
+    eventDate: "2026-07-12",
+    status: "published",
+    sortOrder: 3
+  },
+  {
+    id: "fallback-province-5",
+    locale: "tr",
+    provinceCode: 16,
+    provinceName: "Bursa",
+    title: "Bursa iletişim kanalları duyurusu",
+    summary: "Başvuru ve iletişim kanallarının güncellenmesine dair duyuru bağlantısı.",
+    category: "announcement",
+    categoryLabel: "Duyuru",
+    linkLabel: "Duyuruya git",
+    linkHref: "/duyurular",
+    eventDate: "2026-07-12",
+    status: "published",
+    sortOrder: 4
+  }
+];
+
 export function getFallbackContent(type) {
   return fallbackContents.filter((content) => content.type === type);
 }
@@ -128,3 +206,34 @@ export function getFallbackHeroSlides(locale = "tr") {
   ];
 }
 
+export function getFallbackProvinceMap() {
+  const provinces = Array.from({ length: 81 }, (_, index) => {
+    const code = index + 1;
+    const entries = fallbackProvinceEntries.filter((entry) => entry.provinceCode === code);
+    const firstEntry = entries[0];
+
+    return {
+      code,
+      name: firstEntry?.provinceName || "",
+      count: entries.length,
+      entries
+    };
+  });
+
+  const activeProvinceCount = provinces.filter((province) => province.count > 0).length;
+
+  return {
+    provinces,
+    latestEntries: fallbackProvinceEntries.slice(0, 6),
+    stats: {
+      totalEntries: fallbackProvinceEntries.length,
+      activeProvinceCount,
+      categoryCounts: {
+        news: 1,
+        announcement: 1,
+        guide: 2,
+        activity: 1
+      }
+    }
+  };
+}

@@ -53,6 +53,7 @@ export const navigationMenu = [
     links: [
       { label: "Başvuru Rehberi", href: "/basvuru-rehberi" },
       { label: "Online Ön Başvuru", href: "/basvuru-rehberi" },
+      { label: "Tüketici Haritası", href: "/tuketici-haritasi" },
       { label: "Başvuru Süreci", href: "#" },
       { label: "Gerekli Belgeler", href: "#" },
       { label: "Sıkça Sorulan Sorular", href: "/sss" }
@@ -91,12 +92,14 @@ export const publicNavigation = [
   { key: "news", href: "/haberler", title: "Haberler" },
   { key: "announcements", href: "/duyurular", title: "Duyurular" },
   { key: "applicationGuide", href: "/basvuru-rehberi", title: "Başvuru Rehberi" },
+  { key: "provinceMap", href: "/tuketici-haritasi", title: "Tüketici Haritası" },
   { key: "contact", href: "/iletisim", title: "İletişim" }
 ];
 
 export const adminNavigation = [
   { title: "Özet", href: "/admin" },
   { title: "Hero", href: "/admin/hero" },
+  { title: "Harita", href: "/admin/harita" },
   { title: "İçerikler", href: "/admin/icerikler" },
   { title: "Formlar", href: "/admin/formlar" },
   { title: "Medya", href: "/admin/medya" },

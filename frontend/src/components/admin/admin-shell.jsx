@@ -9,6 +9,7 @@ import {
   ImageIcon,
   LayoutDashboard,
   LogOut,
+  MapPinned,
   Menu,
   MessageSquareText,
   Settings,
@@ -24,6 +25,7 @@ import { cn } from "@/lib/utils";
 const navigationIcons = {
   "/admin": LayoutDashboard,
   "/admin/hero": Home,
+  "/admin/harita": MapPinned,
   "/admin/icerikler": FileText,
   "/admin/formlar": MessageSquareText,
   "/admin/medya": ImageIcon,

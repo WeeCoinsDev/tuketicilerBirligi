@@ -97,6 +97,31 @@ export function deleteHeroSlide(id) {
   });
 }
 
+export function listProvinceMapEntries({ locale = "tr" } = {}) {
+  const params = new URLSearchParams({ locale });
+  return adminRequest(`/api/admin/province-map?${params.toString()}`);
+}
+
+export function createProvinceMapEntry(values) {
+  return adminRequest("/api/admin/province-map", {
+    method: "POST",
+    body: JSON.stringify(values)
+  });
+}
+
+export function updateProvinceMapEntry(id, values) {
+  return adminRequest(`/api/admin/province-map/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(values)
+  });
+}
+
+export function deleteProvinceMapEntry(id) {
+  return adminRequest(`/api/admin/province-map/${id}`, {
+    method: "DELETE"
+  });
+}
+
 export function translateHeroSlide(values) {
   return adminRequest("/api/admin/hero-slides/translate", {
     method: "POST",

@@ -2,7 +2,8 @@ import {
   fallbackContents,
   fallbackSettings,
   getFallbackContent,
-  getFallbackHeroSlides
+  getFallbackHeroSlides,
+  getFallbackProvinceMap
 } from "./fallback-data";
 
 const apiBaseUrl =
@@ -66,7 +67,11 @@ export async function getContentBySlug(slug, locale = "tr") {
   );
 }
 
+export async function getProvinceMap(locale = "tr") {
+  const data = await request(`/api/public/province-map?locale=${locale}`);
+  return data || getFallbackProvinceMap();
+}
+
 export function getClientApiBaseUrl() {
   return process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3402";
 }
-

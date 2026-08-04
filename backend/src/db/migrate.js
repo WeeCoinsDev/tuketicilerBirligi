@@ -120,6 +120,31 @@ const statements = [
     CONSTRAINT fk_hero_updated_by FOREIGN KEY (updated_by) REFERENCES admin_users(id) ON DELETE SET NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
 
+  `CREATE TABLE IF NOT EXISTS province_map_entries (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    locale VARCHAR(8) NOT NULL DEFAULT 'tr',
+    province_code TINYINT UNSIGNED NOT NULL,
+    province_name VARCHAR(80) NOT NULL,
+    title VARCHAR(220) NOT NULL,
+    summary TEXT NULL,
+    category ENUM('news', 'announcement', 'guide', 'activity') NOT NULL DEFAULT 'news',
+    content_item_id BIGINT UNSIGNED NULL,
+    link_label VARCHAR(80) NULL,
+    link_href VARCHAR(500) NULL,
+    event_date DATE NULL,
+    status ENUM('draft', 'published') NOT NULL DEFAULT 'draft',
+    sort_order INT NOT NULL DEFAULT 0,
+    created_by BIGINT UNSIGNED NULL,
+    updated_by BIGINT UNSIGNED NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_province_map_public (locale, status, province_code, sort_order, event_date),
+    INDEX idx_province_map_admin (updated_at, id),
+    CONSTRAINT fk_province_map_content FOREIGN KEY (content_item_id) REFERENCES content_items(id) ON DELETE SET NULL,
+    CONSTRAINT fk_province_map_created_by FOREIGN KEY (created_by) REFERENCES admin_users(id) ON DELETE SET NULL,
+    CONSTRAINT fk_province_map_updated_by FOREIGN KEY (updated_by) REFERENCES admin_users(id) ON DELETE SET NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+
   `CREATE TABLE IF NOT EXISTS audit_logs (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     admin_user_id BIGINT UNSIGNED NULL,
@@ -153,4 +178,3 @@ if (require.main === module) {
 }
 
 module.exports = migrate;
-

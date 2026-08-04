@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, FileCheck2, MessageSquareText, ShieldCheck } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
   CutoutCard,
@@ -17,7 +17,6 @@ import {
 
 const HIGHLIGHTS = [
   {
-    icon: MessageSquareText,
     kicker: "Öne çıkan",
     badge: "İletişim",
     title: "Açık iletişim",
@@ -26,12 +25,12 @@ const HIGHLIGHTS = [
     href: "/iletisim",
     cta: "İletişime git",
     meta: "Doğrudan erişim",
+    footer: "İletişim bilgileri",
     imageSrc: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
     pinClassName: "bg-ink text-white",
     pinCornerClassName: "text-ink",
   },
   {
-    icon: FileCheck2,
     kicker: "Öne çıkan",
     badge: "Başvuru",
     title: "Başvuru rehberi",
@@ -40,12 +39,12 @@ const HIGHLIGHTS = [
     href: "/basvuru-rehberi",
     cta: "Rehberi incele",
     meta: "Adım adım süreç",
+    footer: "Başvuru adımları",
     imageSrc: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80",
     pinClassName: "bg-primary-dark text-white",
     pinCornerClassName: "text-primary-dark",
   },
   {
-    icon: ShieldCheck,
     kicker: "Öne çıkan",
     badge: "Rehber",
     title: "Hak rehberleri",
@@ -54,6 +53,7 @@ const HIGHLIGHTS = [
     href: "/hak-rehberleri",
     cta: "Rehberleri aç",
     meta: "Kategori bazlı içerik",
+    footer: "Konu rehberleri",
     imageSrc: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80",
     pinClassName: "bg-secondary text-white",
     pinCornerClassName: "text-secondary",
@@ -64,80 +64,49 @@ export function HomeHighlights() {
   return (
     <section aria-labelledby="home-highlights-title" className="gridContainer border-b border-line pb-10 md:pb-14">
       <div className="grid gap-8">
-        <div id="home-highlights-title">
+        {/* <div id="home-highlights-title">
           <SectionHeading
             eyebrow="Öne çıkanlar"
             title="Bilgiye hızlı erişim sağlayan sade bir deneyim"
             description="Ana temas noktalarını tek bakışta görünür kılan bu alan, ziyaretçilerin ihtiyaç duyduğu bilgiye daha kısa sürede ve daha az karmaşayla ulaşmasını destekler."
           />
-        </div>
+        </div> */}
 
         <div className="grid gap-4 md:grid-cols-3">
           {HIGHLIGHTS.map((item) => (
-            <CutoutCard
-              key={item.title}
-              className={`${cutoutCardSurfaceClassName} h-full rounded-[28px] border border-line/80 bg-white text-ink shadow-[0_18px_45px_rgba(22,32,51,0.10)]`}
-            >
+            <CutoutCard key={item.title} className={`${cutoutCardSurfaceClassName} h-full rounded-[28px] border border-line/80 bg-white text-ink shadow-[0_18px_45px_rgba(22,32,51,0.10)]`}>
               <article className="flex h-full flex-col">
                 <CutoutCardMedia className="h-72 rounded-t-[28px]">
-                  <CutoutCardImage
-                    alt=""
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    src={item.imageSrc}
-                  />
+                  <CutoutCardImage alt="" sizes="(max-width: 768px) 100vw, 33vw" src={item.imageSrc} />
                   <CutoutCardOverlay className="from-black/45 via-black/5 to-transparent" />
 
                   <CutoutCardInsetLabel className="bottom-0 left-0 z-20 rounded-tr-[20px] bg-white px-5 py-3">
-                    <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-                      {item.kicker}
-                    </span>
+                    <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">{item.kicker}</span>
                     <CutoutCorner className="absolute -bottom-px -right-[31px] rotate-90 text-white" />
                     <CutoutCorner className="absolute -left-px -top-[31px] rotate-90 text-white" />
                   </CutoutCardInsetLabel>
 
                   <CutoutCardPin className={`right-0 top-0 z-20 rounded-bl-[16px] px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] shadow-md ring-1 ring-white/15 ${item.pinClassName}`}>
                     {item.badge}
-                    <CutoutCorner
-                      className={`absolute -left-[23px] top-0 -rotate-90 ${item.pinCornerClassName}`}
-                      size={24}
-                    />
-                    <CutoutCorner
-                      className={`absolute -bottom-[23px] right-0 -rotate-90 ${item.pinCornerClassName}`}
-                      size={24}
-                    />
+                    <CutoutCorner className={`absolute -left-[23px] top-0 -rotate-90 ${item.pinCornerClassName}`} size={24} />
+                    <CutoutCorner className={`absolute -bottom-[23px] right-0 -rotate-90 ${item.pinCornerClassName}`} size={24} />
                   </CutoutCardPin>
 
-                  <div className="absolute inset-x-6 bottom-16 z-10 flex items-end justify-between gap-4">
+                  {/* <div className="absolute inset-x-6 bottom-16 z-10 flex items-center justify-end">
                     <div className="max-w-56 text-white">
                       <p className="text-sm font-semibold leading-6 text-white drop-shadow-sm">{item.note}</p>
                     </div>
-                    <div className="inline-flex size-12 items-center justify-center rounded-full bg-white/18 text-white ring-1 ring-white/30 backdrop-blur-sm">
-                      <item.icon aria-hidden="true" size={22} strokeWidth={1.9} />
-                    </div>
-                  </div>
+                  </div> */}
                 </CutoutCardMedia>
 
                 <CutoutCardContent className="flex flex-1 flex-col p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                    Bilgilendirme alanı
-                  </p>
-                  <h3 className="mt-3 text-xl font-semibold leading-snug text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-7 text-muted">
-                    {item.text}
-                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Bilgilendirme alanı</p>
+                  <h3 className="mt-3 text-xl font-semibold leading-snug text-ink">{item.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-7 text-muted">{item.text}</p>
 
-                  <CutoutCardFooter className="border-border/80 mt-5 border-t pt-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex size-9 items-center justify-center rounded-full bg-primary-soft text-primary-dark ring-2 ring-white">
-                        <item.icon aria-hidden="true" size={18} strokeWidth={2} />
-                      </div>
-                      <span className="text-sm font-medium text-ink">Tüketici odaklı yapı</span>
-                    </div>
-                    <span className="text-xs tabular-nums text-muted">
-                      {item.meta}
-                    </span>
+                  <CutoutCardFooter className="mt-5 border-t border-line/80 pt-3">
+                    <span className="text-xs font-medium text-ink/70">{item.footer}</span>
+                    <span className="text-[11px] text-muted">{item.meta}</span>
                   </CutoutCardFooter>
                 </CutoutCardContent>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BookOpen, Building2, FileText, Home, Megaphone, Newspaper, Phone, Search } from "lucide-react";
+import { BookOpen, Building2, FileText, Home, MapPinned, Megaphone, Newspaper, Phone, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
@@ -14,6 +14,7 @@ const navIcons = {
   news: Newspaper,
   announcements: Megaphone,
   applicationGuide: FileText,
+  provinceMap: MapPinned,
   contact: Phone,
 };
 

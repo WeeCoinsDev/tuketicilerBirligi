@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { getHomeData } from "@/lib/api";
+import { getHomeData, getProvinceMap } from "@/lib/api";
+import { ProvinceMapSection } from "@/components/site/province-map";
 import { HomeHero } from "./hero";
 import { HomeHighlights } from "./highlights";
 import { HomeGuides } from "./guides";
@@ -48,6 +49,7 @@ export function buildHeroSlides({ news, announcements, guides }, tHero) {
 export async function HomePageContent({ locale }) {
   const tHero = await getTranslations("Hero");
   const { guides, heroSlides, news, announcements } = await getHomeData(locale);
+  const provinceMap = await getProvinceMap(locale);
   const slides =
     heroSlides?.length
       ? heroSlides.map((slide) => ({
@@ -70,6 +72,7 @@ export async function HomePageContent({ locale }) {
 
       <section className="bg-white pt-12 md:pt-16">
         <HomeHighlights />
+        <ProvinceMapSection compact data={provinceMap} />
         <HomeGuides guides={guides} />
         <HomeFeed news={news} announcements={announcements} />
       </section>

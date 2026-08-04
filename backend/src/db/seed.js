@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const env = require("../config/env");
 const pool = require("./pool");
 const { slugify } = require("../utils/clean");
+const { getProvinceName } = require("../constants/provinces");
 
 const settings = [
   ["tr", "organizationName", "Tüketiciler Birliği", "string"],
@@ -93,6 +94,59 @@ const heroSlides = [
     ctaLabelEn: "Application Guide",
     ctaHref: "/basvuru-rehberi",
     sortOrder: 1
+  }
+];
+
+const provinceMapEntries = [
+  {
+    provinceCode: 6,
+    category: "news",
+    title: "Ankara'da tüketici hakları bilgilendirme çalışması",
+    summary: "Başkentte tüketici başvuru yolları ve temel haklara yönelik bilgilendirme içeriği.",
+    contentSlug: "tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
+    linkLabel: "Habere git",
+    eventDate: "2026-07-10",
+    sortOrder: 0
+  },
+  {
+    provinceCode: 34,
+    category: "guide",
+    title: "İstanbul için ayıplı mal başvuru rehberi",
+    summary: "Ayıplı mal ve hizmet süreçlerinde izlenecek adımlar için il bazlı rehber bağlantısı.",
+    contentSlug: "ayipli-mal-ve-hizmet-basvurulari",
+    linkLabel: "Rehbere git",
+    eventDate: "2026-07-01",
+    sortOrder: 1
+  },
+  {
+    provinceCode: 35,
+    category: "guide",
+    title: "İzmir'de mesafeli satışlarda cayma hakkı bilgilendirmesi",
+    summary: "E-ticaret alışverişlerinde cayma hakkı ve iade sürecine dair özet içerik.",
+    contentSlug: "mesafeli-satislarda-cayma-hakki",
+    linkLabel: "Rehbere git",
+    eventDate: "2026-07-02",
+    sortOrder: 2
+  },
+  {
+    provinceCode: 42,
+    category: "activity",
+    title: "Konya tüketici bilgilendirme buluşması",
+    summary: "Tüketicilerin sık yaşadığı başvuru sorunlarına yönelik yerel bilgilendirme kaydı.",
+    contentSlug: "tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
+    linkLabel: "Habere git",
+    eventDate: "2026-07-12",
+    sortOrder: 3
+  },
+  {
+    provinceCode: 16,
+    category: "announcement",
+    title: "Bursa iletişim kanalları duyurusu",
+    summary: "Başvuru ve iletişim kanallarının güncellenmesine dair duyuru bağlantısı.",
+    contentSlug: "iletisim-kanallari-guncellenecek",
+    linkLabel: "Duyuruya git",
+    eventDate: "2026-07-12",
+    sortOrder: 4
   }
 ];
 
@@ -188,6 +242,46 @@ async function seedHeroSlides() {
   }
 }
 
+async function seedProvinceMapEntries() {
+  const [existingRows] = await pool.execute(
+    `SELECT id FROM province_map_entries
+     ORDER BY id ASC
+     LIMIT 1`
+  );
+
+  if (existingRows[0]) {
+    return;
+  }
+
+  for (const item of provinceMapEntries) {
+    const [contentRows] = await pool.execute(
+      `SELECT id
+       FROM content_items
+       WHERE locale = 'tr' AND slug = ?
+       LIMIT 1`,
+      [item.contentSlug]
+    );
+
+    await pool.execute(
+      `INSERT INTO province_map_entries
+        (locale, province_code, province_name, title, summary, category, content_item_id,
+         link_label, event_date, status, sort_order)
+       VALUES ('tr', ?, ?, ?, ?, ?, ?, ?, ?, 'published', ?)`,
+      [
+        item.provinceCode,
+        getProvinceName(item.provinceCode),
+        item.title,
+        item.summary,
+        item.category,
+        contentRows[0]?.id || null,
+        item.linkLabel,
+        item.eventDate,
+        item.sortOrder
+      ]
+    );
+  }
+}
+
 async function seed() {
   await upsertUser({
     name: "Sistem Yöneticisi",
@@ -206,6 +300,7 @@ async function seed() {
   await seedSettings();
   await seedContent();
   await seedHeroSlides();
+  await seedProvinceMapEntries();
 }
 
 if (require.main === module) {
@@ -222,4 +317,3 @@ if (require.main === module) {
 }
 
 module.exports = seed;
-

@@ -8,6 +8,7 @@ export default function sitemap() {
     "/haberler",
     "/duyurular",
     "/basvuru-rehberi",
+    "/tuketici-haritasi",
     "/sss",
     "/iletisim",
     "/gizlilik",
@@ -17,4 +18,3 @@ export default function sitemap() {
     lastModified: new Date()
   }));
 }
-
