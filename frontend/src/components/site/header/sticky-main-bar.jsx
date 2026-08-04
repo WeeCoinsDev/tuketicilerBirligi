@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Sticky header bar — publishes measured height as --site-header-height
- * so the hero pin/sheet math stays aligned on every viewport.
+ * so page content can offset itself under the fixed header.
  */
 export function StickyMainBar({ children, className }) {
   const barRef = useRef(null);

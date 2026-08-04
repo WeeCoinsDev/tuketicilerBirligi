@@ -1,19 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { getHomeData } from "@/lib/api";
 import { HomeHero } from "./hero";
-import { HeroPinStage } from "./hero-pin-stage";
-import { HeroPinStage2 } from "./hero-pin-stage2";
-import { HomeContentSheet } from "./content-sheet";
-import { HomeContentSheet2 } from "./content-sheet2";
 import { HomeHighlights } from "./highlights";
 import { HomeGuides } from "./guides";
 import { HomeFeed } from "./feed";
 
 export { HomeHero } from "./hero";
-export { HeroPinStage } from "./hero-pin-stage";
-export { HeroPinStage2 } from "./hero-pin-stage2";
-export { HomeContentSheet } from "./content-sheet";
-export { HomeContentSheet2 } from "./content-sheet2";
 export { HomeHighlights } from "./highlights";
 export { HomeGuides } from "./guides";
 export { HomeFeed } from "./feed";
@@ -59,38 +51,15 @@ export async function HomePageContent({ locale }) {
 
   return (
     <>
-      <HeroPinStage>
+      <section>
         <HomeHero slides={slides} />
-      </HeroPinStage>
+      </section>
 
-      <HomeContentSheet>
+      <section className="bg-white pt-16 md:pt-20">
         <HomeHighlights />
         <HomeGuides guides={guides} />
         <HomeFeed news={news} announcements={announcements} />
-      </HomeContentSheet>
-    </>
-  );
-}
-
-/**
- * Design-v2 home: flush hero under fixed Header2, sheet climb preserved.
- */
-export async function HomePageContent2({ locale }) {
-  const tHero = await getTranslations("Hero");
-  const { guides, news, announcements } = await getHomeData(locale);
-  const slides = buildHeroSlides({ news, announcements, guides }, tHero);
-
-  return (
-    <>
-      <HeroPinStage2>
-        <HomeHero slides={slides} />
-      </HeroPinStage2>
-
-      <HomeContentSheet2>
-        <HomeHighlights />
-        <HomeGuides guides={guides} />
-        <HomeFeed news={news} announcements={announcements} />
-      </HomeContentSheet2>
+      </section>
     </>
   );
 }

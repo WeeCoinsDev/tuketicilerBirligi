@@ -1,36 +1,21 @@
-import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SiteNavbar } from "@/components/site/navbar";
-import CornerShape from "@/components/common/cornerShape";
 import { HeaderBrand } from "./brand";
-import { LanguageSwitcher } from "./language-switcher";
 import { MobileNavDrawer } from "./mobile-nav";
 import { SiteSearch } from "./search";
-import { SocialLinks } from "./social-links";
 import { HeaderChrome2 } from "./header-chrome2";
 
 /**
- * Design-v2 header: fixed over the hero, utility tab collapses on scroll.
- * Original Header remains untouched for rollback.
+ * Public site header used by the current marketing layout.
  */
 export async function Header2({ settings }) {
   const t = await getTranslations("Header");
 
   return (
     <header className="contents">
-      <HeaderChrome2
-        utility={
-          <>
-            <SocialLinks settings={settings} tone="dark" />
-            <span aria-hidden="true" className="h-3 w-px bg-ink/20" />
-            <Suspense fallback={<div className="h-4 w-12" />}>
-              <LanguageSwitcher />
-            </Suspense>
-          </>
-        }
-      >
-        <div className="grid min-h-[70px] grid-cols-[1fr_auto] items-stretch gap-6 md:min-h-[80px] xl:grid-cols-[1fr_auto_1fr] xl:gap-10">
+      <HeaderChrome2>
+        <div className="grid min-h-17.5 grid-cols-[1fr_auto] items-stretch gap-6 md:min-h-20 xl:grid-cols-[1fr_auto_1fr] xl:gap-10">
           <div className="flex items-center py-3 md:py-4">
             <HeaderBrand shortName={settings.shortName} tagline={t("tagline")} />
           </div>

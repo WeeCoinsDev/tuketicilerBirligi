@@ -74,12 +74,7 @@
   color-scheme: light;
   --radius: 8px;
   --site-header-height: 5.5rem;
-  /* Sticky climb + sheet tip. Stage is intentionally shorter than full viewport. */
-  --hero-climb: 55vh;
-  --hero-sheet-tip: -3vh;
   --hero-stage-height: 85vh;
-  --hero-pin-track-height: calc(var(--hero-stage-height) + var(--hero-climb));
-  --hero-sheet-overlap: calc(var(--hero-climb) + var(--hero-sheet-tip));
   --background: #ffffff;
   --foreground: #162033;
   --card: #ffffff;
@@ -105,9 +100,7 @@
 
 @media (min-width: 768px) {
   :root {
-    --hero-climb: 65vh;
     --hero-stage-height: 85vh;
-    --hero-sheet-tip: -3vh;
   }
 }
 
