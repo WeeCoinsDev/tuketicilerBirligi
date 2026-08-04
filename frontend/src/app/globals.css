@@ -77,7 +77,7 @@
   /* Sticky climb + sheet tip. Stage is intentionally shorter than full viewport. */
   --hero-climb: 55vh;
   --hero-sheet-tip: -3vh;
-  --hero-stage-height: 80vh;
+  --hero-stage-height: 85vh;
   --hero-pin-track-height: calc(var(--hero-stage-height) + var(--hero-climb));
   --hero-sheet-overlap: calc(var(--hero-climb) + var(--hero-sheet-tip));
   --background: #ffffff;
@@ -99,14 +99,14 @@
 
 @media (min-width: 640px) {
   :root {
-    --hero-stage-height: 80vh;
+    --hero-stage-height: 85vh;
   }
 }
 
 @media (min-width: 768px) {
   :root {
     --hero-climb: 65vh;
-    --hero-stage-height: 80vh;
+    --hero-stage-height: 85vh;
     --hero-sheet-tip: -3vh;
   }
 }

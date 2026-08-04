@@ -3,6 +3,7 @@ import { Footer } from "@/components/site/footer";
 import { Header2 } from "@/components/site/header/index2";
 import { getSiteSettings } from "@/lib/api";
 import { ReactLenis } from "@/lib/lenis";
+import { Header } from "@/components/site/header";
 
 export default async function PublicLayout({ children, params }) {
   const { locale } = await params;
