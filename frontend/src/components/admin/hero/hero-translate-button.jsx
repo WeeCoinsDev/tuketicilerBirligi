@@ -1,6 +1,6 @@
 "use client";
 
-import { Languages } from "lucide-react";
+import { Languages, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { translateHeroSlide } from "@/lib/admin-api";
@@ -48,14 +48,12 @@ export function HeroTranslateButton({ getValues, setValue }) {
 
   return (
     <div className="grid gap-2">
-      <Button
-        className="w-full sm:w-auto"
-        disabled={loading}
-        onClick={handleTranslate}
-        type="button"
-        variant="outline"
-      >
-        <Languages aria-hidden="true" className="size-4" />
+      <Button className="w-full sm:w-auto" disabled={loading} onClick={handleTranslate} type="button" variant="outline">
+        {loading ? (
+          <LoaderCircle aria-hidden="true" className="size-4 animate-spin" />
+        ) : (
+          <Languages aria-hidden="true" className="size-4" />
+        )}
         {loading ? "Çevriliyor" : "TR -> EN çevir"}
       </Button>
       {error ? <p className="text-xs font-semibold text-red-700">{error}</p> : null}

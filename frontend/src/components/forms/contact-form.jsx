@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { CustomButton } from "@/components/common/custom-button";
 import { Field, inputClassName } from "@/components/ui/field";
 import { contactSchema } from "@/lib/form-schemas";
 import { getClientApiBaseUrl } from "@/lib/api";
@@ -87,10 +87,10 @@ export function ContactForm() {
       ) : null}
 
       <div className="flex flex-wrap items-center gap-3">
-        <Button disabled={isSubmitting} type="submit">
+        <CustomButton disabled={isSubmitting} type="submit">
           <Send size={18} aria-hidden="true" />
           {isSubmitting ? "Gönderiliyor" : "Mesaj Gönder"}
-        </Button>
+        </CustomButton>
         {status === "success" ? (
           <p className="text-sm font-semibold text-secondary-dark">Mesajınız alındı.</p>
         ) : null}
@@ -101,4 +101,3 @@ export function ContactForm() {
     </form>
   );
 }
-

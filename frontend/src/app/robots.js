@@ -1,5 +1,5 @@
 export default function robots() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3401";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3601";
 
   return {
     rules: {
@@ -10,4 +10,3 @@ export default function robots() {
     sitemap: `${siteUrl}/sitemap.xml`
   };
 }
-

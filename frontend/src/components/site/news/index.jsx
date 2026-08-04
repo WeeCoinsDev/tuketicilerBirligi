@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/common/content-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getContents } from "@/lib/api";
 import { formatDate } from "@/lib/utils";

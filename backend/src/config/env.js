@@ -2,6 +2,8 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const defaultFrontendUrl = process.env.FRONTEND_URL || "http://localhost:3601";
+
 function numberValue(value, fallback) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
@@ -22,10 +24,10 @@ function listValue(value) {
 const env = {
   nodeEnv: process.env.NODE_ENV || "development",
   port: numberValue(process.env.PORT, 3402),
-  frontendUrl: process.env.FRONTEND_URL || "http://localhost:3401",
-  corsOrigins: listValue(process.env.CORS_ORIGINS || process.env.FRONTEND_URL),
+  frontendUrl: defaultFrontendUrl,
+  corsOrigins: listValue(process.env.CORS_ORIGINS || defaultFrontendUrl),
   apiBaseUrl: process.env.API_BASE_URL || "http://localhost:3402",
-  adminResetUrl: process.env.ADMIN_RESET_URL || "http://localhost:3401/admin/reset-password",
+  adminResetUrl: process.env.ADMIN_RESET_URL || "http://localhost:3601/admin/reset-password",
   db: {
     host: process.env.DB_HOST || "127.0.0.1",
     port: numberValue(process.env.DB_PORT, 3306),
@@ -70,4 +72,3 @@ const env = {
 };
 
 module.exports = env;
-

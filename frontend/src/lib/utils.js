@@ -23,6 +23,6 @@ export function formatDate(dateValue, locale = "tr") {
 }
 
 export function absoluteUrl(path = "") {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3401";
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3601";
   return new URL(path, base).toString();
 }

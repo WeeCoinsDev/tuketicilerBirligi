@@ -1,5 +1,5 @@
 import { Megaphone } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/common/content-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getContents } from "@/lib/api";
 import { formatDate } from "@/lib/utils";

@@ -21,8 +21,7 @@ npm run dev:frontend
 
 Varsayılan portlar:
 
-- Frontend: `http://localhost:3401`
+- Frontend: `http://localhost:3601`
 - Backend: `http://localhost:3402`
 
 Gerçek kurum metinleri, logo, adres ve görseller admin panelinden veya seed verileri güncellenerek eklenmelidir. Mevcut seed içerikleri yalnızca yer tutucu ve içerik ekibi yönlendirme notlarıdır.
-

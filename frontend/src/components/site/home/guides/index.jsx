@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/common/content-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function HomeGuides({ guides = [] }) {

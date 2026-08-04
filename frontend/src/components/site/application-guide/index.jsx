@@ -1,6 +1,6 @@
 import { ClipboardCheck, FileText, Send, UserCheck } from "lucide-react";
 import { PreApplicationForm } from "@/components/forms/pre-application-form";
-import { StaticCard } from "@/components/ui/card";
+import { StaticCard } from "@/components/common/content-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const STEPS = [

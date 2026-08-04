@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { AdminFormField } from "@/components/admin/common/admin-form-field";
 import { Button } from "@/components/ui/button";
-import { Field, inputClassName } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 
 export function AdminLoginForm() {
   const [error, setError] = useState("");
@@ -38,19 +39,18 @@ export function AdminLoginForm() {
   }
 
   return (
-    <form className="grid gap-4 rounded-[8px] border border-line bg-white p-6 shadow-soft" onSubmit={onSubmit}>
-      <Field label="E-posta">
-        <input className={inputClassName()} name="email" type="email" autoComplete="email" required />
-      </Field>
-      <Field label="Şifre">
-        <input
-          className={inputClassName()}
+    <form className="grid gap-4 rounded-lg border border-line bg-white p-6 shadow-soft" onSubmit={onSubmit}>
+      <AdminFormField label="E-posta">
+        <Input name="email" type="email" autoComplete="email" required />
+      </AdminFormField>
+      <AdminFormField label="Şifre">
+        <Input
           name="password"
           type="password"
           autoComplete="current-password"
           required
         />
-      </Field>
+      </AdminFormField>
       {error ? <p className="text-sm font-semibold text-red-700">{error}</p> : null}
       <Button disabled={loading} type="submit">
         {loading ? "Giriş yapılıyor" : "Giriş Yap"}
@@ -58,4 +58,3 @@ export function AdminLoginForm() {
     </form>
   );
 }
-

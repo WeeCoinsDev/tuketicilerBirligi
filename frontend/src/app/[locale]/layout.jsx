@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3401";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3601";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

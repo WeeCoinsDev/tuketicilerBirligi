@@ -1,22 +1,18 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AlertCircle, LoaderCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
+import { AdminAlert } from "@/components/admin/common/admin-alert";
+import { ImageUploadCropField } from "@/components/admin/common/image-upload-crop-field";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
-import { Field, inputClassName } from "@/components/ui/field";
-import { createHeroSlide, updateHeroSlide } from "@/lib/admin-api";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { createHeroSlide, updateHeroSlide, uploadAdminMedia } from "@/lib/admin-api";
 import { heroSlideSchema } from "@/lib/form-schemas";
-import { HeroImageField } from "./hero-image-field";
-import { HeroTranslateButton } from "./hero-translate-button";
+import { HeroLinkField } from "./hero-link-field";
+import { HeroPublishFields } from "./hero-publish-fields";
+import { HeroTextFields } from "./hero-text-fields";
 
 function getDefaultValues(item) {
   return {
@@ -29,52 +25,73 @@ function getDefaultValues(item) {
     ctaHref: item?.ctaHref || "",
     mediaId: item?.mediaId || 0,
     isActive: item?.isActive ?? true,
-    sortOrder: item?.sortOrder ?? 0
+    sortOrder: item?.sortOrder ?? 0,
   };
 }
 
-export function HeroFormDialog({
-  item,
-  itemCount,
-  maxItems,
-  onOpenChange,
-  onSaved,
-  open
-}) {
+export function HeroFormDialog({ item, itemCount, maxItems, onOpenChange, onSaved, open }) {
   const [submitError, setSubmitError] = useState("");
-  const [imagePreview, setImagePreview] = useState(item?.image?.url || "");
+  const [pendingImageFile, setPendingImageFile] = useState(null);
   const isEditMode = Boolean(item?.id);
+
   const form = useForm({
     resolver: zodResolver(heroSlideSchema),
-    defaultValues: getDefaultValues(item)
+    defaultValues: getDefaultValues(item),
   });
 
   const {
+    clearErrors,
+    control,
     getValues,
     handleSubmit,
     register,
+    setError,
     setValue,
-    control,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = form;
-  const mediaId = useWatch({
-    control,
-    name: "mediaId"
-  });
 
+  const ctaHref = useWatch({ control, name: "ctaHref" });
+  const mediaId = useWatch({ control, name: "mediaId" });
   const isLimitReached = useMemo(
     () => !isEditMode && itemCount >= maxItems,
-    [isEditMode, itemCount, maxItems]
+    [isEditMode, itemCount, maxItems],
   );
 
+  async function uploadPendingImage() {
+    if (!pendingImageFile) return null;
+
+    const formData = new FormData();
+    formData.append("file", pendingImageFile);
+    return uploadAdminMedia(formData);
+  }
+
   async function onSubmit(values) {
+    if (isLimitReached) return;
+
     try {
       setSubmitError("");
+      let payload = { ...values };
+
+      if (pendingImageFile) {
+        const uploadedImage = await uploadPendingImage();
+        payload = {
+          ...payload,
+          mediaId: uploadedImage.id,
+        };
+      }
+
+      if (!payload.mediaId) {
+        setError("mediaId", {
+          type: "manual",
+          message: "Hero görseli seçmelisiniz.",
+        });
+        return;
+      }
 
       if (isEditMode) {
-        await updateHeroSlide(item.id, values);
+        await updateHeroSlide(item.id, payload);
       } else {
-        await createHeroSlide(values);
+        await createHeroSlide(payload);
       }
 
       onSaved?.();
@@ -86,90 +103,85 @@ export function HeroFormDialog({
 
   return (
     <Dialog onOpenChange={onOpenChange} open={open}>
-      <DialogContent className="max-h-[calc(100vh-2rem)] max-w-[min(100%-2rem,68rem)] overflow-y-auto p-0">
-        <form className="grid gap-0" onSubmit={handleSubmit(onSubmit)}>
-          <DialogHeader className="border-b px-5 py-4">
+      <DialogContent className="max-h-[calc(100dvh-2rem)] overflow-hidden p-0 sm:max-w-5xl">
+        <form className="flex max-h-[calc(100dvh-2rem)] flex-col" onSubmit={handleSubmit(onSubmit)}>
+          <DialogHeader className="border-b border-line bg-white px-5 py-4 sm:px-6">
             <DialogTitle>{isEditMode ? "Hero kaydını düzenle" : "Yeni hero kaydı"}</DialogTitle>
             <DialogDescription>
               Hero içeriklerini Türkçe ve İngilizce olarak tek kayıtta yönetin. En fazla {maxItems} kayıt eklenebilir.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="grid gap-6 px-5 py-5">
-            {isLimitReached ? (
-              <p className="rounded-[8px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-800">
-                En fazla {maxItems} hero kaydı eklenebilir. Yeni kayıt açmadan önce birini silin.
-              </p>
-            ) : null}
+          <div className="min-h-0 flex-1 overflow-y-auto bg-surface/70">
+            <div className="grid gap-5 px-5 py-5 sm:px-6">
+              <input type="hidden" {...register("mediaId", { valueAsNumber: true })} />
 
-            <HeroImageField
-              error={errors.mediaId?.message}
-              initialPreview={imagePreview}
-              onChange={({ imageUrl, mediaId }) => {
-                setValue("mediaId", mediaId, { shouldDirty: true, shouldValidate: true });
-                setImagePreview(imageUrl);
-              }}
-              value={mediaId}
-            />
+              {isLimitReached ? (
+                <AdminAlert icon={AlertCircle} title="Hero limiti dolu" variant="warning">
+                  En fazla {maxItems} hero kaydı eklenebilir. Yeni kayıt açmadan önce mevcut kayıtlardan birini silin.
+                </AdminAlert>
+              ) : null}
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <Field error={errors.titleTr?.message} label="Başlık (TR)">
-                <input className={inputClassName()} {...register("titleTr")} />
-              </Field>
-              <Field error={errors.titleEn?.message} label="Title (EN)">
-                <input className={inputClassName()} {...register("titleEn")} />
-              </Field>
-            </div>
+              <section className="grid gap-4 rounded-lg border border-line bg-white p-4">
+                <div className="grid gap-1">
+                  <h3 className="text-base font-semibold text-ink">Hero görseli</h3>
+                  <p className="text-sm leading-6 text-muted">
+                    Görseli istediğiniz anda seçip kırpabilirsiniz. Upload işlemi kayıt sırasında yapılır.
+                  </p>
+                </div>
 
-            <HeroTranslateButton getValues={getValues} setValue={setValue} />
+                <ImageUploadCropField
+                  error={errors.mediaId?.message}
+                  helperText="Carousel görünümünün dengeli kalması için görsel 16:9 oranında önizlenir."
+                  initialPreview={item?.image?.url || ""}
+                  label="Hero görseli"
+                  onChange={({ file, mediaId: nextMediaId }) => {
+                    setPendingImageFile(file);
+                    setValue("mediaId", nextMediaId || mediaId || 0, {
+                      shouldDirty: true,
+                      shouldValidate: false,
+                    });
+                    clearErrors("mediaId");
+                  }}
+                  value={mediaId}
+                />
+              </section>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <Field error={errors.summaryTr?.message} label="Özet (TR)">
-                <textarea className={inputClassName("min-h-32 resize-y")} {...register("summaryTr")} />
-              </Field>
-              <Field error={errors.summaryEn?.message} label="Summary (EN)">
-                <textarea className={inputClassName("min-h-32 resize-y")} {...register("summaryEn")} />
-              </Field>
-            </div>
+              <HeroTextFields
+                errors={errors}
+                getValues={getValues}
+                register={register}
+                setValue={setValue}
+              />
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <Field error={errors.ctaLabelTr?.message} label="Buton metni (TR)">
-                <input className={inputClassName()} {...register("ctaLabelTr")} />
-              </Field>
-              <Field error={errors.ctaLabelEn?.message} label="Button label (EN)">
-                <input className={inputClassName()} {...register("ctaLabelEn")} />
-              </Field>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)]">
-              <Field
+              <HeroLinkField
+                ctaHref={ctaHref}
                 error={errors.ctaHref?.message}
-                hint="İç bağlantılar için / ile başlayan yol kullanın."
-                label="CTA bağlantısı"
-              >
-                <input className={inputClassName()} {...register("ctaHref")} placeholder="/haberler/ornek" />
-              </Field>
-              <Field error={errors.sortOrder?.message} label="Sıra">
-                <input className={inputClassName()} {...register("sortOrder", { valueAsNumber: true })} min={0} type="number" />
-              </Field>
-              <label className="flex min-h-11 items-center gap-3 rounded-[8px] border border-line bg-surface px-3 text-sm font-semibold text-ink">
-                <input className="size-4 accent-primary-dark" type="checkbox" {...register("isActive")} />
-                Aktif
-              </label>
-            </div>
+                register={register}
+                setValue={setValue}
+              />
 
-            {submitError ? (
-              <p className="rounded-[8px] border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-700">
-                {submitError}
-              </p>
-            ) : null}
+              <HeroPublishFields control={control} errors={errors} register={register} />
+
+              {submitError ? (
+                <AdminAlert icon={AlertCircle} title="Kayıt kaydedilemedi" variant="destructive">
+                  {submitError}
+                </AdminAlert>
+              ) : null}
+            </div>
           </div>
 
-          <DialogFooter className="px-5" showCloseButton={false}>
-            <Button disabled={isSubmitting || isLimitReached} type="submit">
+          <div className="mt-auto flex flex-col gap-3 border-t border-line bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="text-sm leading-6 text-muted">
+              {isEditMode
+                ? "Kaydettiğinizde değişiklikler hero kaydına uygulanır."
+                : "Kayıt oluşturulduğunda liste otomatik yenilenir."}
+            </div>
+            <Button className="w-full sm:w-auto" disabled={isSubmitting || isLimitReached} type="submit">
+              {isSubmitting ? <LoaderCircle aria-hidden="true" className="size-4 animate-spin" /> : null}
               {isSubmitting ? "Kaydediliyor" : isEditMode ? "Değişiklikleri kaydet" : "Hero kaydını oluştur"}
             </Button>
-          </DialogFooter>
+          </div>
         </form>
       </DialogContent>
     </Dialog>

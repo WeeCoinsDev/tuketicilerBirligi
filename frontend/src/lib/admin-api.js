@@ -4,23 +4,73 @@ import { getClientApiBaseUrl } from "./api";
 
 const API_BASE_URL = getClientApiBaseUrl();
 
-async function adminRequest(path, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    credentials: "include",
-    headers: {
-      ...(options.body instanceof FormData ? {} : { "Content-Type": "application/json" }),
-      ...options.headers
-    }
-  });
+async function parseResponseBody(response) {
+  return response.json().catch(() => null);
+}
 
-  const data = await response.json().catch(() => null);
-
-  if (!response.ok) {
-    throw new Error(data?.message || "İşlem tamamlanamadı.");
+function getErrorMessage(response, data) {
+  if (response.status === 401) {
+    return "Oturum süresi dolmuş olabilir. Lütfen tekrar giriş yapın.";
   }
 
-  return data;
+  if (response.status === 403) {
+    return "Bu işlem için yetkiniz bulunmuyor.";
+  }
+
+  return data?.message || "İşlem tamamlanamadı.";
+}
+
+async function adminRequest(path, options = {}) {
+  try {
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+      ...options,
+      credentials: "include",
+      headers: {
+        ...(options.body instanceof FormData ? {} : { "Content-Type": "application/json" }),
+        ...options.headers
+      }
+    });
+
+    const data = await parseResponseBody(response);
+
+    if (!response.ok) {
+      throw new Error(getErrorMessage(response, data));
+    }
+
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error("API bağlantısı kurulamadı. Backend çalışıyor mu ve CORS ayarları frontend portuyla uyumlu mu kontrol edin.");
+    }
+
+    throw error;
+  }
+}
+
+async function publicRequest(path, options = {}) {
+  try {
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+      ...options,
+      headers: {
+        ...(options.body instanceof FormData ? {} : { "Content-Type": "application/json" }),
+        ...options.headers
+      }
+    });
+
+    const data = await parseResponseBody(response);
+
+    if (!response.ok) {
+      throw new Error(getErrorMessage(response, data));
+    }
+
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error("API bağlantısı kurulamadı. Backend servisinin çalıştığını kontrol edin.");
+    }
+
+    throw error;
+  }
 }
 
 export function listHeroSlides() {
@@ -59,4 +109,13 @@ export function uploadAdminMedia(formData) {
     method: "POST",
     body: formData
   });
+}
+
+export function listPublicContent({ locale = "tr", limit = 50 } = {}) {
+  const params = new URLSearchParams({
+    locale,
+    limit: String(limit),
+  });
+
+  return publicRequest(`/api/public/content?${params.toString()}`);
 }

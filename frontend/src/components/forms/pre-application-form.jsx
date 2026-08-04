@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FileUp, Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { CustomButton } from "@/components/common/custom-button";
 import { Field, inputClassName } from "@/components/ui/field";
 import { getClientApiBaseUrl } from "@/lib/api";
 import { preApplicationSchema } from "@/lib/form-schemas";
@@ -145,10 +145,10 @@ export function PreApplicationForm() {
       ) : null}
 
       <div className="flex flex-wrap items-center gap-3">
-        <Button disabled={isSubmitting} type="submit">
+        <CustomButton disabled={isSubmitting} type="submit">
           <Send size={18} aria-hidden="true" />
           {isSubmitting ? "Gönderiliyor" : "Ön Başvuru Gönder"}
-        </Button>
+        </CustomButton>
         {status === "success" ? (
           <p className="text-sm font-semibold text-secondary-dark">Ön başvurunuz alındı.</p>
         ) : null}
@@ -159,4 +159,3 @@ export function PreApplicationForm() {
     </form>
   );
 }
-

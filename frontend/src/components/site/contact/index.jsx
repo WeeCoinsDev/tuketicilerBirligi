@@ -1,6 +1,6 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/forms/contact-form";
-import { StaticCard } from "@/components/ui/card";
+import { StaticCard } from "@/components/common/content-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getSiteSettings } from "@/lib/api";
 

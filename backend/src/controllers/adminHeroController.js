@@ -6,6 +6,7 @@ const asyncHandler = require("../utils/asyncHandler");
 const httpError = require("../utils/httpError");
 
 const MAX_HERO_SLIDES = 8;
+const TRANSLATION_TIMEOUT_MS = 10000;
 
 const heroSlideSchema = z.object({
   titleTr: z.string().trim().min(2).max(220),
@@ -89,7 +90,7 @@ async function ensureSlideLimit(ignoreId = null) {
 }
 
 async function translateText(text, sourceLocale, targetLocale) {
-  if (!text) return "";
+  if (!text?.trim()) return "";
 
   const url =
     "https://api.mymemory.translated.net/get?" +
@@ -98,17 +99,38 @@ async function translateText(text, sourceLocale, targetLocale) {
       langpair: `${sourceLocale}|${targetLocale}`
     }).toString();
 
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json"
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), TRANSLATION_TIMEOUT_MS);
+
+  let response;
+
+  try {
+    response = await fetch(url, {
+      headers: {
+        Accept: "application/json"
+      },
+      signal: controller.signal
+    });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw httpError(504, "Otomatik çeviri servisi zaman aşımına uğradı.");
     }
-  });
+
+    throw httpError(502, "Otomatik çeviri servisine ulaşılamadı.");
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     throw httpError(502, "Otomatik çeviri servisine ulaşılamadı.");
   }
 
   const data = await response.json();
+
+  if (data?.responseStatus && Number(data.responseStatus) >= 400) {
+    throw httpError(502, data.responseDetails || "Otomatik çeviri sonucu alınamadı.");
+  }
+
   const translatedText = data?.responseData?.translatedText?.trim();
 
   if (!translatedText) {

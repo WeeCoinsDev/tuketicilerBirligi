@@ -75,12 +75,12 @@ export const heroSlideSchema = z.object({
     .max(500, "Bağlantı en fazla 500 karakter olabilir.")
     .optional()
     .or(z.literal(""))
-    .refine((value) => !value || value.startsWith("/") || /^https?:\/\//.test(value), {
-      message: "Bağlantı / ile başlamalı veya tam bir http/https URL olmalı."
+    .refine((value) => !value || value.startsWith("/"), {
+      message: "Bağlantı yalnızca iç bağlantı olabilir ve / ile başlamalı."
     }),
-  mediaId: z.number({
+  mediaId: z.coerce.number({
     invalid_type_error: "Hero görseli seçmelisiniz."
-  }).int().positive("Hero görseli seçmelisiniz."),
+  }).int().min(0, "Hero görseli seçmelisiniz."),
   isActive: z.boolean().default(true),
   sortOrder: z.coerce
     .number()
@@ -88,4 +88,3 @@ export const heroSlideSchema = z.object({
     .min(0, "Sıra 0 veya daha büyük olmalı.")
     .max(999, "Sıra en fazla 999 olabilir.")
 });
-

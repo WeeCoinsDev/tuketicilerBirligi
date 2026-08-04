@@ -1,4 +1,4 @@
-import { StaticCard } from "@/components/ui/card";
+import { StaticCard } from "@/components/common/content-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getContents } from "@/lib/api";
 
