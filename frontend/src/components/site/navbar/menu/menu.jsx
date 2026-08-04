@@ -39,7 +39,7 @@ export function Menu({ setActive, children, className, linkComponent }) {
     <NavbarLinkContext.Provider value={LinkComponent}>
       <MenuHoverContext.Provider value={{ registerHover, unregisterHover }}>
         <div
-          className={cn("relative flex items-center justify-center", className)}
+          className={cn("relative flex h-full items-stretch justify-center", className)}
           onMouseEnter={registerHover}
           onMouseLeave={unregisterHover}
         >

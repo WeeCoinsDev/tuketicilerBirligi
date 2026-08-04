@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useLocale } from "next-intl";
 import { HiArrowRight } from "react-icons/hi2";
 import { Link } from "@/i18n/navigation";
 import { formatDate } from "@/lib/utils";
@@ -9,11 +10,12 @@ export const HERO_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1521737604
  * Full-bleed image + dark washes.
  * Parallax attrs follow Swiper Studio "Jewelry & Luxury Watches" transition layering.
  */
-export function HeroContent({ slide, labels, dateLocale, priority = false }) {
+export function HeroContent({ slide, labels, priority = false }) {
+  const locale = useLocale();
   const hasMeta = Boolean(slide.category || slide.date);
 
   return (
-    <div data-hero-slide className="relative flex h-full min-h-0 items-center overflow-hidden bg-card-foreground">
+    <div data-hero-slide className="relative flex h-full min-h-0 items-center overflow-hidden bg-card-foreground rounded-2xl">
       <div className="absolute inset-0 overflow-hidden" data-swiper-parallax="12%" data-swiper-parallax-opacity="0.85">
         <Image alt="" className="object-cover object-right scale-105" fill priority={priority} sizes="100vw" src={slide.image || HERO_FALLBACK_IMAGE} />
       </div>
@@ -30,7 +32,7 @@ export function HeroContent({ slide, labels, dateLocale, priority = false }) {
             >
               {slide.category ? <span>{slide.category}</span> : null}
               {slide.category && slide.date ? <span aria-hidden="true" className="h-px w-5 bg-white/30" /> : null}
-              {slide.date ? <time dateTime={slide.date}>{formatDate(slide.date, dateLocale)}</time> : null}
+              {slide.date ? <time dateTime={slide.date}>{formatDate(slide.date, locale)}</time> : null}
             </div>
           ) : null}
 

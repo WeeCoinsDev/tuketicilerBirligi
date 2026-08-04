@@ -15,7 +15,7 @@ export async function Header({ settings }) {
   return (
     <header className="contents">
       {/* bu üst taraf şimdilik yorum satırı kalacak */}
-      {/* <div className="gridContainer bg-primary-foreground text-white">
+      <div className="gridContainer bg-primary-foreground text-white">
         <div className="flex min-h-9 items-center justify-end gap-4 py-1.5">
           <SocialLinks settings={settings} />
           <span aria-hidden="true" className="h-3 w-px bg-white/50" />
@@ -23,18 +23,20 @@ export async function Header({ settings }) {
             <LanguageSwitcher />
           </Suspense>
         </div>
-      </div> */}
+      </div>
 
       <StickyMainBar>
         <div className="gridContainer">
-          <div className="grid min-h-[88px] grid-cols-[1fr_auto] items-center gap-6 py-4 md:min-h-[96px] md:py-5 xl:grid-cols-[1fr_auto_1fr] xl:gap-10">
-            <HeaderBrand shortName={settings.shortName} tagline={t("tagline")} />
+          <div className="grid min-h-[88px] grid-cols-[1fr_auto] items-stretch gap-6 md:min-h-[96px] xl:grid-cols-[1fr_auto_1fr] xl:gap-10">
+            <div className="flex items-center py-4 md:py-5">
+              <HeaderBrand shortName={settings.shortName} tagline={t("tagline")} />
+            </div>
 
-            <div className="hidden justify-self-center xl:block">
+            <div className="hidden h-full justify-self-center xl:block">
               <SiteNavbar />
             </div>
 
-            <div className="flex items-center justify-self-end gap-3 sm:gap-4">
+            <div className="flex items-center justify-self-end gap-3 py-4 sm:gap-4 md:py-5">
               <div className="hidden sm:block">
                 <SiteSearch />
               </div>
@@ -45,7 +47,6 @@ export async function Header({ settings }) {
               >
                 {t("cta")}
               </Link>
-
               <MobileNavDrawer />
             </div>
           </div>

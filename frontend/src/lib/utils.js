@@ -5,13 +5,20 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(dateValue, locale = "tr-TR") {
+const DATE_LOCALES = {
+  tr: "tr-TR",
+  en: "en-GB",
+};
+
+export function formatDate(dateValue, locale = "tr") {
   if (!dateValue) return "";
 
-  return new Intl.DateTimeFormat(locale, {
+  const resolved = DATE_LOCALES[locale] || locale;
+
+  return new Intl.DateTimeFormat(resolved, {
     day: "2-digit",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   }).format(new Date(dateValue));
 }
 

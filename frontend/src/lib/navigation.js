@@ -102,3 +102,94 @@ export const adminNavigation = [
   { title: "Ayarlar", href: "/admin/ayarlar" },
   { title: "Kullanıcılar", href: "/admin/kullanicilar" }
 ];
+
+function isPlaceholderHref(href) {
+  return !href || href === "#";
+}
+
+function normalizePath(path) {
+  if (!path) return "/";
+  const cleaned = path.split("?")[0].split("#")[0].replace(/\/+$/, "");
+  return cleaned || "/";
+}
+
+/** True when pathname is href or a nested route under href. Home only exact. */
+export function pathMatchesHref(pathname, href) {
+  if (isPlaceholderHref(href)) return false;
+  const path = normalizePath(pathname);
+  const target = normalizePath(href);
+  if (target === "/") return path === "/";
+  return path === target || path.startsWith(`${target}/`);
+}
+
+/**
+ * Longest-match active trail through the desktop menu tree.
+ * Example on /haberler/foo → { topItem: "Yayınlar", linkLabel: "Haberler", subLabel: null }
+ */
+export function findActiveNavTrail(menu = navigationMenu, pathname = "/") {
+  let best = null;
+  const path = normalizePath(pathname);
+
+  function consider(candidate) {
+    if (!best) {
+      best = candidate;
+      return;
+    }
+    if (candidate.score > best.score) {
+      best = candidate;
+      return;
+    }
+    // Same path strength → prefer deeper trail so parents + leaf both light up.
+    if (candidate.score === best.score && candidate.depth > best.depth) {
+      best = candidate;
+    }
+  }
+
+  function matchScore(href) {
+    if (!pathMatchesHref(pathname, href)) return null;
+    const target = normalizePath(href);
+    return target.length + (path === target ? 1000 : 0);
+  }
+
+  for (const entry of menu) {
+    const topScore = matchScore(entry.href);
+    if (topScore != null) {
+      consider({
+        score: topScore,
+        depth: 0,
+        topItem: entry.item,
+        linkLabel: null,
+        subLabel: null
+      });
+    }
+
+    for (const link of entry.links || []) {
+      if (Array.isArray(link.submenu)) {
+        for (const sub of link.submenu) {
+          const subScore = matchScore(sub.href);
+          if (subScore == null) continue;
+          consider({
+            score: subScore,
+            depth: 2,
+            topItem: entry.item,
+            linkLabel: link.label,
+            subLabel: sub.label
+          });
+        }
+      }
+
+      const linkScore = matchScore(link.href);
+      if (linkScore != null) {
+        consider({
+          score: linkScore,
+          depth: 1,
+          topItem: entry.item,
+          linkLabel: link.label,
+          subLabel: null
+        });
+      }
+    }
+  }
+
+  return best;
+}

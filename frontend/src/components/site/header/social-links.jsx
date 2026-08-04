@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Youtube } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 function XIcon({ className }) {
   return (
@@ -19,8 +20,11 @@ export function buildSocialItems(settings) {
   ];
 }
 
-function SocialLink({ href, label, icon: Icon }) {
-  const className = "focus-ring inline-flex cursor-pointer items-center justify-center p-1 text-white/50 transition-colors duration-200 hover:text-white";
+function SocialLink({ href, label, icon: Icon, tone = "light" }) {
+  const className = cn(
+    "focus-ring inline-flex cursor-pointer items-center justify-center p-1 transition-colors duration-200",
+    tone === "dark" ? "text-ink/45 hover:text-ink" : "text-white/50 hover:text-white"
+  );
 
   const icon = <Icon aria-hidden="true" className="size-3.5" size={14} strokeWidth={1.75} />;
 
@@ -39,13 +43,13 @@ function SocialLink({ href, label, icon: Icon }) {
   );
 }
 
-export function SocialLinks({ settings }) {
+export function SocialLinks({ settings, tone = "light" }) {
   const socials = buildSocialItems(settings);
 
   return (
     <div className="flex items-center gap-3">
       {socials.map((item) => (
-        <SocialLink href={item.href} icon={item.icon} key={item.label} label={item.label} />
+        <SocialLink href={item.href} icon={item.icon} key={item.label} label={item.label} tone={tone} />
       ))}
     </div>
   );

@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/site/footer";
-import { Header } from "@/components/site/header";
+import { Header2 } from "@/components/site/header/index2";
 import { getSiteSettings } from "@/lib/api";
 import { ReactLenis } from "@/lib/lenis";
 
@@ -11,8 +11,9 @@ export default async function PublicLayout({ children, params }) {
 
   return (
     <ReactLenis root options={{ autoRaf: true, syncTouch: false, lerp: 0.15 }}>
-      <Header settings={settings} />
-      <main>{children}</main>
+      {/* <Header settings={settings} /> */}
+      <Header2 settings={settings} />
+      <main className="pt-[var(--site-header-height)]">{children}</main>
       <Footer settings={settings} />
     </ReactLenis>
   );

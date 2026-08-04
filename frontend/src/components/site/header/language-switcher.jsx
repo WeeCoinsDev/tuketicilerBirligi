@@ -22,7 +22,7 @@ function LocaleFlagButton({ active, alt, flagSrc, label, onClick }) {
           />
         }
       >
-        <Image alt={alt} className="h-[11px] w-[16px] rounded-[1px] object-cover" height={11} src={flagSrc} width={16} />
+        <Image alt={alt} className="min-h-2.75 min-w-4 rounded-[1px] object-cover" height={11} src={flagSrc} width={16} />
       </TooltipTrigger>
       <TooltipContent className="rounded-md bg-white! px-2.5 py-1 text-[9px] text-ink!">{label}</TooltipContent>
     </Tooltip>
@@ -51,7 +51,7 @@ export function LanguageSwitcher({ className }) {
     <TooltipProvider>
       <div aria-label={t("label")} className={cn("flex items-center gap-2", isPending && "pointer-events-none opacity-70", className)}>
         <LocaleFlagButton active={locale === "tr"} alt={t("turkish")} flagSrc="https://flagcdn.com/24x18/tr.png" label={t("turkish")} onClick={() => switchLocale("tr")} />
-        <span aria-hidden="true" className="h-2.5 w-px bg-white/50" />
+        <span aria-hidden="true" className="h-2.5 w-px bg-ink/20" />
         <LocaleFlagButton active={locale === "en"} alt={t("english")} flagSrc="https://flagcdn.com/24x18/us.png" label={t("english")} onClick={() => switchLocale("en")} />
       </div>
     </TooltipProvider>
