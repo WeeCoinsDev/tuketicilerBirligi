@@ -1,22 +1,25 @@
 "use client";
 
+import { Eye, EyeOff } from "lucide-react";
 import { Controller } from "react-hook-form";
 import { AdminFormField } from "@/components/admin/common/admin-form-field";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export function HeroPublishFields({ control, errors, register }) {
   return (
-    <section className="grid gap-5 rounded-lg border border-line bg-white p-4">
-      <div className="grid gap-1">
-        <h3 className="text-base font-semibold text-ink">Yayın ayarları</h3>
-        <p className="text-sm leading-6 text-muted">Gösterim sırasını ve yayın durumunu buradan yönetin.</p>
-      </div>
+    <section className="grid gap-4 rounded-lg border border-line bg-white p-4">
+      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+        <div className="grid gap-1">
+          <h3 className="text-base font-semibold text-ink">Yayın ayarları</h3>
+          <p className="text-sm leading-6 text-muted">Sıralama ve görünürlük bilgisini düzenleyin.</p>
+        </div>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <AdminFormField
+          className="w-full md:w-44"
           error={errors.sortOrder?.message}
-          hint="Küçük sayı daha önce gösterilir."
+          hint="Küçük sayı önce gösterilir."
           label="Sıra"
         >
           <Input
@@ -26,27 +29,51 @@ export function HeroPublishFields({ control, errors, register }) {
             type="number"
           />
         </AdminFormField>
+      </div>
 
-        <Controller
-          control={control}
-          name="isActive"
-          render={({ field }) => (
-            <label className="flex min-h-20 items-start gap-3 rounded-lg border border-line bg-surface px-4 py-3 text-sm text-ink">
-              <Checkbox
-                checked={Boolean(field.value)}
-                className="mt-0.5"
-                onCheckedChange={(checked) => field.onChange(Boolean(checked))}
-              />
-              <span className="grid gap-1">
-                <span className="font-semibold">Aktif olarak yayınla</span>
-                <span className="text-xs leading-5 text-muted">
-                  Pasif kayıtlar panelde kalır ancak anasayfa hero alanında gösterilmez.
+      <Controller
+        control={control}
+        name="isActive"
+        render={({ field }) => {
+          const active = Boolean(field.value);
+          const StatusIcon = active ? Eye : EyeOff;
+
+          return (
+            <button
+              className={cn(
+                "focus-ring flex w-full items-center justify-between gap-4 rounded-lg border px-4 py-3 text-left transition",
+                active
+                  ? "border-secondary/40 bg-secondary-soft/80"
+                  : "border-line bg-surface hover:bg-primary-soft/50",
+              )}
+              onClick={() => field.onChange(!active)}
+              type="button"
+            >
+              <span className="flex min-w-0 items-start gap-3">
+                <span
+                  className={cn(
+                    "mt-0.5 grid size-9 shrink-0 place-items-center rounded-md",
+                    active ? "bg-white text-secondary-dark" : "bg-white text-muted",
+                  )}
+                >
+                  <StatusIcon aria-hidden="true" className="size-4" />
+                </span>
+                <span className="grid gap-1">
+                  <span className="text-sm font-semibold text-ink">
+                    {active ? "Hero yayında" : "Hero pasif"}
+                  </span>
+                  <span className="text-xs leading-5 text-muted">
+                    {active
+                      ? "Bu kayıt anasayfa hero carousel alanında gösterilir."
+                      : "Kayıt panelde kalır ancak anasayfada görünmez."}
+                  </span>
                 </span>
               </span>
-            </label>
-          )}
-        />
-      </div>
+              <Checkbox checked={active} className="pointer-events-none shrink-0" />
+            </button>
+          );
+        }}
+      />
     </section>
   );
 }

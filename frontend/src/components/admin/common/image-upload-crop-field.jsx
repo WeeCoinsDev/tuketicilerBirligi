@@ -134,21 +134,21 @@ export function ImageUploadCropField({
         <div
           {...getRootProps()}
           className={cn(
-            "grid min-h-52 place-items-center rounded-lg border border-dashed bg-white p-6 text-center transition",
+            "grid min-h-36 place-items-center rounded-lg border border-dashed bg-white p-4 text-center transition",
             isDragActive
               ? "border-primary-dark bg-primary-soft"
               : "border-line hover:border-primary-dark hover:bg-primary-soft/50",
           )}
         >
-          <div className="flex max-w-sm flex-col items-center gap-3">
-            <div className="grid size-11 place-items-center rounded-md bg-primary-soft text-primary-dark">
+          <div className="flex max-w-sm flex-col items-center gap-2">
+            <div className="grid size-9 place-items-center rounded-md bg-primary-soft text-primary-dark">
               <ImagePlus aria-hidden="true" className="size-5" />
             </div>
             <div className="grid gap-1">
               <p className="font-semibold text-ink">Görseli sürükleyip bırakın</p>
-              <p className="text-sm font-normal leading-6 text-muted">veya dosya seçerek kırpma adımına geçin.</p>
+              <p className="text-xs font-normal leading-5 text-muted">veya dosya seçerek kırpma adımına geçin.</p>
             </div>
-            <Button onClick={open} type="button" variant="outline">
+            <Button onClick={open} size="sm" type="button" variant="outline">
               <UploadCloud aria-hidden="true" className="size-4" />
               Görsel seç
             </Button>
@@ -157,16 +157,24 @@ export function ImageUploadCropField({
       ) : null}
 
       {hasPreview && !isCropping ? (
-        <div className="grid gap-3 rounded-lg border border-line bg-white p-3">
-          <div className="overflow-hidden rounded-md border border-line bg-surface">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" className="aspect-video h-auto w-full object-cover" src={previewUrl} />
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Button onClick={open} type="button" variant="outline">
-              <UploadCloud aria-hidden="true" className="size-4" />
-              Görseli değiştir
-            </Button>
+        <div className="rounded-lg border border-line bg-white p-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="w-full max-w-[360px] overflow-hidden rounded-md border border-line bg-surface sm:w-72">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" className="aspect-video h-auto w-full object-cover" src={previewUrl} />
+            </div>
+            <div className="grid min-w-0 flex-1 gap-2">
+              <p className="text-sm font-semibold text-ink">16:9 önizleme hazır</p>
+              <p className="text-xs font-normal leading-5 text-muted">
+                Görsel kaydetme sırasında yüklenecek. Oranı kontrol edip gerekirse değiştirebilirsiniz.
+              </p>
+              <div>
+                <Button onClick={open} size="sm" type="button" variant="outline">
+                  <UploadCloud aria-hidden="true" className="size-4" />
+                  Görseli değiştir
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       ) : null}
@@ -178,12 +186,12 @@ export function ImageUploadCropField({
               <p className="font-semibold text-ink">Görseli kırp</p>
               <p className="mt-1 text-xs font-normal leading-5 text-muted">Carousel oranı için kadrajı seçin.</p>
             </div>
-            <Button disabled={processing} onClick={open} type="button" variant="outline">
+            <Button disabled={processing} onClick={open} size="sm" type="button" variant="outline">
               Başka görsel seç
             </Button>
           </div>
 
-          <div className="relative aspect-video overflow-hidden rounded-md bg-ink/10">
+          <div className="relative aspect-video max-h-[320px] overflow-hidden rounded-md bg-ink/10">
             <Cropper
               aspect={aspect}
               crop={crop}
@@ -209,11 +217,11 @@ export function ImageUploadCropField({
           </label>
 
           <div className="flex flex-wrap gap-2">
-            <Button disabled={processing} onClick={applyCrop} type="button">
+            <Button disabled={processing} onClick={applyCrop} size="sm" type="button">
               {processing ? <LoaderCircle aria-hidden="true" className="size-4 animate-spin" /> : null}
               {processing ? "Hazırlanıyor" : "Kırp ve önizle"}
             </Button>
-            <Button disabled={processing} onClick={clearDraft} type="button" variant="ghost">
+            <Button disabled={processing} onClick={clearDraft} size="sm" type="button" variant="ghost">
               <RotateCcw aria-hidden="true" className="size-4" />
               Vazgeç
             </Button>
