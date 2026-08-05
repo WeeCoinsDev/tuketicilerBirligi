@@ -44,6 +44,25 @@
     "categoryGuide": "Guide",
     "categoryEvent": "Event"
   },
+  "HomeGuides": {
+    "eyebrow": "Consumer guides",
+    "title": "Clear and reliable guidance on consumer rights",
+    "description": "Reach the right information quickly with guides on defective goods, withdrawal rights, and common application topics.",
+    "badge": "Guide",
+    "readMore": "Read guide",
+    "viewAll": "All guides",
+    "empty": "No published guides yet."
+  },
+  "HomeFeed": {
+    "newsEyebrow": "News",
+    "newsTitle": "Institutional news and activity",
+    "newsViewAll": "All news",
+    "announcementsEyebrow": "Announcements",
+    "announcementsTitle": "Key updates",
+    "announcementsViewAll": "All announcements",
+    "emptyNews": "No published news yet.",
+    "emptyAnnouncements": "No published announcements yet."
+  },
   "Footer": {
     "navLabel": "Site map",
     "brandHome": "Go to homepage",

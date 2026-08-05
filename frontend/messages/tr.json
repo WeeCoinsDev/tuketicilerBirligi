@@ -44,6 +44,25 @@
     "categoryGuide": "Rehber",
     "categoryEvent": "Etkinlik"
   },
+  "HomeGuides": {
+    "eyebrow": "Hak rehberleri",
+    "title": "Tüketici haklarına dair sade ve güvenilir içerikler",
+    "description": "Ayıplı mal, cayma hakkı ve sık karşılaşılan başvuru konularında hazırlanan rehberlerle doğru bilgiye hızlıca ulaşın.",
+    "badge": "Rehber",
+    "readMore": "Rehberi oku",
+    "viewAll": "Tüm rehberler",
+    "empty": "Yayında rehber bulunmuyor."
+  },
+  "HomeFeed": {
+    "newsEyebrow": "Haberler",
+    "newsTitle": "Kurum haberleri ve faaliyetler",
+    "newsViewAll": "Tüm haberler",
+    "announcementsEyebrow": "Duyurular",
+    "announcementsTitle": "Öne çıkan bilgilendirmeler",
+    "announcementsViewAll": "Tüm duyurular",
+    "emptyNews": "Yayında haber bulunmuyor.",
+    "emptyAnnouncements": "Yayında duyuru bulunmuyor."
+  },
   "Footer": {
     "navLabel": "Site haritası",
     "brandHome": "Anasayfaya git",

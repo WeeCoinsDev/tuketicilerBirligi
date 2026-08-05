@@ -1,42 +1,40 @@
-import { Newspaper } from "lucide-react";
-import { Card } from "@/components/common/content-card";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { formatDate } from "@/lib/utils";
+import { getLocale, getTranslations } from "next-intl/server";
+import { FeedColumn } from "./feed-column";
+import { FeedItem } from "./feed-item";
 
-export function HomeFeed({ news = [], announcements = [] }) {
+export async function HomeFeed({ announcements = [], news = [] }) {
+  const t = await getTranslations("HomeFeed");
+  const locale = await getLocale();
+  const newsItems = news.slice(0, 3);
+  const announcementItems = announcements.slice(0, 3);
+
   return (
-    <section className="gridContainer border-y border-line bg-white py-14">
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div>
-          <SectionHeading eyebrow="Haberler" title="Güncel duyuru ve haber akışı" />
-          <div className="mt-6 grid gap-4">
-            {news.slice(0, 3).map((item) => (
-              <Card key={item.slug}>
-                <div className="flex items-start gap-4">
-                  <Newspaper className="mt-1 shrink-0 text-primary-dark" size={22} aria-hidden="true" />
-                  <div>
-                    <p className="text-xs font-semibold text-muted">{formatDate(item.published_at)}</p>
-                    <h3 className="mt-1 text-lg font-bold text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted">{item.summary}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
+    <section className="gridContainer border-t border-line/80 py-12 md:py-16">
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <FeedColumn eyebrow={t("newsEyebrow")} title={t("newsTitle")} viewAllHref="/haberler" viewAllLabel={t("newsViewAll")}>
+          {newsItems.length ? (
+            newsItems.map((item) => (
+              <FeedItem date={item.published_at} href={`/haberler/${item.slug}`} key={item.slug} locale={locale} summary={item.summary} title={item.title} />
+            ))
+          ) : (
+            <p className="py-5 text-sm text-muted">{t("emptyNews")}</p>
+          )}
+        </FeedColumn>
 
-        <div>
-          <SectionHeading eyebrow="Duyurular" title="Öne çıkan bilgilendirmeler" />
-          <div className="mt-6 grid gap-4">
-            {announcements.slice(0, 3).map((item) => (
-              <Card key={item.slug}>
-                <p className="text-xs font-semibold text-muted">{formatDate(item.published_at)}</p>
-                <h3 className="mt-1 text-lg font-bold text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{item.summary}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
+        <FeedColumn
+          eyebrow={t("announcementsEyebrow")}
+          title={t("announcementsTitle")}
+          viewAllHref="/duyurular"
+          viewAllLabel={t("announcementsViewAll")}
+        >
+          {announcementItems.length ? (
+            announcementItems.map((item) => (
+              <FeedItem date={item.published_at} href="/duyurular" key={item.slug} locale={locale} summary={item.summary} title={item.title} />
+            ))
+          ) : (
+            <p className="py-5 text-sm text-muted">{t("emptyAnnouncements")}</p>
+          )}
+        </FeedColumn>
       </div>
     </section>
   );
