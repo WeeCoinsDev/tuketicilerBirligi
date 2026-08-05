@@ -122,11 +122,13 @@
   }
 
   html {
+    overflow-x: clip;
     scroll-behavior: smooth;
   }
 
   body {
     position: relative;
+    overflow-x: clip;
     margin: 0;
     background: #ffff;
     color: #162033;
@@ -175,6 +177,51 @@
     linear-gradient(rgba(84, 117, 199, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(84, 117, 199, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+.province-map-svg-shell,
+.province-map-svg-shell > div,
+.province-map-svg-shell #svg-turkiye-haritasi-container {
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.province-map-svg-shell svg {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.province-latest-swiper,
+.province-latest-swiper .swiper-wrapper,
+.province-latest-swiper .swiper-slide {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.province-latest-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.province-latest-swiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  margin-inline: 4px !important;
+  background: #9fb8f4;
+  opacity: 0.42;
+  transition:
+    width 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.province-latest-swiper .swiper-pagination-bullet-active {
+  width: 18px;
+  border-radius: 9999px;
+  background: #870b18;
+  opacity: 1;
 }
 
 @keyframes footer-line-drift {
