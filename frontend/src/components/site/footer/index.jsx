@@ -1,0 +1,46 @@
+import { getTranslations } from "next-intl/server";
+import { footerLegalLinks, getFooterColumns } from "@/lib/navigation";
+import { FooterBackground } from "./footer-background";
+import { FooterBottom } from "./footer-bottom";
+import { FooterBrand } from "./footer-brand";
+import { FooterColumns } from "./footer-columns";
+import { FooterContact } from "./footer-contact";
+
+export async function Footer({ settings }) {
+  const t = await getTranslations("Footer");
+  const year = new Date().getFullYear();
+  const orgName = settings.organizationName || settings.shortName;
+
+  const legalLinks = footerLegalLinks.map((link) => {
+    if (link.href === "/gizlilik") return { ...link, label: t("privacy") };
+    if (link.href === "/aydinlatma-metni") return { ...link, label: t("disclosure") };
+    if (link.href === "/sss") return { ...link, label: t("faq") };
+    return link;
+  });
+
+  const columns = [...getFooterColumns(), { title: t("legal"), href: null, links: legalLinks }];
+
+  return (
+    <footer className="relative overflow-hidden border-t border-line bg-[linear-gradient(180deg,#fff_0%,#f8fbff_48%,#fff_100%)] text-ink">
+      <FooterBackground />
+
+      <div className="relative gridContainer">
+        <nav aria-label={t("navLabel")} className="py-12 md:py-16">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-start">
+            <FooterColumns columns={columns} />
+            <FooterContact settings={settings} title={t("contact")} />
+          </div>
+        </nav>
+      </div>
+
+      <div className="relative gridContainer border-t border-line/80">
+        <FooterBrand orgName={orgName} settings={settings} t={t} year={year} />
+      </div>
+
+      <div className="relative gridContainer border-t border-line/80 bg-white/45">
+        <FooterBottom t={t} />
+      </div>
+    </footer>
+  );
+}
+

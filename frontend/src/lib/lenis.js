@@ -1,2 +1,5 @@
 "use client";
-export * from "lenis/react";
+
+export function ReactLenis({ children }) {
+  return children;
+}

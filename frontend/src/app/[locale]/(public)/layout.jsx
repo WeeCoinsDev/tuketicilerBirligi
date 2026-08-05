@@ -1,5 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
-import { Footer } from "@/components/site/footer";
+import { Footer } from "@/components/site/footer/index";
 import { Header2 } from "@/components/site/header/index2";
 import { getSiteSettings } from "@/lib/api";
 import { ReactLenis } from "@/lib/lenis";
