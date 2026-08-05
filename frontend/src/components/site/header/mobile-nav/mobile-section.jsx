@@ -7,6 +7,72 @@ import { findActiveNavTrail } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { MobileLink } from "./mobile-link";
 
+function AccordionPanel({ children, open }) {
+  return (
+    <div className={cn("grid transition-[grid-template-rows] duration-300 ease-out", open ? "grid-rows-[1fr]" : "grid-rows-[0fr]")}>
+      <div className="overflow-hidden">{children}</div>
+    </div>
+  );
+}
+
+function MobileSubgroup({ link, isTopActive, trail }) {
+  const hasSubmenu = Array.isArray(link.submenu) && link.submenu.length > 0;
+  const isLinkActive = isTopActive && trail?.linkLabel === link.label;
+  const [open, setOpen] = useState(isLinkActive);
+
+  if (!hasSubmenu) {
+    return (
+      <MobileLink
+        className={cn(
+          "focus-ring flex min-h-11 items-center py-2 text-[15px] font-medium text-ink/80 transition hover:text-ink",
+          isLinkActive && "text-secondary-dark",
+        )}
+        href={link.href}
+      >
+        {link.label}
+      </MobileLink>
+    );
+  }
+
+  return (
+    <div>
+      <button
+        aria-expanded={open}
+        className={cn(
+          "focus-ring flex min-h-11 w-full items-center justify-between gap-3 py-2 text-left text-[15px] font-medium text-ink/80 transition hover:text-ink",
+          isLinkActive && "text-secondary-dark",
+        )}
+        onClick={() => setOpen((current) => !current)}
+        type="button"
+      >
+        {link.label}
+        <ChevronDown aria-hidden="true" className={cn("size-4 shrink-0 text-muted transition-transform duration-200", open && "rotate-180")} strokeWidth={1.75} />
+      </button>
+
+      <AccordionPanel open={open}>
+        <div className="mb-2 grid border-l border-line/80 pl-3">
+          {link.submenu.map((sub) => {
+            const isSubActive = isLinkActive && trail?.subLabel === sub.label;
+
+            return (
+              <MobileLink
+                className={cn(
+                  "focus-ring flex min-h-10 items-center py-1.5 text-sm text-muted transition hover:text-ink",
+                  isSubActive && "text-secondary-dark",
+                )}
+                href={sub.href}
+                key={sub.label}
+              >
+                {sub.label}
+              </MobileLink>
+            );
+          })}
+        </div>
+      </AccordionPanel>
+    </div>
+  );
+}
+
 export function MobileSection({ entry }) {
   const pathname = usePathname();
   const trail = useMemo(() => findActiveNavTrail(undefined, pathname), [pathname]);
@@ -17,11 +83,11 @@ export function MobileSection({ entry }) {
   if (!hasDropdown) {
     return (
       <MobileLink
-        href={entry.href}
         className={cn(
-          "focus-ring rounded-[8px] px-3 py-3 font-sans text-sm font-semibold text-ink transition hover:bg-ink/4.5",
-          isTopActive && "text-secondary-dark"
+          "focus-ring flex min-h-14 items-center border-b border-line/70 py-4 font-heading text-[1.65rem] font-semibold leading-none tracking-tight text-ink transition hover:text-secondary-dark",
+          isTopActive && "text-secondary-dark",
         )}
+        href={entry.href}
       >
         {entry.item}
       </MobileLink>
@@ -29,62 +95,27 @@ export function MobileSection({ entry }) {
   }
 
   return (
-    <div className="rounded-[8px] border border-line">
+    <div className="border-b border-line/70">
       <button
-        type="button"
-        className={cn(
-          "focus-ring flex w-full items-center justify-between gap-2 rounded-[8px] px-3 py-3 text-left font-sans text-sm font-semibold text-ink",
-          isTopActive && "text-secondary-dark"
-        )}
         aria-expanded={open}
+        className={cn(
+          "focus-ring flex min-h-14 w-full items-center justify-between gap-3 py-4 text-left font-heading text-[1.65rem] font-semibold leading-none tracking-tight text-ink transition hover:text-secondary-dark",
+          isTopActive && "text-secondary-dark",
+        )}
         onClick={() => setOpen((current) => !current)}
+        type="button"
       >
         {entry.item}
-        <ChevronDown aria-hidden="true" className={cn("size-4 text-muted transition", open && "rotate-180", isTopActive && "text-secondary-dark")} />
+        <ChevronDown aria-hidden="true" className={cn("size-5 shrink-0 text-muted transition-transform duration-200", open && "rotate-180")} strokeWidth={1.6} />
       </button>
 
-      {open ? (
-        <div className="border-t border-line px-2 py-2">
-          {entry.links.map((link) => {
-            const isLinkActive = isTopActive && trail?.linkLabel === link.label;
-
-            return (
-              <div key={link.label} className="mb-1 last:mb-0">
-                <MobileLink
-                  href={link.href}
-                  className={cn(
-                    "focus-ring block rounded-lg px-3 py-2 font-sans text-sm text-ink transition hover:bg-ink/4.5",
-                    isLinkActive && "text-secondary-dark"
-                  )}
-                >
-                  {link.label}
-                </MobileLink>
-
-                {link.submenu?.length ? (
-                  <div className="ml-3 border-l border-line pl-2">
-                    {link.submenu.map((sub) => {
-                      const isSubActive = isLinkActive && trail?.subLabel === sub.label;
-
-                      return (
-                        <MobileLink
-                          key={sub.label}
-                          href={sub.href}
-                          className={cn(
-                            "focus-ring block rounded-lg px-3 py-1.5 font-sans text-xs text-muted transition hover:bg-ink/4.5 hover:text-ink",
-                            isSubActive && "text-secondary-dark"
-                          )}
-                        >
-                          {sub.label}
-                        </MobileLink>
-                      );
-                    })}
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
+      <AccordionPanel open={open}>
+        <div className="grid gap-0.5 pb-4">
+          {entry.links.map((link) => (
+            <MobileSubgroup isTopActive={isTopActive} key={link.label} link={link} trail={trail} />
+          ))}
         </div>
-      ) : null}
+      </AccordionPanel>
     </div>
   );
 }

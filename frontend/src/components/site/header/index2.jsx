@@ -32,7 +32,7 @@ export async function Header2({ settings }) {
             <div className="hidden md:block">
               <ApplicationCta />
             </div>
-            <MobileNavDrawer />
+            <MobileNavDrawer settings={settings} />
           </div>
         </div>
       </HeaderChrome2>

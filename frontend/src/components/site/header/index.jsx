@@ -44,7 +44,7 @@ export async function Header({ settings }) {
               <div className="hidden md:block">
                 <ApplicationCta />
               </div>
-              <MobileNavDrawer />
+              <MobileNavDrawer settings={settings} />
             </div>
           </div>
         </div>
