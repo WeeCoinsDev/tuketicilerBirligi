@@ -252,35 +252,66 @@
   }
 }
 
-/* Search command list: custom thin scrollbar from lg up; native below. */
+/* Custom thin scrollbars from lg up; native below. */
 @media (min-width: 1024px) {
-  .site-search-scroll {
+  .site-search-scroll,
+  .application-form-scroll {
     scrollbar-width: thin;
     scrollbar-color: rgba(22, 32, 51, 0.22) transparent;
   }
 
-  .site-search-scroll::-webkit-scrollbar {
+  .site-search-scroll::-webkit-scrollbar,
+  .application-form-scroll::-webkit-scrollbar {
     width: 5px;
   }
 
-  .site-search-scroll::-webkit-scrollbar-track {
+  .site-search-scroll::-webkit-scrollbar-track,
+  .application-form-scroll::-webkit-scrollbar-track {
     background: transparent;
-    margin-block: 6px;
+    margin-block: 8px;
   }
 
-  .site-search-scroll::-webkit-scrollbar-thumb {
+  .site-search-scroll::-webkit-scrollbar-thumb,
+  .application-form-scroll::-webkit-scrollbar-thumb {
     border-radius: 9999px;
-    background: rgba(22, 32, 51, 0.18);
+    background: rgba(22, 32, 51, 0.16);
   }
 
-  .site-search-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(22, 32, 51, 0.32);
+  .site-search-scroll::-webkit-scrollbar-thumb:hover,
+  .application-form-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(22, 32, 51, 0.3);
   }
 
-  .site-search-scroll::-webkit-scrollbar-button {
+  .site-search-scroll::-webkit-scrollbar-button,
+  .application-form-scroll::-webkit-scrollbar-button {
     display: none;
     width: 0;
     height: 0;
+  }
+
+  .application-form-scroll {
+    scrollbar-gutter: stable;
+    scrollbar-color: rgba(38, 38, 38, 0.2) transparent;
+  }
+
+  .application-form-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .application-form-scroll::-webkit-scrollbar-track {
+    margin-block: 18px;
+  }
+
+  .application-form-scroll::-webkit-scrollbar-thumb {
+    background: rgba(38, 38, 38, 0.14);
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .application-form-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(38, 38, 38, 0.28);
+    border: 1px solid transparent;
+    background-clip: padding-box;
   }
 }
 

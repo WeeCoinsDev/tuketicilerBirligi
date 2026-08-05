@@ -1,6 +1,6 @@
 {
   "Header": {
-    "cta": "Başvuru Rehberi",
+    "cta": "Başvuru Yap",
     "openMenu": "Menüyü aç",
     "closeMenu": "Menüyü kapat",
     "mainNav": "Ana menü",
@@ -14,6 +14,7 @@
     "news": "Haberler",
     "announcements": "Duyurular",
     "applicationGuide": "Başvuru Rehberi",
+    "applyNow": "Başvuru Yap",
     "provinceMap": "Tüketici Haritası",
     "contact": "İletişim"
   },
@@ -55,7 +56,64 @@
     "socialLabel": "Sosyal medya",
     "ctaTitle": "Tüketici hakları için doğru bilgiye ulaşın",
     "ctaText": "Başvuru süreci, hak rehberleri ve iletişim kanalları tek bir yerde; ihtiyacınız olan resmi bilgiye hızlıca erişin.",
-    "ctaPrimary": "Başvuru Rehberi",
+    "ctaPrimary": "Başvuru Yap",
     "ctaSecondary": "İletişim"
+  },
+  "ApplicationForm": {
+    "pageTitle": "Başvuru Yap",
+    "pageDescription": "Tüketici başvurunuzu iletin. Ekibimiz başvurunuzu inceler ve sizinle iletişime geçer.",
+    "overlayTitle": "Tüketici Başvurusu",
+    "overlayDescription": "Bilgilerinizi eksiksiz doldurun. Gönderimden sonra size bir başvuru numarası verilecektir.",
+    "sections": {
+      "personal": "Kişisel Bilgiler",
+      "details": "Başvuru Detayları",
+      "files": "Dosya Yükleme",
+      "consents": "Onaylar"
+    },
+    "fields": {
+      "fullName": "Ad Soyad",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "category": "Başvuru Konusu",
+      "categoryPlaceholder": "Konu seçin",
+      "companyName": "Firma Adı",
+      "purchaseDate": "Alışveriş Tarihi",
+      "productName": "Ürün / Hizmet Adı",
+      "requestedAmount": "Talep Edilen Tutar (₺)",
+      "message": "Açıklama",
+      "messagePlaceholder": "Sorununuzu detaylı şekilde anlatınız.",
+      "filesHint": "Fatura, dekont, sözleşme, yazışma, ekran görüntüsü veya fotoğraf ekleyebilirsiniz. En fazla 8 dosya, PDF veya görsel.",
+      "filesEmpty": "Dosya seçilmedi",
+      "privacy": "Kişisel verilerimin işlenmesini kabul ediyorum.",
+      "contact": "Gerekli durumlarda benimle telefon veya e-posta üzerinden iletişime geçilmesini kabul ediyorum."
+    },
+    "categories": {
+      "defective_goods": "Ayıplı Mal",
+      "defective_service": "Ayıplı Hizmet",
+      "return_withdrawal": "İade / Cayma Hakkı",
+      "warranty": "Garanti",
+      "shipping": "Kargo",
+      "subscription": "Abonelik",
+      "ecommerce": "E-Ticaret",
+      "banking_finance": "Banka / Finans",
+      "other": "Diğer"
+    },
+    "errors": {
+      "fullName": "Ad soyad en az 3 karakter olmalı.",
+      "phone": "Geçerli bir telefon numarası girin.",
+      "email": "Geçerli bir e-posta adresi girin.",
+      "category": "Başvuru konusu seçin.",
+      "companyName": "Firma adı en az 2 karakter olmalı.",
+      "message": "Açıklama en az 50 karakter olmalı.",
+      "privacy": "Kişisel veri onayını işaretlemelisiniz.",
+      "contact": "İletişim onayını işaretlemelisiniz."
+    },
+    "submit": "Başvuru Yap",
+    "submitting": "Gönderiliyor...",
+    "successTitle": "Başvurunuz başarıyla alınmıştır.",
+    "successText": "Telefonla veya e-posta ile iletişime geçtiğimizde başvuru numaranızı paylaşabilirsiniz.",
+    "applicationNo": "Başvuru No",
+    "error": "Başvuru gönderilemedi. Lütfen tekrar deneyin.",
+    "newApplication": "Yeni başvuru"
   }
 }

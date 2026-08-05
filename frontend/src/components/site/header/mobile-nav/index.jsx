@@ -29,10 +29,11 @@ export function MobileNavDrawer() {
 
         <div className="grid gap-2 border-t border-line p-4">
           <DrawerClose
+            nativeButton={false}
             render={
               <Link
                 className="focus-ring inline-flex min-h-11 items-center justify-center rounded-[8px] bg-secondary px-4 py-2 font-sans text-sm font-semibold text-ink transition hover:bg-secondary-dark hover:text-white"
-                href="/basvuru-rehberi"
+                href="/basvuru-yap"
               />
             }
           >

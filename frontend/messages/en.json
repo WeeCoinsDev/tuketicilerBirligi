@@ -1,6 +1,6 @@
 {
   "Header": {
-    "cta": "Application Guide",
+    "cta": "Apply Now",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "mainNav": "Main menu",
@@ -14,6 +14,7 @@
     "news": "News",
     "announcements": "Announcements",
     "applicationGuide": "Application Guide",
+    "applyNow": "Apply Now",
     "provinceMap": "Consumer Map",
     "contact": "Contact"
   },
@@ -55,7 +56,64 @@
     "socialLabel": "Social media",
     "ctaTitle": "Reach reliable guidance for consumer rights",
     "ctaText": "Find the application process, consumer guides, and contact channels in one place with clear access to official information.",
-    "ctaPrimary": "Application Guide",
+    "ctaPrimary": "Apply Now",
     "ctaSecondary": "Contact"
+  },
+  "ApplicationForm": {
+    "pageTitle": "Apply Now",
+    "pageDescription": "Submit your consumer application. Our team will review it and get back to you.",
+    "overlayTitle": "Consumer Application",
+    "overlayDescription": "Complete the form carefully. You will receive an application number after submission.",
+    "sections": {
+      "personal": "Personal Information",
+      "details": "Application Details",
+      "files": "File Upload",
+      "consents": "Consents"
+    },
+    "fields": {
+      "fullName": "Full Name",
+      "phone": "Phone",
+      "email": "Email",
+      "category": "Application Subject",
+      "categoryPlaceholder": "Select a subject",
+      "companyName": "Company Name",
+      "purchaseDate": "Purchase Date",
+      "productName": "Product / Service Name",
+      "requestedAmount": "Requested Amount (₺)",
+      "message": "Description",
+      "messagePlaceholder": "Describe your issue in detail.",
+      "filesHint": "You can attach invoices, receipts, contracts, correspondence, screenshots or photos. Up to 8 files, PDF or image.",
+      "filesEmpty": "No files selected",
+      "privacy": "I agree to the processing of my personal data.",
+      "contact": "I agree to be contacted by phone or email when necessary."
+    },
+    "categories": {
+      "defective_goods": "Defective Goods",
+      "defective_service": "Defective Service",
+      "return_withdrawal": "Return / Withdrawal",
+      "warranty": "Warranty",
+      "shipping": "Shipping",
+      "subscription": "Subscription",
+      "ecommerce": "E-Commerce",
+      "banking_finance": "Banking / Finance",
+      "other": "Other"
+    },
+    "errors": {
+      "fullName": "Full name must be at least 3 characters.",
+      "phone": "Enter a valid phone number.",
+      "email": "Enter a valid email address.",
+      "category": "Select an application subject.",
+      "companyName": "Company name must be at least 2 characters.",
+      "message": "Description must be at least 50 characters.",
+      "privacy": "You must accept the privacy consent.",
+      "contact": "You must accept the contact consent."
+    },
+    "submit": "Submit Application",
+    "submitting": "Submitting...",
+    "successTitle": "Your application has been received.",
+    "successText": "You can share this application number when we contact you by phone or email.",
+    "applicationNo": "Application No",
+    "error": "The application could not be sent. Please try again.",
+    "newApplication": "New application"
   }
 }

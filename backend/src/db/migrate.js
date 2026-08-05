@@ -70,6 +70,7 @@ const statements = [
   `CREATE TABLE IF NOT EXISTS form_submissions (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     form_type ENUM('contact', 'pre_application') NOT NULL,
+    application_number VARCHAR(30) NULL,
     status ENUM('new', 'in_review', 'resolved', 'spam') NOT NULL DEFAULT 'new',
     subject VARCHAR(220) NOT NULL,
     full_name VARCHAR(160) NOT NULL,
@@ -80,6 +81,7 @@ const statements = [
     payload_json LONGTEXT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_submission_application_number (application_number),
     INDEX idx_submission_type_status (form_type, status),
     INDEX idx_submission_created_at (created_at)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
@@ -158,10 +160,51 @@ const statements = [
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
 ];
 
+async function addColumnIfMissing(table, column, definition) {
+  const [rows] = await pool.execute(
+    `SELECT COUNT(*) AS total
+     FROM information_schema.COLUMNS
+     WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME = ?
+       AND COLUMN_NAME = ?`,
+    [table, column]
+  );
+
+  if (Number(rows[0]?.total || 0) > 0) return;
+
+  await pool.execute(`ALTER TABLE \`${table}\` ADD COLUMN \`${column}\` ${definition}`);
+}
+
+async function addUniqueIndexIfMissing(table, indexName, column) {
+  const [rows] = await pool.execute(
+    `SELECT COUNT(*) AS total
+     FROM information_schema.STATISTICS
+     WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME = ?
+       AND INDEX_NAME = ?`,
+    [table, indexName]
+  );
+
+  if (Number(rows[0]?.total || 0) > 0) return;
+
+  await pool.execute(`ALTER TABLE \`${table}\` ADD UNIQUE KEY \`${indexName}\` (\`${column}\`)`);
+}
+
 async function migrate() {
   for (const statement of statements) {
     await pool.execute(statement);
   }
+
+  await addColumnIfMissing(
+    "form_submissions",
+    "application_number",
+    "VARCHAR(30) NULL AFTER form_type"
+  );
+  await addUniqueIndexIfMissing(
+    "form_submissions",
+    "uq_submission_application_number",
+    "application_number"
+  );
 }
 
 if (require.main === module) {

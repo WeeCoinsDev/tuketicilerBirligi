@@ -22,6 +22,7 @@ const STATIC_INTERNAL_LINK_OPTIONS = [
   { value: "/", label: "Ana sayfa", icon: FileText },
   { value: "/kurumsal", label: "Kurumsal", icon: FileText },
   { value: "/basvuru-rehberi", label: "Başvuru Rehberi", icon: FileText },
+  { value: "/basvuru-yap", label: "Başvuru Yap", icon: FileText },
   { value: "/hak-rehberleri", label: "Hak Rehberleri", icon: FileText },
   { value: "/haberler", label: "Haberler", icon: FileText },
   { value: "/duyurular", label: "Duyurular", icon: FileText },

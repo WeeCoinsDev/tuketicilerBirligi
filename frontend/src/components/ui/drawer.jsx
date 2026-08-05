@@ -54,9 +54,18 @@ function DrawerPortal({
 }
 
 function DrawerClose({
+  nativeButton,
+  render,
   ...props
 }) {
-  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />;
+  return (
+    <DrawerPrimitive.Close
+      data-slot="drawer-close"
+      nativeButton={nativeButton ?? !render}
+      render={render}
+      {...props}
+    />
+  );
 }
 
 function DrawerOverlay({

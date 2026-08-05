@@ -29,12 +29,12 @@ function CommandDialog({ title = "Command Palette", description = "Search for a 
 
 function CommandInput({ className, ...props }) {
   return (
-    <div data-slot="command-input-wrapper" className="flex items-center gap-3 border-b border-line px-4">
+    <div data-slot="command-input-wrapper" className="flex items-center gap-3 border-b border-line/50 px-5 sm:px-6">
       <SearchIcon className="size-4 shrink-0 text-muted" strokeWidth={1.5} aria-hidden="true" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-12 w-full bg-transparent font-sans text-sm text-ink outline-hidden placeholder:text-muted focus:outline-hidden focus-visible:outline-hidden focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-14 w-full bg-transparent font-sans text-[15px] text-ink outline-hidden placeholder:text-muted focus:outline-hidden focus-visible:outline-hidden focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50",
           className,
         )}
         {...props}
@@ -73,7 +73,7 @@ function CommandItem({ className, children, ...props }) {
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-pointer items-center gap-3 rounded-md px-2.5 py-2 font-sans text-sm text-ink outline-hidden select-none transition-colors data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-ink/4.5 data-[selected=true]:text-ink",
+        "group/command-item relative flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-2.5 font-sans text-sm text-ink outline-hidden select-none transition-colors data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-surface data-[selected=true]:text-ink",
         className,
       )}
       {...props}

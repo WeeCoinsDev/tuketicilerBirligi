@@ -12,6 +12,7 @@ function mapSubmission(row) {
   return {
     id: row.id,
     formType: row.form_type,
+    applicationNumber: row.application_number,
     status: row.status,
     subject: row.subject,
     fullName: row.full_name,
@@ -26,12 +27,38 @@ function mapSubmission(row) {
 }
 
 const listSubmissions = asyncHandler(async (req, res) => {
-  const [rows] = await pool.execute(
-    `SELECT * FROM form_submissions
-     ORDER BY created_at DESC, id DESC
-     LIMIT 200`
-  );
+  const query = String(req.query.q || "").trim();
+  const status = String(req.query.status || "").trim();
+  const formType = String(req.query.formType || "").trim();
+  const params = [];
+  const where = [];
 
+  if (query) {
+    where.push(
+      "(application_number LIKE ? OR full_name LIKE ? OR email LIKE ? OR subject LIKE ? OR category LIKE ?)"
+    );
+    const like = `%${query}%`;
+    params.push(like, like, like, like, like);
+  }
+
+  if (status) {
+    where.push("status = ?");
+    params.push(status);
+  }
+
+  if (formType) {
+    where.push("form_type = ?");
+    params.push(formType);
+  }
+
+  const sql = `
+    SELECT * FROM form_submissions
+    ${where.length ? `WHERE ${where.join(" AND ")}` : ""}
+    ORDER BY created_at DESC, id DESC
+    LIMIT 200
+  `;
+
+  const [rows] = await pool.execute(sql, params);
   res.json({ items: rows.map(mapSubmission) });
 });
 
@@ -53,4 +80,3 @@ module.exports = {
   listSubmissions,
   updateSubmission
 };
-

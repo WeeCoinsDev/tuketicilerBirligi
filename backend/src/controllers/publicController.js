@@ -1,9 +1,34 @@
 const { z } = require("zod");
 const { saveUploadedFile } = require("../helpers/mediaStorage");
+const { sendAdminNotification, sendApplicationConfirmation } = require("../helpers/mailer");
 const pool = require("../db/pool");
 const asyncHandler = require("../utils/asyncHandler");
 const { parseJson } = require("../utils/clean");
 const { validateUploadFile } = require("../utils/validateImage");
+
+const APPLICATION_CATEGORIES = [
+  "defective_goods",
+  "defective_service",
+  "return_withdrawal",
+  "warranty",
+  "shipping",
+  "subscription",
+  "ecommerce",
+  "banking_finance",
+  "other"
+];
+
+const CATEGORY_LABELS = {
+  defective_goods: "Ayıplı Mal",
+  defective_service: "Ayıplı Hizmet",
+  return_withdrawal: "İade / Cayma Hakkı",
+  warranty: "Garanti",
+  shipping: "Kargo",
+  subscription: "Abonelik",
+  ecommerce: "E-Ticaret",
+  banking_finance: "Banka / Finans",
+  other: "Diğer"
+};
 
 const contactSchema = z.object({
   fullName: z.string().trim().min(3).max(160),
@@ -19,11 +44,17 @@ const preApplicationSchema = z.object({
   fullName: z.string().trim().min(3).max(160),
   email: z.string().trim().email().max(190),
   phone: z.string().trim().min(7).max(40),
-  category: z.string().trim().min(2).max(120),
-  subject: z.string().trim().min(3).max(220),
+  category: z.enum(APPLICATION_CATEGORIES),
+  companyName: z.string().trim().min(2).max(160),
+  purchaseDate: z.string().trim().max(40).optional().or(z.literal("")),
+  productName: z.string().trim().max(220).optional().or(z.literal("")),
+  requestedAmount: z.string().trim().max(40).optional().or(z.literal("")),
   message: z.string().trim().min(50).max(10000),
-  privacy: z.union([z.literal(true), z.literal("true")]),
-  companyName: z.string().optional()
+  privacyConsent: z.union([z.literal(true), z.literal("true"), z.literal("on")]),
+  contactConsent: z.union([z.literal(true), z.literal("true"), z.literal("on")]),
+  website: z.string().optional(),
+  subject: z.string().optional(),
+  privacy: z.string().optional()
 });
 
 function mapContent(row) {
@@ -156,13 +187,34 @@ const getContentBySlug = asyncHandler(async (req, res) => {
   return res.json({ item: mapContent(rows[0]) });
 });
 
-async function saveSubmission(values, formType, payload = {}) {
+function pad(value) {
+  return String(value).padStart(2, "0");
+}
+
+async function generateApplicationNumber() {
+  const now = new Date();
+  const date = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
+  const time = `${pad(now.getHours())}${pad(now.getMinutes())}`;
+  const base = `TBD-${date}-${time}`;
+
+  const [rows] = await pool.execute(
+    "SELECT application_number FROM form_submissions WHERE application_number LIKE ? ORDER BY id DESC",
+    [`${base}%`]
+  );
+
+  if (!rows.length) return base;
+
+  return `${base}-${pad(rows.length + 1)}`;
+}
+
+async function saveSubmission(values, formType, payload = {}, applicationNumber = null) {
   const [result] = await pool.execute(
     `INSERT INTO form_submissions
-      (form_type, subject, full_name, email, phone, category, message, payload_json)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      (form_type, application_number, subject, full_name, email, phone, category, message, payload_json)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       formType,
+      applicationNumber,
       values.subject,
       values.fullName,
       values.email,
@@ -174,6 +226,21 @@ async function saveSubmission(values, formType, payload = {}) {
   );
 
   return result.insertId;
+}
+
+async function dispatchApplicationMail(submission) {
+  try {
+    await Promise.all([
+      sendApplicationConfirmation({
+        to: submission.email,
+        fullName: submission.fullName,
+        applicationNumber: submission.applicationNumber
+      }),
+      sendAdminNotification({ submission })
+    ]);
+  } catch (error) {
+    console.error("Başvuru e-postası gönderilemedi:", error.message);
+  }
 }
 
 const createContact = asyncHandler(async (req, res) => {
@@ -190,7 +257,7 @@ const createContact = asyncHandler(async (req, res) => {
 const createPreApplication = asyncHandler(async (req, res) => {
   const values = preApplicationSchema.parse(req.body);
 
-  if (values.companyName) {
+  if (values.website) {
     return res.status(202).json({ ok: true });
   }
 
@@ -207,8 +274,42 @@ const createPreApplication = asyncHandler(async (req, res) => {
     });
   }
 
-  const id = await saveSubmission(values, "pre_application", { files });
-  return res.status(201).json({ id });
+  const categoryLabel = CATEGORY_LABELS[values.category] || values.category;
+  const applicationNumber = await generateApplicationNumber();
+  const subject = `${categoryLabel} — ${values.companyName}`;
+
+  const id = await saveSubmission(
+    {
+      ...values,
+      subject,
+      category: categoryLabel
+    },
+    "pre_application",
+    {
+      files,
+      categoryKey: values.category,
+      companyName: values.companyName,
+      purchaseDate: values.purchaseDate || "",
+      productName: values.productName || "",
+      requestedAmount: values.requestedAmount || "",
+      contactConsent: true,
+      privacyConsent: true
+    },
+    applicationNumber
+  );
+
+  await dispatchApplicationMail({
+    applicationNumber,
+    fullName: values.fullName,
+    email: values.email,
+    phone: values.phone,
+    category: values.category,
+    categoryLabel,
+    companyName: values.companyName,
+    message: values.message
+  });
+
+  return res.status(201).json({ id, applicationNumber });
 });
 
 module.exports = {
@@ -219,4 +320,3 @@ module.exports = {
   getHome,
   getSiteSettings
 };
-

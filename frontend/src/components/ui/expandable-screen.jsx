@@ -39,13 +39,20 @@ export function ExpandableScreen({
   };
 
   useEffect(() => {
-    if (lockScroll) {
-      if (isExpanded) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "unset";
-      }
+    if (!lockScroll || !isExpanded) {
+      return;
     }
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
   }, [isExpanded, lockScroll]);
 
   return (
@@ -109,7 +116,7 @@ export function ExpandableScreenContent({ children, className = "", showCloseBut
   return (
     <AnimatePresence initial={false}>
       {isExpanded && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-2">
+        <div className="fixed inset-0 z-99 overflow-hidden p-3 sm:p-8">
           {/* Morphing background with shared layoutId */}
           <motion.div
             layoutId={layoutId}
@@ -118,16 +125,15 @@ export function ExpandableScreenContent({ children, className = "", showCloseBut
               borderRadius: contentRadius,
             }}
             layout
-            className={`relative flex h-full w-full overflow-y-auto transform-gpu will-change-transform ${className}`}
+            className={`relative h-full w-full overflow-y-auto overscroll-contain transform-gpu will-change-transform border border-gray-200 rounded-3xl shadow-xs ${className}`}
           >
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15, duration: 0.4 }} className="relative z-20 w-full">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15, duration: 0.4 }} className="relative z-20 min-h-full w-full rounded-3xl">
               {children}
             </motion.div>
-
             {showCloseButton && (
               <motion.button
                 onClick={collapse}
-                className={`absolute right-6 top-6 z-30 flex h-10 w-10 items-center justify-center transition-colors rounded-full ${
+                className={`absolute right-6 top-6 z-30 flex h-10 w-10 cursor-pointer items-center justify-center transition-colors rounded-full ${
                   closeButtonClassName || "text-primary-foreground bg-transparent hover:bg-primary-foreground/10"
                 }`}
                 aria-label="Close"

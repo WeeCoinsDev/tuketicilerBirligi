@@ -61,7 +61,8 @@ const env = {
     secure: booleanValue(process.env.SMTP_SECURE, false),
     user: process.env.EMAIL_USER || "",
     pass: process.env.EMAIL_PASS || "",
-    from: process.env.EMAIL_FROM || ""
+    from: process.env.EMAIL_FROM || "",
+    adminNotificationEmail: process.env.ADMIN_NOTIFICATION_EMAIL || ""
   },
   seed: {
     adminEmail: process.env.SEED_ADMIN_EMAIL || "admin@tuketiciler.local",

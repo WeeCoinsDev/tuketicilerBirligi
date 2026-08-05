@@ -52,7 +52,7 @@ export const navigationMenu = [
     item: "Başvurular",
     links: [
       { label: "Başvuru Rehberi", href: "/basvuru-rehberi" },
-      { label: "Online Ön Başvuru", href: "/basvuru-rehberi" },
+      { label: "Başvuru Yap", href: "/basvuru-yap" },
       { label: "Tüketici Haritası", href: "/tuketici-haritasi" },
       { label: "Başvuru Süreci", href: "#" },
       { label: "Gerekli Belgeler", href: "#" },
@@ -92,6 +92,7 @@ export const publicNavigation = [
   { key: "news", href: "/haberler", title: "Haberler" },
   { key: "announcements", href: "/duyurular", title: "Duyurular" },
   { key: "applicationGuide", href: "/basvuru-rehberi", title: "Başvuru Rehberi" },
+  { key: "applyNow", href: "/basvuru-yap", title: "Başvuru Yap" },
   { key: "provinceMap", href: "/tuketici-haritasi", title: "Tüketici Haritası" },
   { key: "contact", href: "/iletisim", title: "İletişim" }
 ];

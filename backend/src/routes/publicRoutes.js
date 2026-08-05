@@ -15,7 +15,7 @@ router.post("/contact", publicFormLimiter, publicController.createContact);
 router.post(
   "/pre-applications",
   publicFormLimiter,
-  upload.array("files", 5),
+  upload.array("files", 8),
   publicController.createPreApplication
 );
 

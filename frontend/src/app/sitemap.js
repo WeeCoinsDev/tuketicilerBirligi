@@ -8,6 +8,7 @@ export default function sitemap() {
     "/haberler",
     "/duyurular",
     "/basvuru-rehberi",
+    "/basvuru-yap",
     "/tuketici-haritasi",
     "/sss",
     "/iletisim",

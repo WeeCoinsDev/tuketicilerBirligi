@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BookOpen, Building2, FileText, Home, MapPinned, Megaphone, Newspaper, Phone, Search } from "lucide-react";
+import { BookOpen, Building2, FileText, Home, MapPinned, Megaphone, Newspaper, PenLine, Phone, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { ResponsiveModal } from "@/components/ui/responsive-modal";
 import { publicNavigation } from "@/lib/navigation";
 
 const navIcons = {
@@ -14,6 +16,7 @@ const navIcons = {
   news: Newspaper,
   announcements: Megaphone,
   applicationGuide: FileText,
+  applyNow: PenLine,
   provinceMap: MapPinned,
   contact: Phone,
 };
@@ -45,46 +48,66 @@ export function SiteSearch() {
     <>
       <button
         aria-label={t("trigger")}
-        className="focus-ring cursor-pointer inline-flex h-10 items-center gap-2 px-1.5 text-ink/70 transition-colors hover:text-ink sm:pr-2"
-        type="button"
+        className="focus-ring inline-flex h-10 cursor-pointer items-center gap-2 px-1.5 text-ink/70 transition-colors hover:text-ink sm:pr-2"
         onClick={() => setOpen(true)}
+        type="button"
       >
-        <Search size={18} strokeWidth={1.75} aria-hidden="true" />
+        <Search aria-hidden="true" size={18} strokeWidth={1.75} />
         <kbd className="pointer-events-none hidden font-sans text-[10px] font-medium tracking-wide text-muted sm:inline-flex">⌘K</kbd>
       </button>
 
-      <CommandDialog description={t("placeholder")} open={open} title={t("title")} onOpenChange={setOpen}>
-        <CommandInput placeholder={t("placeholder")} />
-        <CommandList className="site-search-scroll">
-          <CommandEmpty>{t("noResults")}</CommandEmpty>
-          <CommandGroup heading={t("pages")}>
-            {publicNavigation.map((item) => {
-              const Icon = navIcons[item.key] || FileText;
+      <ResponsiveModal
+        description={t("placeholder")}
+        dialogClassName="top-[min(16vh,6.5rem)] translate-y-0 gap-0 overflow-hidden rounded-2xl border border-line/50 bg-white p-0 shadow-soft ring-0 sm:max-w-xl"
+        drawerClassName="bg-white"
+        hideTitle
+        onOpenChange={setOpen}
+        open={open}
+        showCloseButton={false}
+        title={t("title")}
+      >
+        <Command className="bg-transparent">
+          <CommandInput className="h-14 text-[15px]" placeholder={t("placeholder")} />
 
-              return (
-                <CommandItem key={item.href} value={tNav(item.key)} onSelect={() => goTo(item.href)}>
-                  <Icon aria-hidden="true" className="size-4 shrink-0 text-muted transition-[color] group-data-[selected=true]/command-item:text-ink" strokeWidth={1.5} />
-                  <span className="flex-1">{tNav(item.key)}</span>
-                </CommandItem>
-              );
-            })}
-          </CommandGroup>
-        </CommandList>
+          <div className="relative">
+            <CommandList className="site-search-scroll max-h-[min(28rem,58dvh)] px-2 py-3 sm:max-h-[min(22rem,48vh)]">
+              <CommandEmpty>{t("noResults")}</CommandEmpty>
+              <CommandGroup heading={t("pages")}>
+                {publicNavigation.map((item) => {
+                  const Icon = navIcons[item.key] || FileText;
 
-        <div className="flex items-center justify-between gap-3 border-t border-line px-4 py-2.5">
-          <p className="font-sans text-[11px] text-muted">{t("hint")}</p>
-          <div className="flex items-center gap-2.5 font-sans text-[11px] text-muted">
-            <span className="inline-flex items-center gap-1">
-              <kbd className="text-[10px] text-ink/50">↵</kbd>
-              {t("open")}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <kbd className="text-[10px] text-ink/50">esc</kbd>
-              {t("close")}
-            </span>
+                  return (
+                    <CommandItem
+                      className="rounded-lg px-3 py-2.5"
+                      key={item.href}
+                      onSelect={() => goTo(item.href)}
+                      value={tNav(item.key)}
+                    >
+                      <Icon aria-hidden="true" className="size-4 shrink-0 text-muted" strokeWidth={1.6} />
+                      <span className="flex-1">{tNav(item.key)}</span>
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+            </CommandList>
+            <ProgressiveBlur blurLevels={[0.4, 1, 2, 4]} className="h-8" height="2rem" position="bottom" />
           </div>
-        </div>
-      </CommandDialog>
+
+          <div className="hidden items-center justify-between gap-3 border-t border-line/50 px-4 py-2.5 sm:flex">
+            <p className="font-sans text-[11px] text-muted">{t("hint")}</p>
+            <div className="flex items-center gap-3 font-sans text-[11px] text-muted">
+              <span className="inline-flex items-center gap-1.5">
+                <kbd className="text-[10px] text-ink/45">↵</kbd>
+                {t("open")}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <kbd className="text-[10px] text-ink/45">esc</kbd>
+                {t("close")}
+              </span>
+            </div>
+          </div>
+        </Command>
+      </ResponsiveModal>
     </>
   );
 }

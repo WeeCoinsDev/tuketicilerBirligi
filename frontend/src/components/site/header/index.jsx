@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { SiteNavbar } from "@/components/site/navbar";
+import { ApplicationCta } from "@/components/site/application-form";
 import { HeaderBrand } from "./brand";
 import { LanguageSwitcher } from "./language-switcher";
 import { MobileNavDrawer } from "./mobile-nav";
@@ -41,12 +41,9 @@ export async function Header({ settings }) {
                 <SiteSearch />
               </div>
 
-              <Link
-                className="focus-ring hidden rounded-full bg-secondary px-5 py-2.5 font-sans text-sm font-semibold text-white transition hover:bg-secondary-dark md:inline-flex"
-                href="/basvuru-rehberi"
-              >
-                {t("cta")}
-              </Link>
+              <div className="hidden md:block">
+                <ApplicationCta />
+              </div>
               <MobileNavDrawer />
             </div>
           </div>

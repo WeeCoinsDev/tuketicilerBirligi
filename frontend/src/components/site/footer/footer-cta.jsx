@@ -37,7 +37,7 @@ export function FooterCta({ t }) {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
-              <FooterCtaLink href="/basvuru-rehberi">{t("ctaPrimary")}</FooterCtaLink>
+              <FooterCtaLink href="/basvuru-yap">{t("ctaPrimary")}</FooterCtaLink>
               <FooterCtaLink href="/iletisim" variant="secondary">
                 {t("ctaSecondary")}
               </FooterCtaLink>

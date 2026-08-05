@@ -16,7 +16,7 @@ export function MobileLink({ href, children, className }) {
   }
 
   return (
-    <DrawerClose render={<Link className={className} href={href} />}>
+    <DrawerClose nativeButton={false} render={<Link className={className} href={href} />}>
       {children}
     </DrawerClose>
   );

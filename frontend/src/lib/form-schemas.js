@@ -18,6 +18,18 @@ export const contactSchema = z.object({
   companyName: z.string().optional()
 });
 
+export const APPLICATION_CATEGORIES = [
+  "defective_goods",
+  "defective_service",
+  "return_withdrawal",
+  "warranty",
+  "shipping",
+  "subscription",
+  "ecommerce",
+  "banking_finance",
+  "other"
+];
+
 export const preApplicationSchema = z.object({
   fullName: z.string().trim().min(3, "Ad soyad en az 3 karakter olmalı."),
   email: z.string().trim().email("Geçerli bir e-posta adresi girin."),
@@ -33,6 +45,31 @@ export const preApplicationSchema = z.object({
   }),
   companyName: z.string().optional()
 });
+
+export function createApplicationSchema(messages) {
+  return z.object({
+    fullName: z.string().trim().min(3, messages.fullName),
+    phone: z.string().trim().min(7, messages.phone).max(30, messages.phone),
+    email: z.string().trim().email(messages.email),
+    category: z
+      .string()
+      .trim()
+      .min(1, messages.category)
+      .refine((value) => APPLICATION_CATEGORIES.includes(value), messages.category),
+    companyName: z.string().trim().min(2, messages.companyName).max(160, messages.companyName),
+    purchaseDate: z.string().optional().or(z.literal("")),
+    productName: z.string().trim().max(220).optional().or(z.literal("")),
+    requestedAmount: z.string().trim().max(40).optional().or(z.literal("")),
+    message: z.string().trim().min(50, messages.message).max(10000, messages.message),
+    privacyConsent: z.literal(true, {
+      errorMap: () => ({ message: messages.privacy })
+    }),
+    contactConsent: z.literal(true, {
+      errorMap: () => ({ message: messages.contact })
+    }),
+    website: z.string().optional()
+  });
+}
 
 export const heroSlideSchema = z.object({
   titleTr: z

@@ -136,6 +136,24 @@ export function uploadAdminMedia(formData) {
   });
 }
 
+export function listFormSubmissions({ formType = "", q = "", status = "" } = {}) {
+  const params = new URLSearchParams();
+
+  if (formType) params.set("formType", formType);
+  if (q) params.set("q", q);
+  if (status) params.set("status", status);
+
+  const query = params.toString();
+  return adminRequest(`/api/admin/form-submissions${query ? `?${query}` : ""}`);
+}
+
+export function updateFormSubmission(id, values) {
+  return adminRequest(`/api/admin/form-submissions/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(values)
+  });
+}
+
 export function listPublicContent({ locale = "tr", limit = 50 } = {}) {
   const params = new URLSearchParams({
     locale,

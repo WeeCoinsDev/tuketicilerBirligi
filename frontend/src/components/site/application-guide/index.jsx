@@ -1,5 +1,5 @@
 import { ClipboardCheck, FileText, Send, UserCheck } from "lucide-react";
-import { PreApplicationForm } from "@/components/forms/pre-application-form";
+import { ApplicationForm } from "@/components/site/application-form";
 import { StaticCard } from "@/components/common/content-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -50,13 +50,13 @@ export function ApplicationGuidePageContent() {
         </div>
 
         <StaticCard className="h-fit">
-          <h2 className="text-2xl font-bold text-ink">Tüketici Ön Başvuru Formu</h2>
+          <h2 className="text-2xl font-bold text-ink">Tüketici Başvuru Formu</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             Bu form resmi başvuru yerine geçmeyebilir; kurumun yönlendirme ve ön değerlendirme
             süreci için tasarlanmıştır.
           </p>
           <div className="mt-6">
-            <PreApplicationForm />
+            <ApplicationForm />
           </div>
         </StaticCard>
       </div>
