@@ -95,13 +95,13 @@ export function HeroCarousel({ slides, labels }) {
           <>
             <HeroSidePagination activeIndex={activeIndex} total={items.length} onSelect={goTo} className="absolute top-auto bottom-0 md:bottom-auto md:top-1/2 right-0 z-30 md:-translate-y-1/2" />
 
-            <article className="pointer-events-auto absolute inset-x-4 bottom-4 z-30 hidden md:flex items-center justify-between gap-3 rounded-xl bg-white px-3 py-3 text-black sm:inset-x-auto sm:right-0 sm:bottom-0 sm:justify-start sm:gap-4 sm:rounded-tl-xl sm:rounded-tr-none sm:rounded-br-none sm:rounded-bl-none sm:px-2.5 sm:pt-3.5 sm:pb-2 sm:pr-1.5 sm:pl-2.5">
+            <article className="pointer-events-auto absolute inset-x-4 bottom-4 z-30 hidden md:flex items-center justify-between gap-3 rounded-xl bg-white px-3 py-3 text-ink sm:inset-x-auto sm:right-0 sm:bottom-0 sm:justify-start sm:gap-4 sm:rounded-tl-xl sm:rounded-tr-none sm:rounded-br-none sm:rounded-bl-none sm:px-2.5 sm:pt-3.5 sm:pb-2 sm:pr-1.5 sm:pl-2.5">
               <CornerShape className="absolute hidden -top-3.5 -rotate-90 left-auto right-0 w-3.5 h-3.5 text-white sm:block" />
               <CornerShape className="absolute hidden bottom-0 top-auto -rotate-90 -left-3.5 w-3.5 h-3.5 text-white sm:block" />
               <button
                 type="button"
                 aria-label={labels.prevSlide}
-                className="focus-ring inline-flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-black/75 transition-colors hover:text-black sm:text-[11px]"
+                className="focus-ring inline-flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-ink/75 transition-colors hover:text-ink sm:text-[11px]"
                 onClick={slidePrev}
               >
                 <HiChevronLeft aria-hidden="true" className="size-3.5 shrink-0" />
@@ -115,7 +115,7 @@ export function HeroCarousel({ slides, labels }) {
               <button
                 type="button"
                 aria-label={labels.nextSlide}
-                className="focus-ring inline-flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-black/75 transition-colors hover:text-black sm:text-[11px]"
+                className="focus-ring inline-flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-ink/75 transition-colors hover:text-ink sm:text-[11px]"
                 onClick={slideNext}
               >
                 {labels.nextSlide}

@@ -1,4 +1,4 @@
-import { Inter_Tight, Manrope } from "next/font/google";
+import { Geist, Inter_Tight } from "next/font/google";
 
 export const interTight = Inter_Tight({
   subsets: ["latin", "latin-ext"],
@@ -6,10 +6,10 @@ export const interTight = Inter_Tight({
   display: "swap"
 });
 
-export const manrope = Manrope({
+export const geist = Geist({
   subsets: ["latin", "latin-ext"],
   variable: "--font-heading-family",
   display: "swap"
 });
 
-export const fontVariables = `${interTight.variable} ${manrope.variable}`;
+export const fontVariables = `${interTight.variable} ${geist.variable}`;

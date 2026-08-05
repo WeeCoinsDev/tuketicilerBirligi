@@ -12,7 +12,7 @@ export function FooterBrand({ orgName, settings, t, year }) {
       >
         <Image
           alt=""
-          className="size-16 shrink-0 object-contain transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04] sm:size-20 md:size-24"
+          className="size-16 shrink-0 object-contain drop-shadow-[0_12px_22px_rgba(22,32,51,0.10)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04] sm:size-20 md:size-24"
           height={96}
           src="/logo.svg"
           width={96}
@@ -34,7 +34,7 @@ export function FooterBrand({ orgName, settings, t, year }) {
 
         <div aria-label={t("socialLabel")}>
           <SocialLinks
-            className="gap-3 rounded-full border border-line/80 bg-white/75 px-4 py-2 shadow-[0_12px_30px_rgba(22,32,51,0.06)] backdrop-blur-sm"
+            className="gap-3 rounded-full border border-line/80 bg-white/80 px-4 py-2 shadow-[0_14px_34px_rgba(22,32,51,0.07)] backdrop-blur-sm transition duration-200 hover:border-primary-dark/25"
             iconClassName="size-4.5"
             settings={settings}
             tone="dark"
@@ -44,4 +44,3 @@ export function FooterBrand({ orgName, settings, t, year }) {
     </div>
   );
 }
-

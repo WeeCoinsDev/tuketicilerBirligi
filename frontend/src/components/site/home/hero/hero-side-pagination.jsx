@@ -20,7 +20,7 @@ export function HeroSidePagination({ activeIndex, total, onSelect, className = "
       <button
         type="button"
         aria-label={`${activeIndex + 1} / ${total}`}
-        className="focus-ring font-sans text-[10px] font-medium tracking-[0.2em] text-black/85 transition-colors hover:text-black"
+        className="focus-ring font-sans text-[10px] font-medium tracking-[0.2em] text-ink/85 transition-colors hover:text-ink"
         onClick={() => onSelect?.(0)}
       >
         . {padIndex(activeIndex + 1)} .
@@ -33,7 +33,7 @@ export function HeroSidePagination({ activeIndex, total, onSelect, className = "
       <button
         type="button"
         aria-label={`${total} / ${total}`}
-        className="focus-ring font-sans text-[10px] font-medium tracking-[0.2em] text-black/45 transition-colors hover:text-black"
+        className="focus-ring font-sans text-[10px] font-medium tracking-[0.2em] text-ink/45 transition-colors hover:text-ink"
         onClick={() => onSelect?.(total - 1)}
       >
         . {padIndex(total)} .

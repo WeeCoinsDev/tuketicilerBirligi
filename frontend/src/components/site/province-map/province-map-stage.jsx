@@ -39,7 +39,7 @@ export function ProvinceMapStage({
           }
         },
         role: "button",
-        tabIndex: 0
+        tabIndex: 0,
       },
       cloneElement(path, {
         style: {
@@ -50,9 +50,9 @@ export function ProvinceMapStage({
           stroke: "#ffffff",
           strokeLinejoin: "round",
           strokeWidth: 1.2,
-          transition: "fill 180ms ease, opacity 180ms ease, stroke 180ms ease"
-        }
-      })
+          transition: "fill 180ms ease, opacity 180ms ease, stroke 180ms ease",
+        },
+      }),
     );
   }
 
@@ -60,8 +60,8 @@ export function ProvinceMapStage({
     <section className="relative w-full min-w-0 overflow-hidden py-1 text-ink">
       <div
         className={cn(
-          "mx-auto grid w-full min-w-0 max-w-6xl place-items-center px-0 py-4 md:px-8",
-          compact ? "min-h-[14rem] md:min-h-[23rem] md:py-6" : "min-h-[18rem] md:min-h-[29rem] md:py-8"
+          "mx-auto grid w-full max-w-6xl min-w-0 place-items-center px-0 md:px-8",
+          compact ? "min-h-[14rem] md:min-h-[23rem]" : "min-h-[18rem] md:min-h-[29rem]"
         )}
       >
         <div className="province-map-svg-shell w-full max-w-full min-w-0">

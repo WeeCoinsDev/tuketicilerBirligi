@@ -52,6 +52,10 @@
     "privacy": "Privacy",
     "disclosure": "Privacy Notice",
     "faq": "Frequently Asked Questions",
-    "socialLabel": "Social media"
+    "socialLabel": "Social media",
+    "ctaTitle": "Reach reliable guidance for consumer rights",
+    "ctaText": "Find the application process, consumer guides, and contact channels in one place with clear access to official information.",
+    "ctaPrimary": "Application Guide",
+    "ctaSecondary": "Contact"
   }
 }

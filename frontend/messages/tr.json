@@ -52,6 +52,10 @@
     "privacy": "Gizlilik",
     "disclosure": "Aydınlatma Metni",
     "faq": "Sıkça Sorulan Sorular",
-    "socialLabel": "Sosyal medya"
+    "socialLabel": "Sosyal medya",
+    "ctaTitle": "Tüketici hakları için doğru bilgiye ulaşın",
+    "ctaText": "Başvuru süreci, hak rehberleri ve iletişim kanalları tek bir yerde; ihtiyacınız olan resmi bilgiye hızlıca erişin.",
+    "ctaPrimary": "Başvuru Rehberi",
+    "ctaSecondary": "İletişim"
   }
 }

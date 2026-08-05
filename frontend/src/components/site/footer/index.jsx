@@ -5,6 +5,7 @@ import { FooterBottom } from "./footer-bottom";
 import { FooterBrand } from "./footer-brand";
 import { FooterColumns } from "./footer-columns";
 import { FooterContact } from "./footer-contact";
+import { FooterCta } from "./footer-cta";
 
 export async function Footer({ settings }) {
   const t = await getTranslations("Footer");
@@ -24,8 +25,10 @@ export async function Footer({ settings }) {
     <footer className="relative overflow-hidden border-t border-line bg-[linear-gradient(180deg,#fff_0%,#f8fbff_48%,#fff_100%)] text-ink">
       <FooterBackground />
 
+      <FooterCta t={t} />
+
       <div className="relative gridContainer">
-        <nav aria-label={t("navLabel")} className="py-12 md:py-16">
+        <nav aria-label={t("navLabel")} className="py-10 md:py-14">
           <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-start">
             <FooterColumns columns={columns} />
             <FooterContact settings={settings} title={t("contact")} />
@@ -43,4 +46,3 @@ export async function Footer({ settings }) {
     </footer>
   );
 }
-

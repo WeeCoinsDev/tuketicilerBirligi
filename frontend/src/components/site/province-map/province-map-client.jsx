@@ -2,27 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-import {
-  DensityFilterDialog,
-  ProvinceEntriesDialog,
-  ProvinceSearchDialog
-} from "./province-map-dialogs";
+import { DensityFilterDialog, ProvinceEntriesDialog, ProvinceSearchDialog } from "./province-map-dialogs";
 import { ProvinceMapHeader } from "./province-map-header";
 import { ProvinceLatestCarousel } from "./province-latest-carousel";
 import { ProvinceMapStage } from "./province-map-stage";
-import { ProvinceMapStats } from "./province-map-stats";
-import {
-  emptyProvinceData,
-  getProvinceMapCategoryCount,
-  normalizeProvinceMap
-} from "./province-map-utils";
+import { emptyProvinceData, getProvinceMapCategoryCount, normalizeProvinceMap } from "./province-map-utils";
 
 export function ProvinceMapClient({ compact = false, data }) {
   const provinces = useMemo(() => normalizeProvinceMap(data), [data]);
-  const provinceByCode = useMemo(
-    () => new Map(provinces.map((province) => [province.code, province])),
-    [provinces]
-  );
+  const provinceByCode = useMemo(() => new Map(provinces.map((province) => [province.code, province])), [provinces]);
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
@@ -38,40 +26,26 @@ export function ProvinceMapClient({ compact = false, data }) {
     const province = provinceByCode.get(Number(code)) || {
       ...emptyProvinceData,
       code: Number(code),
-      name: fallbackName
+      name: fallbackName,
     };
     setSelectedProvince(province);
   }
 
   return (
     <section className={cn("overflow-hidden bg-white", compact ? "py-12 md:py-16" : "py-14 md:py-20")}>
-      <div className="mx-auto grid w-full max-w-7xl min-w-0 gap-8 px-4 md:gap-10 md:px-6">
+      <div className="mx-auto grid w-full min-w-0 gridContainer">
         <ProvinceMapHeader
-          densityFilter={densityFilter}
-          onFilterOpen={() => setFilterOpen(true)}
-          onSearchOpen={() => setSearchOpen(true)}
-        />
-
-        <ProvinceMapStats
           activeProvinceCount={activeProvinceCount}
           categoryCount={categoryCount}
+          densityFilter={densityFilter}
           latestCount={latestEntries.length}
+          onFilterOpen={() => setFilterOpen(true)}
+          onSearchOpen={() => setSearchOpen(true)}
           totalEntries={totalEntries}
         />
+        <ProvinceMapStage compact={compact} densityFilter={densityFilter} onProvinceOpen={openProvince} provinceByCode={provinceByCode} />
 
-        <ProvinceMapStage
-          compact={compact}
-          densityFilter={densityFilter}
-          onProvinceOpen={openProvince}
-          provinceByCode={provinceByCode}
-        />
-
-        <ProvinceLatestCarousel
-          compact={compact}
-          entries={latestEntries}
-          onProvinceOpen={openProvince}
-          onSearchOpen={() => setSearchOpen(true)}
-        />
+        <ProvinceLatestCarousel compact={compact} entries={latestEntries} onProvinceOpen={openProvince} onSearchOpen={() => setSearchOpen(true)} />
       </div>
 
       <ProvinceEntriesDialog

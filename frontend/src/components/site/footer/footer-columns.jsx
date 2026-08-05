@@ -3,15 +3,19 @@ import { FooterLink, isPlaceholderHref } from "./footer-link";
 
 export function FooterColumn({ title, href, links }) {
   return (
-    <div>
+    <div className="group/column">
       <h3 className="font-heading text-[13px] font-bold tracking-normal text-ink">
         {isPlaceholderHref(href) ? (
-          title
+          <span className="inline-flex items-center gap-2">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-secondary/45 transition-colors duration-200 group-hover/column:bg-secondary" />
+            {title}
+          </span>
         ) : (
           <Link
-            className="focus-ring group/title relative inline-flex cursor-pointer rounded-sm transition-colors hover:text-secondary"
+            className="focus-ring group/title relative inline-flex cursor-pointer items-center gap-2 rounded-sm transition-colors hover:text-secondary"
             href={href}
           >
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-secondary/45 transition-colors duration-200 group-hover/title:bg-secondary" />
             {title}
             <span
               aria-hidden="true"
@@ -40,4 +44,3 @@ export function FooterColumns({ columns }) {
     </div>
   );
 }
-

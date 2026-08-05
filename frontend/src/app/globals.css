@@ -20,7 +20,7 @@
   --color-secondary-soft: #f0faeb;
   --color-secondary-foreground: #162033;
 
-  --color-ink: #162033;
+  --color-ink: #262626;
 
   --color-muted: #647084;
   --color-muted-foreground: #647084;
@@ -76,18 +76,18 @@
   --site-header-height: 5.5rem;
   --hero-stage-height: 85vh;
   --background: #ffffff;
-  --foreground: #162033;
+  --foreground: #262626;
   --card: #ffffff;
-  --card-foreground: #162033;
+  --card-foreground: #262626;
   --popover: #ffffff;
-  --popover-foreground: #162033;
+  --popover-foreground: #262626;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --border: #dbe3ef;
   --input: #dbe3ef;
   --ring: #5475c7;
   --accent: #edf3ff;
-  --accent-foreground: #162033;
+  --accent-foreground: #262626;
   --ui-muted: #edf3ff;
   --ui-muted-foreground: #647084;
 }
@@ -131,7 +131,7 @@
     overflow-x: clip;
     margin: 0;
     background: #ffff;
-    color: #162033;
+    color: #262626;
     font-family: var(--font-sans);
   }
 
@@ -159,7 +159,7 @@
 
   ::selection {
     background: #b5e19c;
-    color: #162033;
+    color: #262626;
   }
 }
 
@@ -224,36 +224,54 @@
   opacity: 1;
 }
 
-@keyframes footer-line-drift {
+@keyframes footer-guide-scan {
+  0% {
+    transform: translate3d(-18%, 0, 0);
+    opacity: 0;
+  }
 
+  20% {
+    opacity: 0.65;
+  }
+
+  70% {
+    opacity: 0.65;
+  }
+
+  100% {
+    transform: translate3d(18%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes footer-cta-sheen {
   0%,
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-28%, 0, 0);
   }
 
   50% {
-    transform: translate3d(10px, -8px, 0);
+    transform: translate3d(28%, 0, 0);
   }
 }
 
-@keyframes footer-line-draw {
-  from {
-    stroke-dashoffset: 900;
-  }
-
-  to {
-    stroke-dashoffset: 0;
-  }
+.footer-guide-grid {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(84, 117, 199, 0.08) 0 1px, transparent 1px 92px),
+    repeating-linear-gradient(0deg, rgba(135, 11, 24, 0.045) 0 1px, transparent 1px 76px);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 82%, transparent 100%);
 }
 
-.footer-line-drift {
-  animation: footer-line-drift 18s ease-in-out infinite;
+.footer-guide-scan {
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(84, 117, 199, 0.14) 48%, transparent 58%),
+    linear-gradient(90deg, transparent 12%, rgba(135, 11, 24, 0.09) 18%, transparent 24%);
+  animation: footer-guide-scan 11s ease-in-out infinite;
 }
 
-.footer-line-draw path {
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
-  animation: footer-line-draw 2.8s ease-out forwards;
+.footer-cta-sheen {
+  background: linear-gradient(105deg, transparent 22%, rgba(255, 255, 255, 0.82) 46%, transparent 64%);
+  animation: footer-cta-sheen 12s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
