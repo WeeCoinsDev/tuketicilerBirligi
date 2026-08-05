@@ -77,7 +77,8 @@
     "ctaTitle": "Reach reliable guidance for consumer rights",
     "ctaText": "Find the application process, consumer guides, and contact channels in one place with clear access to official information.",
     "ctaPrimary": "Apply Now",
-    "ctaSecondary": "Contact"
+    "ctaSecondary": "Contact",
+    "backToTop": "Back to top"
   },
   "ApplicationForm": {
     "pageTitle": "Apply Now",

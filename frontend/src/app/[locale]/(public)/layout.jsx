@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/site/footer/index";
 import { Header2 } from "@/components/site/header/index2";
+import { ScrollToTop } from "@/components/site/scroll-to-top";
 import { getSiteSettings } from "@/lib/api";
 import { ReactLenis } from "@/lib/lenis";
 
@@ -14,6 +15,7 @@ export default async function PublicLayout({ children, params }) {
       <Header2 settings={settings} />
       <main>{children}</main>
       <Footer settings={settings} />
+      <ScrollToTop />
     </ReactLenis>
   );
 }

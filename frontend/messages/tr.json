@@ -77,7 +77,8 @@
     "ctaTitle": "Tüketici hakları için doğru bilgiye ulaşın",
     "ctaText": "Başvuru süreci, hak rehberleri ve iletişim kanalları tek bir yerde; ihtiyacınız olan resmi bilgiye hızlıca erişin.",
     "ctaPrimary": "Başvuru Yap",
-    "ctaSecondary": "İletişim"
+    "ctaSecondary": "İletişim",
+    "backToTop": "Yukarı çık"
   },
   "ApplicationForm": {
     "pageTitle": "Başvuru Yap",
