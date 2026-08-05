@@ -29,6 +29,7 @@ const STATIC_INTERNAL_LINK_OPTIONS = [
   { value: "/sss", label: "Sıkça Sorulan Sorular", icon: FileText },
   { value: "/iletisim", label: "İletişim", icon: FileText },
   { value: "/aydinlatma-metni", label: "Aydınlatma Metni", icon: FileText },
+  { value: "/kvkk", label: "KVKK", icon: FileText },
   { value: "/gizlilik", label: "Gizlilik Politikası", icon: FileText },
 ];
 

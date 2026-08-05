@@ -12,6 +12,9 @@ export function FooterBottom({ t }) {
         <FooterLink className="text-xs" href="/aydinlatma-metni">
           {t("disclosure")}
         </FooterLink>
+        <FooterLink className="text-xs" href="/kvkk">
+          {t("kvkk")}
+        </FooterLink>
       </div>
 
       <Suspense fallback={<div aria-hidden="true" className="h-4 w-12" />}>

@@ -2,8 +2,7 @@ import { ArrowUpRight, MessageCircleQuestion } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 function FooterCtaLink({ children, href, variant = "primary" }) {
-  const baseClassName =
-    "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold transition duration-200";
+  const baseClassName = "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold transition duration-200";
   const variantClassName =
     variant === "secondary"
       ? "border border-line/80 bg-white/70 text-ink shadow-[0_10px_24px_rgba(22,32,51,0.05)] hover:-translate-y-0.5 hover:border-primary-dark/30 hover:text-primary-dark"
@@ -19,7 +18,7 @@ function FooterCtaLink({ children, href, variant = "primary" }) {
 
 export function FooterCta({ t }) {
   return (
-    <section aria-labelledby="footer-cta-title" className="relative gridContainer border-b border-line/80">
+    <section aria-labelledby="footer-cta-title" className="relative gridContainer">
       <div className="py-8 md:py-10">
         <div className="relative overflow-hidden rounded-none border-y border-line/80 bg-white/62 px-5 py-6 shadow-[0_18px_48px_rgba(22,32,51,0.07)] backdrop-blur-sm md:px-7 lg:px-9">
           <div aria-hidden="true" className="absolute inset-0 footer-cta-sheen opacity-70" />

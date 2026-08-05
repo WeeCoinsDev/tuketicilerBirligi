@@ -101,6 +101,7 @@ export const publicNavigation = [
 export const footerLegalLinks = [
   { label: "Gizlilik", href: "/gizlilik" },
   { label: "Aydınlatma Metni", href: "/aydinlatma-metni" },
+  { label: "KVKK", href: "/kvkk" },
   { label: "Sıkça Sorulan Sorular", href: "/sss" }
 ];
 

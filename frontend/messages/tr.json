@@ -52,6 +52,7 @@
     "rights": "Tüm hakları saklıdır.",
     "privacy": "Gizlilik",
     "disclosure": "Aydınlatma Metni",
+    "kvkk": "KVKK",
     "faq": "Sıkça Sorulan Sorular",
     "socialLabel": "Sosyal medya",
     "ctaTitle": "Tüketici hakları için doğru bilgiye ulaşın",
@@ -82,9 +83,14 @@
       "requestedAmount": "Talep Edilen Tutar (₺)",
       "message": "Açıklama",
       "messagePlaceholder": "Sorununuzu detaylı şekilde anlatınız.",
-      "filesHint": "Fatura, dekont, sözleşme, yazışma, ekran görüntüsü veya fotoğraf ekleyebilirsiniz. En fazla 8 dosya, PDF veya görsel.",
+      "filesTitle": "Dosyaları sürükleyin veya seçin",
+      "filesDrop": "Dosyaları bırakın",
+      "filesFull": "En fazla 8 dosya eklenebilir",
+      "filesHint": "Fatura, dekont, sözleşme, yazışma veya görsel. PDF, JPG, PNG, WEBP, AVIF. En fazla 8 dosya.",
       "filesEmpty": "Dosya seçilmedi",
-      "privacy": "Kişisel verilerimin işlenmesini kabul ediyorum.",
+      "privacyBefore": "",
+      "privacyLink": "Aydınlatma metnini",
+      "privacyAfter": "okudum ve kişisel verilerimin işlenmesini kabul ediyorum.",
       "contact": "Gerekli durumlarda benimle telefon veya e-posta üzerinden iletişime geçilmesini kabul ediyorum."
     },
     "categories": {
@@ -115,5 +121,47 @@
     "applicationNo": "Başvuru No",
     "error": "Başvuru gönderilemedi. Lütfen tekrar deneyin.",
     "newApplication": "Yeni başvuru"
+  },
+  "Disclosure": {
+    "eyebrow": "KVKK",
+    "title": "Aydınlatma Metni",
+    "pageDescription": "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında hazırlanmış taslak aydınlatma metnidir.",
+    "dialogDescription": "Başvuru formunda paylaştığınız kişisel verilerin işlenmesine ilişkin bilgilendirme.",
+    "intro": "Tüketiciler Birliği olarak, başvuru ve iletişim süreçlerinde paylaştığınız kişisel verileri 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında işleriz. Bu metin, veri işleme faaliyetlerimiz hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.",
+    "disclaimer": "Bu metin taslak niteliktedir. Nihai içerik hukuk ve içerik ekibi tarafından güncellenecektir.",
+    "sections": {
+      "dataController": {
+        "title": "Veri sorumlusu",
+        "body": "Kişisel verileriniz, veri sorumlusu sıfatıyla Tüketiciler Birliği tarafından işlenir."
+      },
+      "processedData": {
+        "title": "İşlenen kişisel veriler",
+        "body": "Kimlik bilgileriniz (ad soyad), iletişim bilgileriniz (telefon, e-posta), başvuru içeriği, varsa firma / ürün / hizmet bilgileri ve yüklediğiniz belgeler işlenebilir."
+      },
+      "purposes": {
+        "title": "İşleme amaçları",
+        "body": "Verileriniz; tüketici başvurunuzun alınması, değerlendirilmesi, sizinle iletişime geçilmesi, kayıtların tutulması ve yasal yükümlülüklerin yerine getirilmesi amacıyla işlenir."
+      },
+      "legalBasis": {
+        "title": "Hukuki sebep",
+        "body": "Kişisel verileriniz; açık rızanız, bir hakkın tesisi, kullanılması veya korunması ve mevzuattan doğan yükümlülüklerimizin yerine getirilmesi hukuki sebeplerine dayanılarak işlenebilir."
+      },
+      "transfer": {
+        "title": "Aktarım",
+        "body": "Verileriniz, yalnızca başvurunuzun değerlendirilmesi için gerekli olduğu ölçüde ve mevzuatın izin verdiği hallerde yetkili kurumlara, danışmanlara veya hizmet sağlayıcılara aktarılabilir."
+      },
+      "retention": {
+        "title": "Saklama süresi",
+        "body": "Kişisel verileriniz, işleme amacının gerektirdiği süre ve ilgili mevzuatta öngörülen zamanaşımı süreleri boyunca saklanır; süre sonunda silinir, yok edilir veya anonim hale getirilir."
+      },
+      "rights": {
+        "title": "Haklarınız",
+        "body": "KVKK’nın 11. maddesi kapsamında verilerinizin işlenip işlenmediğini öğrenme, düzeltme, silme, aktarıldığı üçüncü kişileri bilme ve işleme faaliyetine itiraz etme haklarına sahipsiniz."
+      },
+      "contact": {
+        "title": "İletişim",
+        "body": "Haklarınızı kullanmak veya aydınlatma metni hakkında bilgi almak için sitemizdeki iletişim kanallarından bize ulaşabilirsiniz."
+      }
+    }
   }
 }

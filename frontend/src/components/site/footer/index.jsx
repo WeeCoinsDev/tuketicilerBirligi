@@ -15,6 +15,7 @@ export async function Footer({ settings }) {
   const legalLinks = footerLegalLinks.map((link) => {
     if (link.href === "/gizlilik") return { ...link, label: t("privacy") };
     if (link.href === "/aydinlatma-metni") return { ...link, label: t("disclosure") };
+    if (link.href === "/kvkk") return { ...link, label: t("kvkk") };
     if (link.href === "/sss") return { ...link, label: t("faq") };
     return link;
   });
@@ -22,7 +23,7 @@ export async function Footer({ settings }) {
   const columns = [...getFooterColumns(), { title: t("legal"), href: null, links: legalLinks }];
 
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-[linear-gradient(180deg,#fff_0%,#f8fbff_48%,#fff_100%)] text-ink">
+    <footer className="relative overflow-hidden text-ink">
       <FooterBackground />
 
       <FooterCta t={t} />

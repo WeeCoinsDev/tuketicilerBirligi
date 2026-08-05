@@ -1,9 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FileUp, Send, X } from "lucide-react";
+import { Send } from "lucide-react";
 import { useMemo, useState } from "react";
-import { useDropzone } from "react-dropzone";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { CustomButton } from "@/components/common/custom-button";
@@ -12,8 +11,8 @@ import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
 import { getClientApiBaseUrl } from "@/lib/api";
 import { APPLICATION_CATEGORIES, createApplicationSchema } from "@/lib/form-schemas";
 import { cn } from "@/lib/utils";
-
-const MAX_FILES = 8;
+import { ApplicationFileUpload } from "./file-upload";
+import { KvkkDialog } from "./kvkk-dialog";
 
 function FormSection({ index, title, children }) {
   return (
@@ -34,6 +33,7 @@ export function ApplicationForm({ className }) {
   const [status, setStatus] = useState("idle");
   const [applicationNumber, setApplicationNumber] = useState("");
   const [files, setFiles] = useState([]);
+  const [kvkkOpen, setKvkkOpen] = useState(false);
 
   const schema = useMemo(
     () =>
@@ -73,25 +73,6 @@ export function ApplicationForm({ className }) {
       website: "",
     },
   });
-
-  const { getInputProps, getRootProps, isDragActive } = useDropzone({
-    accept: {
-      "application/pdf": [".pdf"],
-      "image/avif": [".avif"],
-      "image/jpeg": [".jpg", ".jpeg"],
-      "image/png": [".png"],
-      "image/webp": [".webp"],
-    },
-    maxFiles: MAX_FILES,
-    multiple: true,
-    onDrop: (acceptedFiles) => {
-      setFiles((current) => [...current, ...acceptedFiles].slice(0, MAX_FILES));
-    },
-  });
-
-  function removeFile(index) {
-    setFiles((current) => current.filter((_, fileIndex) => fileIndex !== index));
-  }
 
   async function onSubmit(values) {
     setStatus("idle");
@@ -218,47 +199,25 @@ export function ApplicationForm({ className }) {
       </FormSection>
 
       <FormSection index="3" title={t("sections.files")}>
-        <div
-          {...getRootProps()}
-          className={cn(
-            "cursor-pointer rounded-xl border border-dashed border-line bg-surface/50 px-4 py-8 text-center transition",
-            isDragActive && "border-primary-dark bg-primary-soft/50",
-          )}
-        >
-          <input {...getInputProps()} />
-          <FileUp aria-hidden="true" className="mx-auto mb-3 text-muted" size={22} />
-          <p className="text-sm font-medium text-ink">{t("fields.filesHint")}</p>
-        </div>
-        {files.length ? (
-          <ul className="grid gap-2">
-            {files.map((file, index) => (
-              <li
-                className="flex items-center justify-between gap-3 rounded-lg bg-surface px-3 py-2 text-sm text-ink"
-                key={`${file.name}-${file.size}-${index}`}
-              >
-                <span className="min-w-0 truncate">{file.name}</span>
-                <button
-                  aria-label={file.name}
-                  className="inline-flex size-7 items-center justify-center rounded-full text-muted transition hover:bg-white hover:text-ink"
-                  onClick={() => removeFile(index)}
-                  type="button"
-                >
-                  <X aria-hidden="true" className="size-3.5" />
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-xs text-muted">{t("fields.filesEmpty")}</p>
-        )}
+        <ApplicationFileUpload files={files} onChange={setFiles} t={t} />
       </FormSection>
 
       <FormSection index="4" title={t("sections.consents")}>
         <div className="grid gap-3">
-          <label className="flex items-start gap-3 text-sm leading-6 text-muted">
+          <div className="flex items-start gap-3 text-sm leading-6 text-muted">
             <input className="mt-1 size-4 accent-primary-dark" type="checkbox" {...register("privacyConsent")} />
-            <span>{t("fields.privacy")}</span>
-          </label>
+            <p>
+              {t("fields.privacyBefore") ? `${t("fields.privacyBefore")} ` : null}
+              <button
+                className="font-medium text-ink underline decoration-line underline-offset-4 transition hover:text-primary-dark"
+                onClick={() => setKvkkOpen(true)}
+                type="button"
+              >
+                {t("fields.privacyLink")}
+              </button>
+              {t("fields.privacyAfter") ? ` ${t("fields.privacyAfter")}` : null}
+            </p>
+          </div>
           {errors.privacyConsent ? <p className="text-xs font-semibold text-red-700">{errors.privacyConsent.message}</p> : null}
 
           <label className="flex items-start gap-3 text-sm leading-6 text-muted">
@@ -268,6 +227,8 @@ export function ApplicationForm({ className }) {
           {errors.contactConsent ? <p className="text-xs font-semibold text-red-700">{errors.contactConsent.message}</p> : null}
         </div>
       </FormSection>
+
+      <KvkkDialog onOpenChange={setKvkkOpen} open={kvkkOpen} />
 
       <div className="flex flex-wrap items-center gap-3">
         <CustomButton disabled={isSubmitting} type="submit">

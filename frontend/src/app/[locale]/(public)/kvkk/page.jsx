@@ -1,10 +1,10 @@
 import { DisclosurePageContent } from "@/components/site/disclosure";
 
 export const metadata = {
-  title: "Aydınlatma Metni",
-  description: "Tüketiciler Birliği KVKK aydınlatma metni."
+  title: "KVKK",
+  description: "Kişisel verilerin korunması ve aydınlatma metni.",
 };
 
-export default function DisclosurePage() {
+export default function KvkkPage() {
   return <DisclosurePageContent />;
 }

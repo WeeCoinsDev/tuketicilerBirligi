@@ -13,7 +13,8 @@ export default function sitemap() {
     "/sss",
     "/iletisim",
     "/gizlilik",
-    "/aydinlatma-metni"
+    "/aydinlatma-metni",
+    "/kvkk"
   ].map((path) => ({
     url: absoluteUrl(path),
     lastModified: new Date()
