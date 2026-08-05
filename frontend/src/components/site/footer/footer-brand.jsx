@@ -12,7 +12,8 @@ export function FooterBrand({ orgName, settings, t, year }) {
       >
         <Image
           alt=""
-          className="size-16 shrink-0 object-contain drop-shadow-[0_12px_22px_rgba(22,32,51,0.10)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04] sm:size-20 md:size-24"
+          className="pointer-events-none size-16 shrink-0 select-none object-contain drop-shadow-[0_12px_22px_rgba(22,32,51,0.10)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04] sm:size-20 md:size-24"
+          draggable={false}
           height={96}
           src="/logo.svg"
           width={96}
@@ -24,8 +25,20 @@ export function FooterBrand({ orgName, settings, t, year }) {
 
       <div className="grid justify-items-center gap-5">
         <p className="max-w-2xl text-center text-xs leading-relaxed text-muted md:text-[13px]">
-          <span>
+          <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
             © {year} {orgName}. {t("rights")}
+            <span aria-hidden="true" className="text-line">
+              /
+            </span>
+            <a
+              className="focus-ring group inline-flex w-fit items-center gap-1.5 rounded-sm transition"
+              href="https://markaforce.com"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Image alt="" className="h-auto w-4" height={15} src="/markaforce.png" width={16} />
+              <span className="group-hover:text-black">MarkaForce</span>
+            </a>
           </span>
           {settings.description ? (
             <span className="mt-1 block line-clamp-2 text-muted/80">{settings.description}</span>

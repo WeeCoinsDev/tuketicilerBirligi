@@ -4,12 +4,12 @@ export const DENSITY_FILTERS = [
   { id: "all", label: "Tümü" },
   { id: "high", label: "Yoğun içerik" },
   { id: "medium", label: "Orta düzey" },
-  { id: "empty", label: "Kayıt bulunmuyor" }
+  { id: "empty", label: "Kayıt bulunmuyor" },
 ];
 
 export const emptyProvinceData = {
   count: 0,
-  entries: []
+  entries: [],
 };
 
 export function formatCount(value) {
@@ -22,7 +22,7 @@ export function formatCompactDate(dateValue, locale = "tr") {
   return new Intl.DateTimeFormat(locale === "en" ? "en-GB" : "tr-TR", {
     day: "2-digit",
     month: "short",
-    year: "numeric"
+    year: "numeric",
   }).format(new Date(dateValue));
 }
 
@@ -49,9 +49,9 @@ export function normalizeProvinceMap(data) {
         code: Number(province.code),
         name: province.name,
         count: province.count || province.entries?.length || 0,
-        entries: province.entries || []
-      }
-    ])
+        entries: province.entries || [],
+      },
+    ]),
   );
 
   return provinceList.map((province) => {
@@ -62,7 +62,7 @@ export function normalizeProvinceMap(data) {
       ...apiProvince,
       name: apiProvince?.name || province.name,
       count: apiProvince?.count || 0,
-      entries: apiProvince?.entries || []
+      entries: apiProvince?.entries || [],
     };
   });
 }
