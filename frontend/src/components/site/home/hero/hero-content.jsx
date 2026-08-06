@@ -41,7 +41,7 @@ export function HeroContent({ slide, labels, priority = false }) {
       />
 
       <div className="gridContainer relative z-10 w-full py-16 sm:py-20 md:py-24 lg:py-28">
-        <FadeIn className="max-w-xl pr-4 sm:pr-10 lg:max-w-3xl" delay={0.08} duration={0.55} viewport={{ once: true, amount: 0.45 }}>
+        <FadeIn className="max-w-xl pr-4 sm:pr-10 lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl" delay={0.08} duration={0.55} viewport={{ once: true, amount: 0.45 }}>
           {hasMeta ? (
             <div
               className="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10px] font-medium uppercase tracking-[0.16em] text-white/55 sm:text-[11px]"
@@ -55,7 +55,7 @@ export function HeroContent({ slide, labels, priority = false }) {
           ) : null}
 
           <h1
-            className="mt-4 font-heading text-[1.85rem] font-semibold leading-[1.08] tracking-tight text-white sm:mt-5 sm:text-4xl sm:leading-[1.05] md:text-5xl lg:text-6xl xl:text-[4.25rem] xl:leading-[1.02]"
+            className="mt-4 font-heading text-[1.85rem] font-semibold leading-[1.08] tracking-tight text-white sm:mt-5 sm:text-4xl sm:leading-[1.05] md:text-[2.75rem] md:leading-[1.06] lg:text-5xl lg:leading-[1.05] xl:text-[3.5rem] xl:leading-[1.04] 2xl:text-[4.25rem] 2xl:leading-[1.02]"
             data-swiper-parallax="-48"
             data-swiper-parallax-opacity="0"
             data-swiper-parallax-duration="700"
@@ -65,7 +65,7 @@ export function HeroContent({ slide, labels, priority = false }) {
 
           {slide.summary ? (
             <p
-              className="mt-4 max-w-md font-sans text-sm leading-6 text-white/70 sm:mt-5 sm:leading-7 md:text-base md:leading-8"
+              className="mt-4 max-w-md font-sans text-sm leading-6 text-white/70 sm:mt-5 sm:leading-7 md:text-base md:leading-7 lg:leading-8 xl:max-w-lg 2xl:text-lg 2xl:leading-8"
               data-swiper-parallax="-36"
               data-swiper-parallax-opacity="0"
               data-swiper-parallax-duration="800"
