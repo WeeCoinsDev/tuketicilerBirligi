@@ -32,10 +32,10 @@ export async function AreasOfAction() {
           <span aria-hidden="true" className="size-1.5 rounded-full bg-primary-dark" />
           {t("areasEyebrow")}
         </span>
-        <h2 className="mt-3 max-w-72 font-heading text-[1.55rem] font-semibold leading-snug tracking-tight text-ink">{t("areasTitle")}</h2>
+        <h2 className="mt-2.5 max-w-72 font-heading text-[1.35rem] font-semibold leading-snug tracking-tight text-ink md:mt-3 md:text-[1.45rem] lg:text-[1.3rem] xl:text-[1.45rem] 2xl:text-[1.55rem]">{t("areasTitle")}</h2>
       </div>
 
-      <Stagger className="mt-8" stagger={0.07} viewport={{ once: true, amount: 0.25 }}>
+      <Stagger className="mt-6 lg:mt-6 xl:mt-8" stagger={0.07} viewport={{ once: true, amount: 0.25 }}>
         {items.map((item, index) => (
           <StaggerItem key={item.title} y={16}>
             <AreaItem description={item.description} index={index + 1} title={item.title} />
@@ -43,7 +43,7 @@ export async function AreasOfAction() {
         ))}
       </Stagger>
 
-      <div className="mt-8 flex justify-end border-t border-line/60 pt-5">
+      <div className="mt-6 flex justify-end border-t border-line/60 pt-4 lg:mt-7 xl:mt-8 xl:pt-5">
         <Link
           className="focus-ring inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-ink transition hover:text-secondary-dark"
           href="/iletisim"
