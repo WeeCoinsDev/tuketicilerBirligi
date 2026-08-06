@@ -5,14 +5,12 @@ import { HomeHero } from "./hero";
 import { HomeFaq } from "./faq";
 import { HomeLogoCarousel } from "./logo-carousel";
 import { HomeHighlights } from "./highlights";
-import { HomeGuides } from "./guides";
 import { HomeFeed } from "./feed";
 
 export { HomeHero } from "./hero";
 export { HomeFaq } from "./faq";
 export { HomeLogoCarousel } from "./logo-carousel";
 export { HomeHighlights } from "./highlights";
-export { HomeGuides } from "./guides";
 export { HomeFeed } from "./feed";
 
 export function buildHeroSlides({ news, announcements, guides }, tHero) {
@@ -84,9 +82,8 @@ export async function HomePageContent({ locale }) {
 
       <section className="bg-white pt-6 sm:pt-12 md:pt-16">
         <HomeHighlights />
+        <HomeFeed announcements={announcements} guides={guides} news={news} />
         <ProvinceMapSection compact data={provinceMap} />
-        <HomeGuides guides={guides} />
-        <HomeFeed news={news} announcements={announcements} />
         <HomeFaq items={faqs} />
       </section>
     </>

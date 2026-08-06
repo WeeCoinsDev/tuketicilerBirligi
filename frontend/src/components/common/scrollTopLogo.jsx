@@ -129,7 +129,7 @@ export function ScrollTopLogo({ className = "", visible = true }) {
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="240 190 600 600"
-      className={className}
+      className={`${className}`}
       initial={false}
       animate={reduceMotion ? "visible" : visible ? "visible" : "hidden"}
       whileHover={reduceMotion ? undefined : "hover"}

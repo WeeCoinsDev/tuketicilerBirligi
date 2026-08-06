@@ -1,5 +1,12 @@
 import { provinces as provinceList } from "@/lib/provinces";
 
+export const PROVINCE_MAP_COLORS = {
+  high: "#870b18",
+  medium: "#9fb8f4",
+  empty: "#dbe3ef",
+  hover: "#f4cf62",
+};
+
 export const DENSITY_FILTERS = [
   { id: "all", label: "Tümü" },
   { id: "high", label: "Yoğun içerik" },
@@ -27,9 +34,9 @@ export function formatCompactDate(dateValue, locale = "tr") {
 }
 
 export function getProvinceColor(count) {
-  if (count >= 3) return "#254f9f";
-  if (count >= 1) return "#87aee8";
-  return "#dbe3ee";
+  if (count >= 3) return PROVINCE_MAP_COLORS.high;
+  if (count >= 1) return PROVINCE_MAP_COLORS.medium;
+  return PROVINCE_MAP_COLORS.empty;
 }
 
 export function matchesDensityFilter(count, filterId) {

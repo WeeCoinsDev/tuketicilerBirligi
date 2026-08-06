@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Filter, Search } from "lucide-react";
 import { useInView, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { DENSITY_FILTERS, formatCount } from "./province-map-utils";
+import { DENSITY_FILTERS, PROVINCE_MAP_COLORS, formatCount } from "./province-map-utils";
 
 function AnimatedCount({ value }) {
   const reduceMotion = useReducedMotion();
@@ -65,7 +65,7 @@ export function ProvinceMapHeader({ activeProvinceCount, categoryCount, densityF
     <header className="grid gap-7 lg:gap-8">
       <div className="max-w-3xl">
         <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1 text-[11px] font-medium text-muted shadow-[0_6px_18px_rgba(22,32,51,0.04)]">
-          <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary/85" />
+          <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary" />
           İl bazlı içerik ağı
         </span>
         <h2 className="mt-4 max-w-3xl text-balance font-heading text-3xl font-semibold leading-[1.08] tracking-normal text-ink md:text-5xl">Türkiye Tüketici Bilgilendirme Haritası</h2>
@@ -85,21 +85,21 @@ export function ProvinceMapHeader({ activeProvinceCount, categoryCount, densityF
 
         <div className="flex flex-col gap-3 border-t border-line/80 pt-4 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <LegendItem color="#254f9f" label="Yoğun içerik" />
-            <LegendItem color="#87aee8" label="Orta düzey" />
-            <LegendItem color="#dbe3ee" label="Kayıt bulunmuyor" />
+            <LegendItem color={PROVINCE_MAP_COLORS.high} label="Yoğun içerik" />
+            <LegendItem color={PROVINCE_MAP_COLORS.medium} label="Orta düzey" />
+            <LegendItem color={PROVINCE_MAP_COLORS.empty} label="Kayıt bulunmuyor" />
           </div>
 
           <div className="flex flex-col gap-2 min-[420px]:flex-row md:justify-end">
             <Button
-              className="h-10 justify-start rounded-full border-line bg-white px-4 text-sm font-semibold text-ink/72 shadow-xs hover:border-primary/35 hover:bg-primary-soft/70 md:justify-center"
+              className="h-10 justify-start rounded-full border-line bg-white px-4 text-sm font-semibold text-secondary shadow-xs hover:border-secondary/25 hover:bg-secondary/6 hover:text-secondary md:justify-center"
               onClick={onFilterOpen}
               variant="outline"
             >
               <Filter aria-hidden="true" className="size-4" />
               {activeFilter?.label || "Tümü"}
             </Button>
-            <Button className="h-10 justify-start rounded-full bg-ink px-5 text-sm font-semibold text-white shadow-xs hover:bg-ink/90 md:justify-center" onClick={onSearchOpen}>
+            <Button className="h-10 justify-start rounded-full bg-secondary px-5 text-sm font-semibold text-white shadow-xs hover:bg-secondary/92 md:justify-center" onClick={onSearchOpen}>
               <Search aria-hidden="true" className="size-4" />
               İl ara
             </Button>

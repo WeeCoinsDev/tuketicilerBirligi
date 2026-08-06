@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { cloneElement } from "react";
 import { cn } from "@/lib/utils";
-import { getProvinceColor, matchesDensityFilter } from "./province-map-utils";
+import { getProvinceColor, matchesDensityFilter, PROVINCE_MAP_COLORS } from "./province-map-utils";
 
 const TurkeyMap = dynamic(() => import("turkey-map-react"), { ssr: false });
 
@@ -17,7 +17,7 @@ export function ProvinceMapStage({
     const province = provinceByCode.get(Number(city.plateNumber));
     const count = province?.count || 0;
     const matches = matchesDensityFilter(count, densityFilter);
-    const fill = matches ? getProvinceColor(count) : "#dbe3ee";
+    const fill = matches ? getProvinceColor(count) : PROVINCE_MAP_COLORS.empty;
     const path = cityComponent.props.children;
 
     return cloneElement(
@@ -67,7 +67,7 @@ export function ProvinceMapStage({
         <div className="province-map-svg-shell w-full max-w-full min-w-0">
           <TurkeyMap
             cityWrapper={renderCity}
-            customStyle={{ hoverColor: "#f4cf62", idleColor: "#dbe3ee" }}
+            customStyle={{ hoverColor: PROVINCE_MAP_COLORS.hover, idleColor: PROVINCE_MAP_COLORS.empty }}
             hoverable
             onClick={(city) => onProvinceOpen(city.plateNumber, city.name)}
             showTooltip={false}
