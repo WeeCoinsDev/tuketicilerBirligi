@@ -11,15 +11,25 @@ export async function HomeFaq({ items = [] }) {
   return (
     <section aria-labelledby="home-faq-title" className="gridContainer py-10 md:py-12">
       <div className="grid gap-8 md:gap-10">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div id="home-faq-title">
-            <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div id="home-faq-title" className="max-w-2xl">
+            <SectionHeading
+              className="[&_h2]:text-balance [&_h2]:text-3xl [&_h2]:leading-[1.08] [&_h2]:md:text-5xl [&_p:first-child]:mb-0 [&_p:first-child]:inline-flex [&_p:first-child]:items-center [&_p:first-child]:gap-2 [&_p:first-child]:rounded-full [&_p:first-child]:border [&_p:first-child]:border-line [&_p:first-child]:bg-white [&_p:first-child]:px-3 [&_p:first-child]:py-1 [&_p:first-child]:text-[11px] [&_p:first-child]:font-medium [&_p:first-child]:tracking-normal [&_p:first-child]:text-muted [&_p:first-child]:shadow-[0_6px_18px_rgba(22,32,51,0.04)] [&_p:last-child]:mt-4 [&_p:last-child]:max-w-xl [&_p:last-child]:text-base [&_p:last-child]:leading-7"
+              eyebrow={
+                <>
+                  <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary/85" />
+                  {t("eyebrow")}
+                </>
+              }
+              title={t("title")}
+              description={t("description")}
+            />
           </div>
 
-          <div className="lg:shrink-0">
+          <div className="md:shrink-0">
             <Link
               href="/sss"
-              className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-sm font-semibold text-ink shadow-xs transition hover:-translate-y-0.5 hover:border-primary-dark/30 hover:text-primary-dark"
+              className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-white shadow-xs transition hover:bg-ink/90"
             >
               {t("viewAll")}
               <ArrowUpRight aria-hidden="true" className="size-4" />

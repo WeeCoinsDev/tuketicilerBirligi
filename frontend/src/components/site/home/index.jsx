@@ -86,8 +86,8 @@ export async function HomePageContent({ locale }) {
         <HomeHighlights />
         <ProvinceMapSection compact data={provinceMap} />
         <HomeGuides guides={guides} />
-        <HomeFaq items={faqs} />
         <HomeFeed news={news} announcements={announcements} />
+        <HomeFaq items={faqs} />
       </section>
     </>
   );
