@@ -10,7 +10,7 @@ export async function HomeFaq({ items = [] }) {
   const faqItems = items.slice(0, 6);
 
   return (
-    <section aria-labelledby="home-faq-title" className="gridContainer py-8 md:py-10 lg:py-11 2xl:py-12">
+    <section aria-labelledby="home-faq-title" className="gridContainer">
       <Reveal className="grid gap-6 md:gap-7 lg:gap-8 2xl:gap-10" viewport={{ once: true, amount: 0.18 }}>
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-6">
           <div id="home-faq-title" className="max-w-2xl">

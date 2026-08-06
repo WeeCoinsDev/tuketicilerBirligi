@@ -62,7 +62,7 @@ const HIGHLIGHTS = [
 
 export function HomeHighlights() {
   return (
-    <section aria-labelledby="home-highlights-title" className="gridContainer pb-10 md:pb-12 xl:pb-14">
+    <section aria-labelledby="home-highlights-title" className="gridContainer">
       <Stagger className="grid gap-8" stagger={0.08} viewport={{ once: true, amount: 0.18 }}>
         {/* <div id="home-highlights-title">
           <SectionHeading

@@ -7,7 +7,7 @@ export function FeedGuidesStrip({ badgeLabel, description, guides = [], eyebrow,
   if (!guides.length) return null;
 
   return (
-    <Reveal as="section" className="mt-12 md:mt-14 lg:mt-16 xl:mt-18 2xl:mt-20" viewport={{ once: true, amount: 0.18 }}>
+    <Reveal as="section" className="mt-10 sm:mt-12 md:mt-14 lg:mt-16 2xl:mt-18" viewport={{ once: true, amount: 0.18 }}>
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-6 lg:gap-8 xl:gap-10">
         <div className="min-w-0 max-w-3xl">
           <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">
