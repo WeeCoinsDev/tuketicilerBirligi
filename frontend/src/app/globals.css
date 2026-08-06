@@ -265,6 +265,7 @@ button {
 }
 
 .marquee-track {
+  width: max-content;
   animation: logo-marquee 30s linear infinite;
   will-change: transform;
 }
