@@ -31,7 +31,7 @@ export async function AreasOfAction() {
           <span aria-hidden="true" className="size-1.5 rounded-full bg-primary-dark" />
           {t("areasEyebrow")}
         </span>
-        <h2 className="mt-3 font-heading text-[1.45rem] font-semibold leading-snug tracking-tight text-ink">{t("areasTitle")}</h2>
+        <h2 className="mt-3 max-w-72 font-heading text-[1.55rem] font-semibold leading-snug tracking-tight text-ink">{t("areasTitle")}</h2>
       </div>
 
       <div className="mt-8">

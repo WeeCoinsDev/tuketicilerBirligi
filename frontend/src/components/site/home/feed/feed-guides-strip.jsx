@@ -8,13 +8,12 @@ export function FeedGuidesStrip({ badgeLabel, description, guides = [], eyebrow,
   return (
     <section className="mt-16 md:mt-20">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10">
-        <div className="min-w-0 max-w-2xl">
+        <div className="min-w-0 max-w-3xl">
           <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">
             <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary" />
             {eyebrow}
           </span>
           <h2 className="mt-3 font-heading text-[1.85rem] font-semibold leading-[1.12] tracking-tight text-ink md:text-[2.35rem]">{title}</h2>
-          {description ? <p className="mt-3 max-w-xl text-sm font-light leading-7 text-muted">{description}</p> : null}
         </div>
 
         <Link
