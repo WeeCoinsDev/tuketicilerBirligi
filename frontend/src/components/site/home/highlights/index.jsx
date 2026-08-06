@@ -62,7 +62,7 @@ const HIGHLIGHTS = [
 
 export function HomeHighlights() {
   return (
-    <section aria-labelledby="home-highlights-title" className="gridContainer border-b border-line pb-10 md:pb-14">
+    <section aria-labelledby="home-highlights-title" className="gridContainer pb-10 md:pb-14">
       <div className="grid gap-8">
         {/* <div id="home-highlights-title">
           <SectionHeading
@@ -74,7 +74,7 @@ export function HomeHighlights() {
 
         <div className="grid gap-4 md:grid-cols-3">
           {HIGHLIGHTS.map((item) => (
-            <CutoutCard key={item.title} className={`${cutoutCardSurfaceClassName} h-full rounded-[28px] border border-line/80 bg-white text-ink shadow-[0_18px_45px_rgba(22,32,51,0.10)]`}>
+            <CutoutCard key={item.title} className={`${cutoutCardSurfaceClassName} h-full rounded-[28px] border border-line/80 bg-white text-ink shadow-sm`}>
               <article className="flex h-full flex-col">
                 <CutoutCardMedia className="h-72 rounded-t-[28px]">
                   <CutoutCardImage alt="" sizes="(max-width: 768px) 100vw, 33vw" src={item.imageSrc} />

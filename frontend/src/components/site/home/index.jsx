@@ -50,19 +50,18 @@ export async function HomePageContent({ locale }) {
   const tHero = await getTranslations("Hero");
   const { guides, heroSlides, news, announcements } = await getHomeData(locale);
   const provinceMap = await getProvinceMap(locale);
-  const slides =
-    heroSlides?.length
-      ? heroSlides.map((slide) => ({
-          id: slide.id,
-          title: slide.title,
-          summary: slide.summary,
-          ctaLabel: slide.ctaLabel,
-          href: slide.href,
-          image: slide.image || null,
-          category: null,
-          date: null
-        }))
-      : buildHeroSlides({ news, announcements, guides }, tHero);
+  const slides = heroSlides?.length
+    ? heroSlides.map((slide) => ({
+        id: slide.id,
+        title: slide.title,
+        summary: slide.summary,
+        ctaLabel: slide.ctaLabel,
+        href: slide.href,
+        image: slide.image || null,
+        category: null,
+        date: null,
+      }))
+    : buildHeroSlides({ news, announcements, guides }, tHero);
 
   return (
     <>
@@ -70,7 +69,7 @@ export async function HomePageContent({ locale }) {
         <HomeHero slides={slides} />
       </section>
 
-      <section className="bg-white pt-12 md:pt-16">
+      <section className="bg-white pt-6 sm:pt-12 md:pt-16">
         <HomeHighlights />
         <ProvinceMapSection compact data={provinceMap} />
         <HomeGuides guides={guides} />

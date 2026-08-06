@@ -64,10 +64,10 @@
   &>* {
     grid-column: 2;
   }
+}
 
-  &>.fluid {
-    grid-column: 1 / -1;
-  }
+@utility fluid {
+  grid-column: 1 / -1;
 }
 
 :root {
@@ -180,7 +180,7 @@
 }
 
 .province-map-svg-shell,
-.province-map-svg-shell > div,
+.province-map-svg-shell>div,
 .province-map-svg-shell #svg-turkiye-haritasi-container {
   width: 100% !important;
   max-width: 100%;
@@ -225,6 +225,7 @@
 }
 
 @keyframes footer-cta-sheen {
+
   0%,
   100% {
     transform: translate3d(-28%, 0, 0);
@@ -254,6 +255,7 @@
 
 /* Custom thin scrollbars from lg up; native below. */
 @media (min-width: 1024px) {
+
   .site-search-scroll,
   .application-form-scroll {
     scrollbar-width: thin;
