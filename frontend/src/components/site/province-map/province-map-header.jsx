@@ -5,6 +5,7 @@ import NumberFlow from "@number-flow/react";
 import { Filter, Search } from "lucide-react";
 import { useInView, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { DENSITY_FILTERS, PROVINCE_MAP_COLORS } from "./province-map-utils";
 
 function AnimatedCount({ value }) {
@@ -52,6 +53,16 @@ function LegendItem({ color, label }) {
   );
 }
 
+export function ProvinceMapLegend({ className }) {
+  return (
+    <div className={cn("flex flex-wrap items-center gap-x-3.5 gap-y-2 sm:gap-x-4 md:gap-x-5", className)}>
+      <LegendItem color={PROVINCE_MAP_COLORS.high} label="Yoğun içerik" />
+      <LegendItem color={PROVINCE_MAP_COLORS.medium} label="Orta düzey" />
+      <LegendItem color={PROVINCE_MAP_COLORS.empty} label="Kayıt bulunmuyor" />
+    </div>
+  );
+}
+
 export function ProvinceMapHeader({ activeProvinceCount, categoryCount, densityFilter, latestCount, onFilterOpen, onSearchOpen, totalEntries }) {
   const activeFilter = DENSITY_FILTERS.find((filter) => filter.id === densityFilter);
 
@@ -82,15 +93,11 @@ export function ProvinceMapHeader({ activeProvinceCount, categoryCount, densityF
         </div>
 
         <div className="flex flex-col gap-3 border-t border-line/80 pt-3 sm:pt-3.5 md:flex-row md:items-center md:justify-between md:gap-4 md:pt-4">
-          <div className="flex flex-wrap items-center gap-x-3.5 gap-y-2 sm:gap-x-4 md:gap-x-5">
-            <LegendItem color={PROVINCE_MAP_COLORS.high} label="Yoğun içerik" />
-            <LegendItem color={PROVINCE_MAP_COLORS.medium} label="Orta düzey" />
-            <LegendItem color={PROVINCE_MAP_COLORS.empty} label="Kayıt bulunmuyor" />
-          </div>
+          <ProvinceMapLegend className="hidden md:flex" />
 
-          <div className="grid grid-cols-2 gap-2 sm:flex sm:w-auto sm:flex-row md:justify-end">
+          <div className="flex w-full items-center gap-2 sm:w-auto sm:justify-end md:ml-auto">
             <Button
-              className="h-9 justify-center rounded-full border-line bg-white px-3 text-[13px] font-semibold text-secondary shadow-xs hover:border-secondary/25 hover:bg-secondary/6 hover:text-secondary sm:h-9 sm:px-3.5 sm:text-sm md:h-9 md:px-3.5 lg:h-10 lg:px-4"
+              className="h-8 min-w-0 flex-1 rounded-full border-line bg-white px-2.5 text-xs font-semibold text-secondary shadow-xs hover:border-secondary/25 hover:bg-secondary/6 hover:text-secondary sm:h-8 sm:flex-none sm:px-3.5 sm:text-[13px] md:h-9 md:px-3.5 lg:h-10 lg:px-4 lg:text-sm"
               onClick={onFilterOpen}
               variant="outline"
             >
@@ -98,7 +105,7 @@ export function ProvinceMapHeader({ activeProvinceCount, categoryCount, densityF
               {activeFilter?.label || "Tümü"}
             </Button>
             <Button
-              className="h-9 justify-center rounded-full bg-secondary px-3.5 text-[13px] font-semibold text-white shadow-xs hover:bg-secondary/92 sm:h-9 sm:px-4 sm:text-sm md:h-9 md:px-4 lg:h-10 lg:px-5"
+              className="h-8 min-w-0 flex-1 rounded-full bg-secondary px-2.5 text-xs font-semibold text-white shadow-xs hover:bg-secondary/92 sm:h-8 sm:flex-none sm:px-3.5 sm:text-[13px] md:h-9 md:px-4 lg:h-10 lg:px-5 lg:text-sm"
               onClick={onSearchOpen}
             >
               <Search aria-hidden="true" className="size-3.5 lg:size-4" />
