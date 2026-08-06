@@ -55,7 +55,7 @@ export function HeroCarousel({ slides, labels }) {
 
   return (
     <section data-hero-root className="relative gridContainer z-1 h-full bg-white">
-      <div className="2xl:fluid relative overflow-hidden rounded-2xl bg-white 2xl:mx-16 aspect-16/15 sm:aspect-video xl:aspect-16/6">
+      <div className="2xl:fluid relative overflow-hidden rounded-2xl bg-white 2xl:mx-12 aspect-16/15 sm:aspect-video xl:aspect-16/6">
         <Swiper
           modules={[A11y, Autoplay, EffectFade, Keyboard, Parallax]}
           a11y={{ enabled: true }}

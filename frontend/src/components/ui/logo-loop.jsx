@@ -6,16 +6,10 @@ import { cn } from "@/lib/utils";
  * No client hooks; safe as a Server Component when imported from server parents.
  */
 function LogoItem({ item }) {
-  if (item.type === "image" && item.src) {
+  if (item.src) {
     return (
-      <div className="group flex h-12 shrink-0 items-center justify-center px-6 md:h-14">
-        <Image
-          src={item.src}
-          alt={item.alt || ""}
-          width={140}
-          height={48}
-          className="h-8 w-auto max-w-[120px] object-contain grayscale transition duration-300 group-hover:grayscale-0 md:h-10 md:max-w-[140px]"
-        />
+      <div className="group flex h-12 shrink-0 items-center justify-center px-12 md:h-14">
+        <Image src={item.src} alt={item.alt || ""} width={140} height={48} className="h-8 w-auto max-w-30 object-contain md:h-10 md:max-w-35" />
       </div>
     );
   }
@@ -43,8 +37,8 @@ export default function LogoLoop({ logos = [], className, pauseOnHover = false, 
   if (!logos.length) return null;
 
   return (
-    <div className={cn("overflow-hidden", fade && "marquee-fade", className)} aria-label={ariaLabel}>
-      <div className={cn("marquee-track flex w-max items-center", pauseOnHover && "marquee-track-pause-hover")}>
+    <div className={cn("overflow-hidden w-full", fade && "marquee-fade", className)} aria-label={ariaLabel}>
+      <div className={cn("w-full marquee-track flex items-center", pauseOnHover && "marquee-track-pause-hover")}>
         <LogoGroup logos={logos} />
         <LogoGroup logos={logos} ariaHidden />
       </div>

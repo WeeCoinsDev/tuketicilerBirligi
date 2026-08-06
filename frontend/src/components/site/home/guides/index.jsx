@@ -7,16 +7,10 @@ export async function HomeGuides({ guides = [] }) {
   const items = guides.slice(0, 4);
 
   return (
-    <section aria-labelledby="home-guides-title" className="gridContainer border-t border-line/80 py-12 md:py-16">
+    <section aria-labelledby="home-guides-title" className="gridContainer border-t border-line/80 py-10 md:py-12">
       <div className="grid gap-8 md:gap-10">
         <div id="home-guides-title">
-          <GuidesHeader
-            description={t("description")}
-            eyebrow={t("eyebrow")}
-            title={t("title")}
-            viewAllHref="/hak-rehberleri"
-            viewAllLabel={t("viewAll")}
-          />
+          <GuidesHeader description={t("description")} eyebrow={t("eyebrow")} title={t("title")} viewAllHref="/hak-rehberleri" viewAllLabel={t("viewAll")} />
         </div>
 
         {items.length ? (

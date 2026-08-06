@@ -3,12 +3,14 @@ import { getContents, getHomeData, getProvinceMap } from "@/lib/api";
 import { ProvinceMapSection } from "@/components/site/province-map";
 import { HomeHero } from "./hero";
 import { HomeFaq } from "./faq";
+import { HomeLogoCarousel } from "./logo-carousel";
 import { HomeHighlights } from "./highlights";
 import { HomeGuides } from "./guides";
 import { HomeFeed } from "./feed";
 
 export { HomeHero } from "./hero";
 export { HomeFaq } from "./faq";
+export { HomeLogoCarousel } from "./logo-carousel";
 export { HomeHighlights } from "./highlights";
 export { HomeGuides } from "./guides";
 export { HomeFeed } from "./feed";
@@ -77,6 +79,8 @@ export async function HomePageContent({ locale }) {
       <section>
         <HomeHero slides={slides} />
       </section>
+
+      <HomeLogoCarousel />
 
       <section className="bg-white pt-6 sm:pt-12 md:pt-16">
         <HomeHighlights />

@@ -9,15 +9,11 @@ export async function HomeFaq({ items = [] }) {
   const faqItems = items.slice(0, 6);
 
   return (
-    <section aria-labelledby="home-faq-title" className="gridContainer border-t border-line/80 py-12 md:py-16">
+    <section aria-labelledby="home-faq-title" className="gridContainer py-10 md:py-12">
       <div className="grid gap-8 md:gap-10">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div id="home-faq-title">
-            <SectionHeading
-              eyebrow={t("eyebrow")}
-              title={t("title")}
-              description={t("description")}
-            />
+            <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
           </div>
 
           <div className="lg:shrink-0">

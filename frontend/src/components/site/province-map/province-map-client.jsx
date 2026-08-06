@@ -32,7 +32,7 @@ export function ProvinceMapClient({ compact = false, data }) {
   }
 
   return (
-    <section className={cn("overflow-hidden bg-white", compact ? "py-12 md:py-16" : "py-14 md:py-20")}>
+    <section className={cn("overflow-hidden bg-white", compact ? "py-10 md:py-12" : "py-14 md:py-20")}>
       <div className="mx-auto grid w-full min-w-0 gridContainer">
         <ProvinceMapHeader
           activeProvinceCount={activeProvinceCount}
