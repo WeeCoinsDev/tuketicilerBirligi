@@ -9,66 +9,46 @@ export async function HomeFeed({ announcements = [], guides = [], news = [] }) {
   const newsItems = news.slice(0, 4).map((item) => ({ ...item, href: `/haberler/${item.slug}` }));
   const announcementItems = announcements.slice(0, 4).map((item) => ({ ...item, href: "/duyurular" }));
   const guideItems = guides.slice(0, 2);
-  const featuredNews = newsItems.find((item) => item.is_featured) || newsItems[0] || null;
-  const featuredAnnouncement = announcementItems.find((item) => item.is_featured) || announcementItems[0] || null;
-  const sections = [
-    newsItems.length
-      ? {
-          id: "news",
-          description: t("newsDescription"),
-          eyebrow: t("newsEyebrow"),
-          title: t("newsTitle"),
-          viewAllHref: "/haberler",
-          viewAllLabel: t("newsViewAll"),
-          featuredLabel: t("featuredLabel"),
-          readMoreLabel: t("readMore"),
-          featuredItem: featuredNews,
-          items: newsItems,
-        }
-      : null,
-    announcementItems.length
-      ? {
-          id: "announcements",
-          description: t("announcementsDescription"),
-          eyebrow: t("announcementsEyebrow"),
-          title: t("announcementsTitle"),
-          viewAllHref: "/duyurular",
-          viewAllLabel: t("announcementsViewAll"),
-          featuredLabel: t("featuredLabel"),
-          readMoreLabel: t("readMore"),
-          featuredItem: featuredAnnouncement,
-          items: announcementItems,
-        }
-      : null,
-  ].filter(Boolean);
+
+  const useNews = newsItems.length > 0;
+  const slides = useNews ? newsItems : announcementItems;
 
   return (
-    <section className="gridContainer py-10 md:py-12">
-      <div className="grid gap-10 xl:grid-cols-[minmax(0,1.45fr)_22rem] xl:items-start">
+    <section className="gridContainer py-12 md:py-16">
+      <div className="grid gap-14 xl:grid-cols-[minmax(0,1fr)_17.5rem] xl:items-start xl:gap-x-20">
         <div className="min-w-0">
-          {sections.length ? (
-            <>
-              <FeedShowcaseCarousel locale={locale} sections={sections} />
-              <FeedGuidesStrip
-                badgeLabel={t("guidesEyebrow")}
-                description={t("guidesDescription")}
-                guides={guideItems}
-                eyebrow={t("guidesEyebrow")}
-                readMoreLabel={t("guidesReadMore")}
-                title={t("guidesTitle")}
-                viewAllHref="/hak-rehberleri"
-                viewAllLabel={t("guidesViewAll")}
-              />
-            </>
+          {slides.length ? (
+            <FeedShowcaseCarousel
+              description={useNews ? t("newsDescription") : t("announcementsDescription")}
+              eyebrow={useNews ? t("newsEyebrow") : t("announcementsEyebrow")}
+              featuredLabel={t("featuredLabel")}
+              items={slides}
+              locale={locale}
+              nextSlideLabel={t("nextSlide")}
+              previousSlideLabel={t("previousSlide")}
+              readMoreLabel={t("readMore")}
+              title={useNews ? t("newsTitle") : t("announcementsTitle")}
+              viewAllHref={useNews ? "/haberler" : "/duyurular"}
+              viewAllLabel={useNews ? t("newsViewAll") : t("announcementsViewAll")}
+            />
           ) : (
             <p className="py-5 text-sm text-muted">{t("emptyNews")}</p>
           )}
         </div>
 
-        <div className="xl:pl-2">
-          <AreasOfAction />
-        </div>
+        <AreasOfAction />
       </div>
+
+      <FeedGuidesStrip
+        badgeLabel={t("guidesEyebrow")}
+        description={t("guidesDescription")}
+        eyebrow={t("guidesEyebrow")}
+        guides={guideItems}
+        readMoreLabel={t("guidesReadMore")}
+        title={t("guidesTitle")}
+        viewAllHref="/hak-rehberleri"
+        viewAllLabel={t("guidesViewAll")}
+      />
     </section>
   );
 }
