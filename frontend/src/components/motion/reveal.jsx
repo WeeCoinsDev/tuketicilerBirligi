@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-const ease = [0.25, 1, 0.5, 1];
+const ease = [0.22, 1, 0.36, 1];
 const defaultViewport = { once: true, amount: 0.2 };
 
 function MotionElement({ as = "div", children, ...props }) {
@@ -38,9 +38,9 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  duration = 0.55,
+  duration = 0.65,
   viewport = defaultViewport,
-  y = 24,
+  y = 16,
   ...props
 }) {
   const prefersReducedMotion = useReducedMotion();
@@ -65,7 +65,7 @@ export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.5,
+  duration = 0.6,
   viewport = defaultViewport,
   ...props
 }) {
@@ -91,7 +91,7 @@ export function Stagger({
   children,
   className,
   delay = 0,
-  stagger = 0.08,
+  stagger = 0.06,
   viewport = defaultViewport,
   ...props
 }) {
@@ -120,7 +120,7 @@ export function Stagger({
   );
 }
 
-export function StaggerItem({ as = "div", children, className, duration = 0.5, y = 20, ...props }) {
+export function StaggerItem({ as = "div", children, className, duration = 0.6, y = 12, ...props }) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
