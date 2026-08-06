@@ -1,5 +1,5 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
@@ -12,24 +12,35 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const isEn = locale === "en";
+  const t = await getTranslations({ locale, namespace: "Metadata" });
 
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: isEn ? "Consumers Union" : "Tüketici Birliği",
-      template: isEn ? "%s | Consumers Union" : "%s | Tüketici Birliği",
+      default: t("title"),
+      template: t("titleTemplate"),
     },
-    description: isEn
-      ? "Institutional web platform for consumer rights, applications, announcements and contact channels."
-      : "Tüketici hakları, başvuru süreçleri, duyurular ve açık iletişim kanalları için kurumsal web platformu.",
+    description: t("description"),
+    keywords: t("keywords"),
+    icons: {
+      icon: "/logo.ico",
+      shortcut: "/logo.ico",
+      apple: "/logo.png",
+    },
     openGraph: {
-      title: isEn ? "Consumers Union" : "Tüketici Birliği",
-      description: isEn ? "Accessible web platform for consumer rights and institutional application processes." : "Tüketici hakları ve kurumsal başvuru süreçleri için erişilebilir web platformu.",
+      title: t("ogTitle"),
+      description: t("ogDescription"),
       url: siteUrl,
-      siteName: isEn ? "Consumers Union" : "Tüketici Birliği",
-      locale: isEn ? "en_US" : "tr_TR",
+      siteName: t("siteName"),
+      locale: locale === "en" ? "en_US" : "tr_TR",
       type: "website",
+      images: [{ url: "/logo.png", alt: t("siteName") }],
+    },
+    twitter: {
+      card: "summary",
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      images: ["/logo.png"],
     },
   };
 }

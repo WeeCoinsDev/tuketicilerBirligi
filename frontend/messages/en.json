@@ -1,4 +1,15 @@
 {
+  "Metadata": {
+    "title": "Consumers Union",
+    "titleTemplate": "%s | Consumers Union",
+    "description": "Institutional web platform for consumer rights, applications, announcements and contact channels.",
+    "keywords": "consumers union, consumer rights, application, guides, announcements",
+    "ogTitle": "Consumers Union",
+    "ogDescription": "Accessible web platform for consumer rights and institutional application processes.",
+    "siteName": "Consumers Union",
+    "shortName": "CU",
+    "manifestDescription": "Consumers Union institutional web app"
+  },
   "Header": {
     "cta": "Apply Now",
     "openMenu": "Open menu",

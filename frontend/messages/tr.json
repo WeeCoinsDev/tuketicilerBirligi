@@ -1,4 +1,15 @@
 {
+  "Metadata": {
+    "title": "Tüketici Birliği",
+    "titleTemplate": "%s | Tüketici Birliği",
+    "description": "Tüketici hakları, başvuru süreçleri, duyurular ve iletişim kanalları için kurumsal web platformu.",
+    "keywords": "tüketici birliği, tüketici hakları, başvuru, hak rehberi, duyuru",
+    "ogTitle": "Tüketici Birliği",
+    "ogDescription": "Tüketici hakları ve kurumsal başvuru süreçleri için erişilebilir web platformu.",
+    "siteName": "Tüketici Birliği",
+    "shortName": "TB",
+    "manifestDescription": "Tüketici Birliği kurumsal web uygulaması"
+  },
   "Header": {
     "cta": "Başvuru Yap",
     "openMenu": "Menüyü aç",
