@@ -76,7 +76,7 @@ export function ProvinceMapHeader({ activeProvinceCount, categoryCount, densityF
         <h2 className="mt-3 max-w-3xl text-balance font-heading text-2xl font-semibold leading-[1.08] tracking-normal text-ink sm:mt-3.5 sm:text-[1.85rem] md:mt-4 md:text-3xl lg:text-[2.15rem] xl:text-4xl 2xl:text-5xl">
           Türkiye Tüketici Bilgilendirme Haritası
         </h2>
-        <p className="mt-2.5 max-w-2xl text-sm leading-6 text-muted sm:mt-3 sm:text-[15px] sm:leading-6 md:mt-3.5 md:text-[15px] md:leading-7 lg:mt-4 lg:text-base lg:leading-7">
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted sm:mt-3.5 sm:text-[15px] sm:leading-6 md:mt-4 md:text-[15px] md:leading-7 lg:text-base lg:leading-7">
           İllere göre yayınlanan haber, duyuru ve tüketici rehberlerini tek bakışta görünür kılan interaktif bir bilgilendirme alanı.
         </p>
       </div>

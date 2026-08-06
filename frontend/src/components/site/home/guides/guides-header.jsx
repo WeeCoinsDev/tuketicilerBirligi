@@ -9,8 +9,8 @@ export function GuidesHeader({ description, eyebrow, title, viewAllHref, viewAll
           <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary/85" />
           {eyebrow}
         </span>
-        <h2 className="mt-4 text-balance font-heading text-3xl font-semibold leading-[1.08] tracking-tight text-ink md:text-5xl">{title}</h2>
-        {description ? <p className="mt-4 max-w-xl text-base leading-7 text-muted">{description}</p> : null}
+        <h2 className="mt-3 text-balance font-heading text-3xl font-semibold leading-[1.08] tracking-tight text-ink sm:mt-3.5 md:mt-4 md:text-5xl">{title}</h2>
+        {description ? <p className="mt-3 max-w-xl text-base leading-7 text-muted sm:mt-3.5 md:mt-4">{description}</p> : null}
       </div>
 
       <Link

@@ -27,8 +27,8 @@ export function FeedShowcaseCarousel({ description, eyebrow, featuredLabel, item
             <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary" />
             {eyebrow}
           </span>
-          <h2 className="mt-2.5 font-heading text-[1.65rem] font-semibold leading-[1.12] tracking-tight text-ink sm:text-[1.85rem] md:mt-3 md:text-[2rem] lg:text-[1.85rem] xl:text-[2.15rem] 2xl:text-[2.35rem]">{title}</h2>
-          {description ? <p className="mt-2.5 max-w-xl text-sm leading-6 text-muted md:mt-3 md:leading-7 lg:text-[13px] lg:leading-6 xl:text-sm xl:leading-7">{description}</p> : null}
+          <h2 className="mt-3 font-heading text-[1.65rem] font-semibold leading-[1.12] tracking-tight text-ink sm:mt-3.5 sm:text-[1.85rem] md:mt-4 md:text-[2rem] lg:text-[1.85rem] xl:text-[2.15rem] 2xl:text-[2.35rem]">{title}</h2>
+          {description ? <p className="mt-3 max-w-xl text-sm leading-6 text-muted sm:mt-3.5 md:mt-4 md:leading-7 lg:text-[13px] lg:leading-6 xl:text-sm xl:leading-7">{description}</p> : null}
         </div>
 
         <Link

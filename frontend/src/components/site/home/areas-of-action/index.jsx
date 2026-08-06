@@ -32,7 +32,7 @@ export async function AreasOfAction() {
           <span aria-hidden="true" className="size-1.5 rounded-full bg-primary-dark" />
           {t("areasEyebrow")}
         </span>
-        <h2 className="mt-2.5 max-w-72 font-heading text-[1.35rem] font-semibold leading-snug tracking-tight text-ink md:mt-3 md:text-[1.45rem] lg:text-[1.3rem] xl:text-[1.45rem] 2xl:text-[1.55rem]">{t("areasTitle")}</h2>
+        <h2 className="mt-3 max-w-72 font-heading text-[1.35rem] font-semibold leading-snug tracking-tight text-ink sm:mt-3.5 md:mt-4 md:text-[1.45rem] lg:text-[1.3rem] xl:text-[1.45rem] 2xl:text-[1.55rem]">{t("areasTitle")}</h2>
       </div>
 
       <Stagger className="mt-6 lg:mt-6 xl:mt-8" stagger={0.07} viewport={{ once: true, amount: 0.25 }}>

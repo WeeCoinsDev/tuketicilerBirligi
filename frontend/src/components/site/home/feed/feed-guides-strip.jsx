@@ -14,7 +14,7 @@ export function FeedGuidesStrip({ badgeLabel, description, guides = [], eyebrow,
             <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary" />
             {eyebrow}
           </span>
-          <h2 className="mt-2.5 font-heading text-[1.65rem] font-semibold leading-[1.12] tracking-tight text-ink sm:text-[1.85rem] md:mt-3 md:text-[1.9rem] lg:text-[1.85rem] xl:text-[2.15rem] 2xl:text-[2.35rem]">{title}</h2>
+          <h2 className="mt-3 font-heading text-[1.65rem] font-semibold leading-[1.12] tracking-tight text-ink sm:mt-3.5 sm:text-[1.85rem] md:mt-4 md:text-[1.9rem] lg:text-[1.85rem] xl:text-[2.15rem] 2xl:text-[2.35rem]">{title}</h2>
         </div>
 
         <Link
