@@ -15,14 +15,11 @@ import { MobileSection } from "./mobile-section";
 
 export function MobileNavDrawer({ settings }) {
   const t = useTranslations("Header");
-  const shortName = settings?.shortName || "Tüketiciler Birliği";
+  const shortName = settings?.shortName || "Tüketici Birliği";
 
   return (
     <Drawer swipeDirection="right">
-      <DrawerTrigger
-        aria-label={t("openMenu")}
-        className="focus-ring inline-flex size-10 items-center justify-center rounded-full text-ink transition hover:bg-surface xl:hidden"
-      >
+      <DrawerTrigger aria-label={t("openMenu")} className="focus-ring inline-flex size-10 items-center justify-center rounded-full text-ink transition hover:bg-surface xl:hidden">
         <MenuIcon aria-hidden="true" size={22} strokeWidth={1.75} />
       </DrawerTrigger>
 
@@ -31,10 +28,7 @@ export function MobileNavDrawer({ settings }) {
 
         <div className="flex h-dvh flex-col bg-white">
           <div className="flex shrink-0 items-center justify-between gap-3 px-5 py-4">
-            <DrawerClose
-              nativeButton={false}
-              render={<Link className="focus-ring flex min-w-0 items-center gap-2 rounded-lg" href="/" />}
-            >
+            <DrawerClose nativeButton={false} render={<Link className="focus-ring flex min-w-0 items-center gap-2 rounded-lg" href="/" />}>
               <Image alt="" className="size-11 shrink-0 rounded-xl object-contain" height={44} src="/logo.svg" width={44} />
               <span className="truncate font-heading text-sm font-medium tracking-tight text-[#870b18]">{shortName}</span>
             </DrawerClose>
@@ -43,10 +37,7 @@ export function MobileNavDrawer({ settings }) {
               <div className="sm:hidden">
                 <SiteSearch />
               </div>
-              <DrawerClose
-                aria-label={t("closeMenu")}
-                className="focus-ring inline-flex size-10 items-center justify-center rounded-full text-ink transition hover:bg-surface"
-              >
+              <DrawerClose aria-label={t("closeMenu")} className="focus-ring inline-flex size-10 items-center justify-center rounded-full text-ink transition hover:bg-surface">
                 <X aria-hidden="true" size={22} strokeWidth={1.6} />
               </DrawerClose>
             </div>

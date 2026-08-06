@@ -17,22 +17,20 @@ export async function generateMetadata({ params }) {
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: isEn ? "Consumers Union" : "Tüketiciler Birliği",
-      template: isEn ? "%s | Consumers Union" : "%s | Tüketiciler Birliği"
+      default: isEn ? "Consumers Union" : "Tüketici Birliği",
+      template: isEn ? "%s | Consumers Union" : "%s | Tüketici Birliği",
     },
     description: isEn
       ? "Institutional web platform for consumer rights, applications, announcements and contact channels."
       : "Tüketici hakları, başvuru süreçleri, duyurular ve açık iletişim kanalları için kurumsal web platformu.",
     openGraph: {
-      title: isEn ? "Consumers Union" : "Tüketiciler Birliği",
-      description: isEn
-        ? "Accessible web platform for consumer rights and institutional application processes."
-        : "Tüketici hakları ve kurumsal başvuru süreçleri için erişilebilir web platformu.",
+      title: isEn ? "Consumers Union" : "Tüketici Birliği",
+      description: isEn ? "Accessible web platform for consumer rights and institutional application processes." : "Tüketici hakları ve kurumsal başvuru süreçleri için erişilebilir web platformu.",
       url: siteUrl,
-      siteName: isEn ? "Consumers Union" : "Tüketiciler Birliği",
+      siteName: isEn ? "Consumers Union" : "Tüketici Birliği",
       locale: isEn ? "en_US" : "tr_TR",
-      type: "website"
-    }
+      type: "website",
+    },
   };
 }
 

@@ -204,12 +204,12 @@
     "title": "Aydınlatma Metni",
     "pageDescription": "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında hazırlanmış taslak aydınlatma metnidir.",
     "dialogDescription": "Başvuru formunda paylaştığınız kişisel verilerin işlenmesine ilişkin bilgilendirme.",
-    "intro": "Tüketiciler Birliği olarak, başvuru ve iletişim süreçlerinde paylaştığınız kişisel verileri 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında işleriz. Bu metin, veri işleme faaliyetlerimiz hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.",
+    "intro": "Tüketici Birliği olarak, başvuru ve iletişim süreçlerinde paylaştığınız kişisel verileri 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında işleriz. Bu metin, veri işleme faaliyetlerimiz hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.",
     "disclaimer": "Bu metin taslak niteliktedir. Nihai içerik hukuk ve içerik ekibi tarafından güncellenecektir.",
     "sections": {
       "dataController": {
         "title": "Veri sorumlusu",
-        "body": "Kişisel verileriniz, veri sorumlusu sıfatıyla Tüketiciler Birliği tarafından işlenir."
+        "body": "Kişisel verileriniz, veri sorumlusu sıfatıyla Tüketici Birliği tarafından işlenir."
       },
       "processedData": {
         "title": "İşlenen kişisel veriler",

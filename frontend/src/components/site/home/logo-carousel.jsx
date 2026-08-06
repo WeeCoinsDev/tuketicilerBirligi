@@ -3,31 +3,31 @@ import LogoLoop from "@/components/ui/logo-loop";
 
 const HOME_LOGOS = [
   {
-    src: "/logos-carousel/kvkk.png",
+    src: "/logos-carousel/kvkk.webp",
     alt: "Kişisel Verileri Koruma Kurumu",
   },
   {
-    src: "/logos-carousel/bilgi-edinme-degerlendirme-kurumu.png",
+    src: "/logos-carousel/bilgi-edinme-degerlendirme-kurumu.webp",
     alt: "Bilgi Edinme Değerlendirme Kurulu",
   },
   {
-    src: "/logos-carousel/anayasa-mahkemesi.png",
+    src: "/logos-carousel/anayasa-mahkemesi.webp",
     alt: "Anayasa Mahkemesi",
   },
   {
-    src: "/logos-carousel/tbmm.png",
+    src: "/logos-carousel/tbmm.webp",
     alt: "Türkiye Büyük Millet Meclisi",
   },
   {
-    src: "/logos-carousel/tccb.png",
+    src: "/logos-carousel/tccb.webp",
     alt: "T.C. Cumhurbaşkanlığı",
   },
   {
-    src: "/logos-carousel/cimer.png",
+    src: "/logos-carousel/cimer.webp",
     alt: "CIMER",
   },
   {
-    src: "/logos-carousel/kamu-denetciligi-kurumu.png",
+    src: "/logos-carousel/kamu-denetciligi-kurumu.webp",
     alt: "Kamu Denetçiliği Kurumu",
   },
 ];

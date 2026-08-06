@@ -6,7 +6,7 @@ import { formatDate } from "@/lib/utils";
 import { FadeIn } from "@/components/motion/reveal";
 
 // export const HERO_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80";
-export const HERO_FALLBACK_IMAGE = "/ornek-hero.png";
+export const HERO_FALLBACK_IMAGE = "/ornek-hero.webp";
 
 function resolveHeroImages(slide) {
   const desktop = slide.imageDesktop || slide.image || HERO_FALLBACK_IMAGE;
