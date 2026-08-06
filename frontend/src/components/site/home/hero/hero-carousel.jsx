@@ -17,16 +17,10 @@ const AUTOPLAY = {
   delay: 5000,
   disableOnInteraction: false,
   pauseOnMouseEnter: false,
-  // Fade animates slide opacity, not the wrapper — waiting for wrapper transitionend stalls autoplay.
   waitForTransition: false,
   stopOnLastSlide: false,
 };
 
-/**
- * Fade + crossfade (800ms) + parallax.
- * Rewind (not Swiper loop): few slides + fade disables loop; rewind still wraps forever.
- * Nav progress uses the same activeIndex ratio as side pagination.
- */
 export function HeroCarousel({ slides, labels }) {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -61,7 +55,7 @@ export function HeroCarousel({ slides, labels }) {
 
   return (
     <section data-hero-root className="relative gridContainer z-1 h-full bg-white">
-      <div className="2xl:fluid relative min-h-112 overflow-hidden rounded-2xl bg-white 2xl:mx-16 lg:min-h-144">
+      <div className="2xl:fluid relative overflow-hidden rounded-2xl bg-white 2xl:mx-16 aspect-16/15 sm:aspect-video xl:aspect-16/6">
         <Swiper
           modules={[A11y, Autoplay, EffectFade, Keyboard, Parallax]}
           a11y={{ enabled: true }}

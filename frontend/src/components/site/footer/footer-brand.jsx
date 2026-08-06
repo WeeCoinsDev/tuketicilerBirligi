@@ -5,11 +5,7 @@ import { SocialLinks } from "@/components/site/header/social-links";
 export function FooterBrand({ orgName, settings, t, year }) {
   return (
     <div className="flex flex-col items-center gap-7 py-10 md:gap-8 md:py-14 lg:py-16">
-      <Link
-        aria-label={t("brandHome")}
-        className="focus-ring group flex max-w-full flex-col items-center gap-4 rounded-2xl px-2 sm:flex-row sm:gap-5"
-        href="/"
-      >
+      <Link aria-label={t("brandHome")} className="focus-ring group flex max-w-full flex-col items-center gap-4 rounded-2xl px-2 sm:flex-row sm:gap-5" href="/">
         <Image
           alt=""
           className="pointer-events-none size-16 shrink-0 select-none object-contain drop-shadow-[0_12px_22px_rgba(22,32,51,0.10)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04] sm:size-20 md:size-24"
@@ -30,19 +26,12 @@ export function FooterBrand({ orgName, settings, t, year }) {
             <span aria-hidden="true" className="text-line">
               /
             </span>
-            <a
-              className="focus-ring group inline-flex w-fit items-center gap-1.5 rounded-sm transition"
-              href="https://markaforce.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Image alt="" className="h-auto w-4" height={15} src="/markaforce.png" width={16} />
+            <a className="focus-ring group inline-flex w-fit items-center gap-1.5 rounded-sm transition" href="https://markaforce.com" rel="noopener noreferrer" target="_blank">
+              <Image alt="" className="h-auto w-4 grayscale group-hover:grayscale-0" height={15} src="/markaforce.png" width={16} />
               <span className="group-hover:text-black">MarkaForce</span>
             </a>
           </span>
-          {settings.description ? (
-            <span className="mt-1 block line-clamp-2 text-muted/80">{settings.description}</span>
-          ) : null}
+          {settings.description ? <span className="mt-1 block line-clamp-2 text-muted/80">{settings.description}</span> : null}
         </p>
 
         <div aria-label={t("socialLabel")}>

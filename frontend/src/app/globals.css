@@ -70,6 +70,11 @@
   grid-column: 1 / -1;
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 :root {
   color-scheme: light;
   --radius: 8px;
