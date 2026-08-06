@@ -1,4 +1,5 @@
 import { getLocale, getTranslations } from "next-intl/server";
+import { Reveal } from "@/components/motion/reveal";
 import { AreasOfAction } from "../areas-of-action";
 import { FeedGuidesStrip } from "./feed-guides-strip";
 import { FeedShowcaseCarousel } from "./feed-showcase-carousel";
@@ -15,7 +16,7 @@ export async function HomeFeed({ announcements = [], guides = [], news = [] }) {
 
   return (
     <section className="gridContainer py-12 md:py-16">
-      <div className="grid gap-14 xl:grid-cols-[minmax(0,0.92fr)_20rem] xl:items-start xl:gap-x-24 2xl:grid-cols-[minmax(0,0.88fr)_21rem] 2xl:gap-x-28">
+      <Reveal className="grid gap-14 xl:grid-cols-[minmax(0,0.92fr)_20rem] xl:items-start xl:gap-x-24 2xl:grid-cols-[minmax(0,0.88fr)_21rem] 2xl:gap-x-28" viewport={{ once: true, amount: 0.16 }}>
         <div className="min-w-0">
           {slides.length ? (
             <FeedShowcaseCarousel
@@ -37,7 +38,7 @@ export async function HomeFeed({ announcements = [], guides = [], news = [] }) {
         </div>
 
         <AreasOfAction />
-      </div>
+      </Reveal>
 
       <FeedGuidesStrip
         badgeLabel={t("guidesEyebrow")}

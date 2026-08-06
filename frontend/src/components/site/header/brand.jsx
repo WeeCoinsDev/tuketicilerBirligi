@@ -9,7 +9,7 @@ export function HeaderBrand({ shortName, tagline }) {
 
   return (
     <Link className="focus-ring flex min-w-0 items-center gap-1.5 rounded-[8px]" href="/" onMouseEnter={() => setLogoKey((prev) => prev + 1)}>
-      <MainLogo key={logoKey} className="h-16 w-auto" drawOnMount />
+      <MainLogo key={logoKey} className="h-16 w-auto" drawOnMount drawDuration={4} />
 
       <span className="grid min-w-0">
         <span className="truncate font-heading text-base font-medium leading-tight tracking-tight text-[#870b18]">{shortName}</span>

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
+import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Link } from "@/i18n/navigation";
 import { AreaItem } from "./area-item";
 
@@ -34,11 +35,13 @@ export async function AreasOfAction() {
         <h2 className="mt-3 max-w-72 font-heading text-[1.55rem] font-semibold leading-snug tracking-tight text-ink">{t("areasTitle")}</h2>
       </div>
 
-      <div className="mt-8">
+      <Stagger className="mt-8" stagger={0.07} viewport={{ once: true, amount: 0.25 }}>
         {items.map((item, index) => (
-          <AreaItem description={item.description} index={index + 1} key={item.title} title={item.title} />
+          <StaggerItem key={item.title} y={16}>
+            <AreaItem description={item.description} index={index + 1} title={item.title} />
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
       <div className="mt-8 flex justify-end border-t border-line/60 pt-5">
         <Link

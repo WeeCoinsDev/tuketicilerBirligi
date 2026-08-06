@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Link } from "@/i18n/navigation";
 import { FeedGuideCard } from "./feed-guide-card";
 
@@ -6,7 +7,7 @@ export function FeedGuidesStrip({ badgeLabel, description, guides = [], eyebrow,
   if (!guides.length) return null;
 
   return (
-    <section className="mt-16 md:mt-20">
+    <Reveal as="section" className="mt-16 md:mt-20" viewport={{ once: true, amount: 0.18 }}>
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10">
         <div className="min-w-0 max-w-3xl">
           <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">
@@ -25,11 +26,13 @@ export function FeedGuidesStrip({ badgeLabel, description, guides = [], eyebrow,
         </Link>
       </div>
 
-      <div className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8">
+      <Stagger className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8" stagger={0.08} viewport={{ once: true, amount: 0.2 }}>
         {guides.map((guide) => (
-          <FeedGuideCard badgeLabel={badgeLabel} guide={guide} key={guide.slug} readMoreLabel={readMoreLabel} />
+          <StaggerItem key={guide.slug}>
+            <FeedGuideCard badgeLabel={badgeLabel} guide={guide} readMoreLabel={readMoreLabel} />
+          </StaggerItem>
         ))}
-      </div>
-    </section>
+      </Stagger>
+    </Reveal>
   );
 }
