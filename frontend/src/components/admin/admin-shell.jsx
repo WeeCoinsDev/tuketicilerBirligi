@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   FileText,
+  HelpCircle,
   Home,
   ImageIcon,
   LayoutDashboard,
@@ -26,6 +27,7 @@ const navigationIcons = {
   "/admin": LayoutDashboard,
   "/admin/hero": Home,
   "/admin/harita": MapPinned,
+  "/admin/sss": HelpCircle,
   "/admin/icerikler": FileText,
   "/admin/formlar": MessageSquareText,
   "/admin/medya": ImageIcon,

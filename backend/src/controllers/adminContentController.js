@@ -38,10 +38,27 @@ function mapRow(row) {
 }
 
 const listContent = asyncHandler(async (req, res) => {
+  const params = [];
+  const where = [];
+
+  if (req.query.type) {
+    contentSchema.shape.type.parse(req.query.type);
+    where.push("type = ?");
+    params.push(req.query.type);
+  }
+
+  if (req.query.locale) {
+    contentSchema.shape.locale.parse(req.query.locale);
+    where.push("locale = ?");
+    params.push(req.query.locale);
+  }
+
   const [rows] = await pool.execute(
     `SELECT * FROM content_items
+     ${where.length ? `WHERE ${where.join(" AND ")}` : ""}
      ORDER BY updated_at DESC, id DESC
-     LIMIT 200`
+     LIMIT 200`,
+    params
   );
 
   res.json({ items: rows.map(mapRow) });
@@ -146,4 +163,3 @@ module.exports = {
   listContent,
   updateContent
 };
-

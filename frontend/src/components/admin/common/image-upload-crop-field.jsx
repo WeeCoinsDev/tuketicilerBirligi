@@ -10,11 +10,13 @@ import { cn } from "@/lib/utils";
 
 export function ImageUploadCropField({
   aspect = 16 / 9,
+  aspectClassName = "aspect-video",
   error,
   helperText,
   initialPreview = "",
   label = "Görsel",
   onChange,
+  previewLabel,
   value,
 }) {
   const [sourceImage, setSourceImage] = useState("");
@@ -116,6 +118,7 @@ export function ImageUploadCropField({
   const previewUrl = localPreviewUrl || initialPreview;
   const hasPreview = Boolean(previewUrl);
   const isCropping = Boolean(sourceImage);
+  const resolvedPreviewLabel = previewLabel || "Önizleme hazır";
 
   const resolvedHelperText = useMemo(() => {
     if (helperText) return helperText;
@@ -127,7 +130,7 @@ export function ImageUploadCropField({
 
   return (
     <div className="grid gap-2 text-sm font-medium text-ink">
-      <span>{label}</span>
+      {label ? <span>{label}</span> : null}
       <input {...getInputProps()} />
 
       {!hasPreview && !isCropping ? (
@@ -159,12 +162,12 @@ export function ImageUploadCropField({
       {hasPreview && !isCropping ? (
         <div className="rounded-lg border border-line bg-white p-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <div className="w-full max-w-[360px] overflow-hidden rounded-md border border-line bg-surface sm:w-72">
+            <div className={cn("w-full max-w-[360px] overflow-hidden rounded-md border border-line bg-surface sm:w-72", aspectClassName)}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" className="aspect-video h-auto w-full object-cover" src={previewUrl} />
+              <img alt="" className="h-full w-full object-cover" src={previewUrl} />
             </div>
             <div className="grid min-w-0 flex-1 gap-2">
-              <p className="text-sm font-semibold text-ink">16:9 önizleme hazır</p>
+              <p className="text-sm font-semibold text-ink">{resolvedPreviewLabel}</p>
               <p className="text-xs font-normal leading-5 text-muted">
                 Görsel kaydetme sırasında yüklenecek. Oranı kontrol edip gerekirse değiştirebilirsiniz.
               </p>
@@ -191,7 +194,7 @@ export function ImageUploadCropField({
             </Button>
           </div>
 
-          <div className="relative aspect-video max-h-[320px] overflow-hidden rounded-md bg-ink/10">
+          <div className={cn("relative max-h-[320px] overflow-hidden rounded-md bg-ink/10", aspectClassName)}>
             <Cropper
               aspect={aspect}
               crop={crop}

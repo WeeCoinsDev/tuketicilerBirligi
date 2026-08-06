@@ -42,9 +42,9 @@ export async function getHomeData(locale = "tr") {
   return {
     settings: fallbackSettings,
     heroSlides: getFallbackHeroSlides(locale),
-    guides: getFallbackContent("guide"),
-    news: getFallbackContent("news"),
-    announcements: getFallbackContent("announcement")
+    guides: getFallbackContent("guide", locale),
+    news: getFallbackContent("news", locale),
+    announcements: getFallbackContent("announcement", locale)
   };
 }
 
@@ -54,7 +54,7 @@ export async function getContents({ type, locale = "tr", page = 1 } = {}) {
   if (type) params.set("type", type);
 
   const data = await request(`/api/public/content?${params.toString()}`);
-  return data?.items || (type ? getFallbackContent(type) : fallbackContents);
+  return data?.items || (type ? getFallbackContent(type, locale) : fallbackContents);
 }
 
 export async function getContentBySlug(slug, locale = "tr") {

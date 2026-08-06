@@ -16,6 +16,7 @@
     "applicationGuide": "Başvuru Rehberi",
     "applyNow": "Başvuru Yap",
     "provinceMap": "Tüketici Haritası",
+    "faq": "Sıkça Sorulan Sorular",
     "contact": "İletişim"
   },
   "LanguageSwitcher": {
@@ -62,6 +63,33 @@
     "announcementsViewAll": "Tüm duyurular",
     "emptyNews": "Yayında haber bulunmuyor.",
     "emptyAnnouncements": "Yayında duyuru bulunmuyor."
+  },
+  "HomeFaq": {
+    "eyebrow": "Sık sorulanlar",
+    "title": "En çok merak edilen başlıklar",
+    "description": "Başvuru, belge ve süreç konularında hızlı cevap arayan ziyaretçiler için kısa bir başlangıç alanı.",
+    "viewAll": "Tüm soruları aç",
+    "searchPlaceholder": "Soru veya konu ara...",
+    "categoriesLabel": "SSS kategorileri",
+    "all": "Tümü",
+    "empty": "Bu filtreyle eşleşen soru bulunamadı.",
+    "clearSearch": "Aramayı temizle",
+    "copyLink": "Bağlantıyı kopyala",
+    "copied": "Kopyalandı",
+    "showAnswer": "Yanıtı göster",
+    "hideAnswer": "Gizle"
+  },
+  "Faq": {
+    "eyebrow": "SSS",
+    "title": "Sıkça sorulan sorular",
+    "description": "Başvuru, belge, süreç ve iletişim konularında en çok merak edilen cevaplara hızlıca ulaşın.",
+    "searchPlaceholder": "Soru veya konu ara...",
+    "categoriesLabel": "SSS kategorileri",
+    "all": "Tümü",
+    "empty": "Aramanızla eşleşen soru bulunamadı.",
+    "clearSearch": "Aramayı temizle",
+    "copyLink": "Bağlantıyı kopyala",
+    "copied": "Kopyalandı"
   },
   "Footer": {
     "navLabel": "Site haritası",

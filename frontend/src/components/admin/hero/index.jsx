@@ -100,7 +100,7 @@ export function HeroAdmin() {
             Yeni hero kaydı
           </Button>
         }
-        description="Ana sayfa carousel içeriklerini tek panelden yönetin. Metinler Türkçe ve İngilizce tutulur; görseller 16:9 oranında kırpılır."
+        description="Ana sayfa carousel içeriklerini tek panelden yönetin. Metinler Türkçe ve İngilizce tutulur; mobil (16:15), tablet (16:9) ve masaüstü (16:6) için ayrı görseller yüklenir."
         title="Hero Yönetimi"
       >
         <div className="grid gap-5">
@@ -118,10 +118,10 @@ export function HeroAdmin() {
               value={activeItemCount}
             />
             <AdminStatCard
-              description="Tüm görseller aynı oranda saklanır."
+              description="Her kayıtta mobil, tablet ve masaüstü görseli bulunur."
               icon={ImageIcon}
-              title="Görsel oranı"
-              value="16:9"
+              title="Görsel seti"
+              value="3 oran"
             />
           </div>
 

@@ -1,12 +1,14 @@
 import { getTranslations } from "next-intl/server";
-import { getHomeData, getProvinceMap } from "@/lib/api";
+import { getContents, getHomeData, getProvinceMap } from "@/lib/api";
 import { ProvinceMapSection } from "@/components/site/province-map";
 import { HomeHero } from "./hero";
+import { HomeFaq } from "./faq";
 import { HomeHighlights } from "./highlights";
 import { HomeGuides } from "./guides";
 import { HomeFeed } from "./feed";
 
 export { HomeHero } from "./hero";
+export { HomeFaq } from "./faq";
 export { HomeHighlights } from "./highlights";
 export { HomeGuides } from "./guides";
 export { HomeFeed } from "./feed";
@@ -40,6 +42,9 @@ export function buildHeroSlides({ news, announcements, guides }, tHero) {
     category: categoryMap[item.type],
     href: hrefMap[item.type](item.slug),
     image: item.cover_image || item.image || null,
+    imageMobile: item.cover_image || item.image || null,
+    imageTablet: item.cover_image || item.image || null,
+    imageDesktop: item.cover_image || item.image || null,
   }));
 }
 
@@ -49,6 +54,7 @@ export function buildHeroSlides({ news, announcements, guides }, tHero) {
 export async function HomePageContent({ locale }) {
   const tHero = await getTranslations("Hero");
   const { guides, heroSlides, news, announcements } = await getHomeData(locale);
+  const faqs = await getContents({ type: "faq", locale });
   const provinceMap = await getProvinceMap(locale);
   const slides = heroSlides?.length
     ? heroSlides.map((slide) => ({
@@ -57,7 +63,10 @@ export async function HomePageContent({ locale }) {
         summary: slide.summary,
         ctaLabel: slide.ctaLabel,
         href: slide.href,
-        image: slide.image || null,
+        image: slide.imageDesktop || slide.image || null,
+        imageMobile: slide.imageMobile || slide.image || null,
+        imageTablet: slide.imageTablet || slide.image || null,
+        imageDesktop: slide.imageDesktop || slide.image || null,
         category: null,
         date: null,
       }))
@@ -73,6 +82,7 @@ export async function HomePageContent({ locale }) {
         <HomeHighlights />
         <ProvinceMapSection compact data={provinceMap} />
         <HomeGuides guides={guides} />
+        <HomeFaq items={faqs} />
         <HomeFeed news={news} announcements={announcements} />
       </section>
     </>

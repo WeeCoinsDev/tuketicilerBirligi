@@ -5,11 +5,11 @@ import { AlertCircle, LoaderCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { AdminAlert } from "@/components/admin/common/admin-alert";
-import { ImageUploadCropField } from "@/components/admin/common/image-upload-crop-field";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { createHeroSlide, updateHeroSlide, uploadAdminMedia } from "@/lib/admin-api";
 import { heroSlideSchema } from "@/lib/form-schemas";
+import { HeroImageFields } from "./hero-image-fields";
 import { HeroLinkField } from "./hero-link-field";
 import { HeroPublishFields } from "./hero-publish-fields";
 import { HeroTextFields } from "./hero-text-fields";
@@ -24,14 +24,22 @@ function getDefaultValues(item) {
     ctaLabelEn: item?.ctaLabelEn || "",
     ctaHref: item?.ctaHref || "",
     mediaId: item?.mediaId || 0,
+    mediaMobileId: item?.mediaMobileId || item?.mediaId || 0,
+    mediaTabletId: item?.mediaTabletId || item?.mediaId || 0,
     isActive: item?.isActive ?? true,
     sortOrder: item?.sortOrder ?? 0,
   };
 }
 
+const EMPTY_PENDING_FILES = {
+  mobile: null,
+  tablet: null,
+  desktop: null,
+};
+
 export function HeroFormDialog({ item, itemCount, maxItems, onOpenChange, onSaved, open }) {
   const [submitError, setSubmitError] = useState("");
-  const [pendingImageFile, setPendingImageFile] = useState(null);
+  const [pendingFiles, setPendingFiles] = useState(EMPTY_PENDING_FILES);
   const isEditMode = Boolean(item?.id);
 
   const form = useForm({
@@ -52,16 +60,25 @@ export function HeroFormDialog({ item, itemCount, maxItems, onOpenChange, onSave
 
   const ctaHref = useWatch({ control, name: "ctaHref" });
   const mediaId = useWatch({ control, name: "mediaId" });
+  const mediaMobileId = useWatch({ control, name: "mediaMobileId" });
+  const mediaTabletId = useWatch({ control, name: "mediaTabletId" });
   const isLimitReached = useMemo(
     () => !isEditMode && itemCount >= maxItems,
     [isEditMode, itemCount, maxItems],
   );
 
-  async function uploadPendingImage() {
-    if (!pendingImageFile) return null;
+  function handlePendingFileChange(variantKey, file) {
+    setPendingFiles((current) => ({
+      ...current,
+      [variantKey]: file || null,
+    }));
+  }
+
+  async function uploadPendingFile(file) {
+    if (!file) return null;
 
     const formData = new FormData();
-    formData.append("file", pendingImageFile);
+    formData.append("file", file);
     return uploadAdminMedia(formData);
   }
 
@@ -72,21 +89,43 @@ export function HeroFormDialog({ item, itemCount, maxItems, onOpenChange, onSave
       setSubmitError("");
       let payload = { ...values };
 
-      if (pendingImageFile) {
-        const uploadedImage = await uploadPendingImage();
-        payload = {
-          ...payload,
-          mediaId: uploadedImage.id,
-        };
+      const [mobileUpload, tabletUpload, desktopUpload] = await Promise.all([
+        uploadPendingFile(pendingFiles.mobile),
+        uploadPendingFile(pendingFiles.tablet),
+        uploadPendingFile(pendingFiles.desktop),
+      ]);
+
+      if (mobileUpload?.id) payload.mediaMobileId = mobileUpload.id;
+      if (tabletUpload?.id) payload.mediaTabletId = tabletUpload.id;
+      if (desktopUpload?.id) payload.mediaId = desktopUpload.id;
+
+      let hasMissingImage = false;
+
+      if (!payload.mediaMobileId) {
+        setError("mediaMobileId", {
+          type: "manual",
+          message: "Mobil görseli seçmelisiniz.",
+        });
+        hasMissingImage = true;
+      }
+
+      if (!payload.mediaTabletId) {
+        setError("mediaTabletId", {
+          type: "manual",
+          message: "Tablet görseli seçmelisiniz.",
+        });
+        hasMissingImage = true;
       }
 
       if (!payload.mediaId) {
         setError("mediaId", {
           type: "manual",
-          message: "Hero görseli seçmelisiniz.",
+          message: "Masaüstü görseli seçmelisiniz.",
         });
-        return;
+        hasMissingImage = true;
       }
+
+      if (hasMissingImage) return;
 
       if (isEditMode) {
         await updateHeroSlide(item.id, payload);
@@ -108,13 +147,15 @@ export function HeroFormDialog({ item, itemCount, maxItems, onOpenChange, onSave
           <DialogHeader className="border-b border-line bg-white px-5 py-4 sm:px-6">
             <DialogTitle>{isEditMode ? "Hero kaydını düzenle" : "Yeni hero kaydı"}</DialogTitle>
             <DialogDescription>
-              Hero içeriklerini Türkçe ve İngilizce olarak tek kayıtta yönetin. En fazla {maxItems} kayıt eklenebilir.
+              Hero içeriklerini Türkçe ve İngilizce olarak tek kayıtta yönetin. Mobil, tablet ve masaüstü için ayrı görsel yükleyin. En fazla {maxItems} kayıt eklenebilir.
             </DialogDescription>
           </DialogHeader>
 
           <div className="min-h-0 flex-1 overflow-y-auto bg-surface/70">
             <div className="grid gap-5 px-5 py-5 sm:px-6">
               <input type="hidden" {...register("mediaId", { valueAsNumber: true })} />
+              <input type="hidden" {...register("mediaMobileId", { valueAsNumber: true })} />
+              <input type="hidden" {...register("mediaTabletId", { valueAsNumber: true })} />
 
               {isLimitReached ? (
                 <AdminAlert icon={AlertCircle} title="Hero limiti dolu" variant="warning">
@@ -122,30 +163,14 @@ export function HeroFormDialog({ item, itemCount, maxItems, onOpenChange, onSave
                 </AdminAlert>
               ) : null}
 
-              <section className="grid gap-3 rounded-lg border border-line bg-white p-4">
-                <div className="grid gap-1">
-                  <h3 className="text-base font-semibold text-ink">Hero görseli</h3>
-                  <p className="text-sm leading-6 text-muted">
-                    Görseli istediğiniz anda seçip kırpabilirsiniz. Upload işlemi kayıt sırasında yapılır.
-                  </p>
-                </div>
-
-                <ImageUploadCropField
-                  error={errors.mediaId?.message}
-                  helperText="Carousel görünümünün dengeli kalması için görsel 16:9 oranında önizlenir."
-                  initialPreview={item?.image?.url || ""}
-                  label="Hero görseli"
-                  onChange={({ file, mediaId: nextMediaId }) => {
-                    setPendingImageFile(file);
-                    setValue("mediaId", nextMediaId || mediaId || 0, {
-                      shouldDirty: true,
-                      shouldValidate: false,
-                    });
-                    clearErrors("mediaId");
-                  }}
-                  value={mediaId}
-                />
-              </section>
+              <HeroImageFields
+                clearErrors={clearErrors}
+                errors={errors}
+                item={item}
+                mediaIds={{ mediaId, mediaMobileId, mediaTabletId }}
+                onPendingFileChange={handlePendingFileChange}
+                setValue={setValue}
+              />
 
               <HeroTextFields
                 errors={errors}

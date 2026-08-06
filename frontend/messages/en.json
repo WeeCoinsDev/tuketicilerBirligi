@@ -16,6 +16,7 @@
     "applicationGuide": "Application Guide",
     "applyNow": "Apply Now",
     "provinceMap": "Consumer Map",
+    "faq": "Frequently Asked Questions",
     "contact": "Contact"
   },
   "LanguageSwitcher": {
@@ -62,6 +63,33 @@
     "announcementsViewAll": "All announcements",
     "emptyNews": "No published news yet.",
     "emptyAnnouncements": "No published announcements yet."
+  },
+  "HomeFaq": {
+    "eyebrow": "Common questions",
+    "title": "The topics visitors ask about most",
+    "description": "A quick starting point for visitors who want fast answers about applications, documents, and process steps.",
+    "viewAll": "Open all questions",
+    "searchPlaceholder": "Search a question or topic...",
+    "categoriesLabel": "FAQ categories",
+    "all": "All",
+    "empty": "No questions match this filter.",
+    "clearSearch": "Clear search",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "showAnswer": "Show answer",
+    "hideAnswer": "Hide"
+  },
+  "Faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently asked questions",
+    "description": "Find quick answers about applications, documents, process steps, and communication channels.",
+    "searchPlaceholder": "Search a question or topic...",
+    "categoriesLabel": "FAQ categories",
+    "all": "All",
+    "empty": "No questions match your search.",
+    "clearSearch": "Clear search",
+    "copyLink": "Copy link",
+    "copied": "Copied"
   },
   "Footer": {
     "navLabel": "Site map",

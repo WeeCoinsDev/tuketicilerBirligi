@@ -1,25 +1,50 @@
-import { StaticCard } from "@/components/common/content-card";
+import { getTranslations } from "next-intl/server";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getContents } from "@/lib/api";
+import { FaqBrowser } from "./faq-browser";
 
 export async function FaqPageContent({ locale }) {
+  const t = await getTranslations("Faq");
   const items = await getContents({ type: "faq", locale });
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items
+      .filter((item) => item.title && item.body)
+      .map((item) => ({
+        "@type": "Question",
+        name: item.title,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.body,
+        },
+      })),
+  };
+
   return (
-    <section className="gridContainer bg-white py-14">
-      <div className="max-w-4xl">
+    <section className="relative gridContainer overflow-hidden bg-surface/40 py-14 md:py-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+
+      <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center">
         <SectionHeading
-          eyebrow="SSS"
-          title="Sıkça sorulan sorular"
-          description="Cevaplar kurumun resmi süreçlerine göre netleştirilip admin panelinden güncellenmelidir."
+          className="mx-auto flex flex-col items-center text-center"
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          description={t("description")}
         />
-        <div className="mt-8 grid gap-4">
-          {items.map((item) => (
-            <StaticCard key={item.slug}>
-              <h2 className="text-lg font-bold text-ink">{item.title}</h2>
-              <p className="mt-2 text-sm leading-7 text-muted">{item.body}</p>
-            </StaticCard>
-          ))}
+
+        <div className="mt-10 w-full md:mt-12">
+          <FaqBrowser
+            allLabel={t("all")}
+            categoriesLabel={t("categoriesLabel")}
+            clearSearchLabel={t("clearSearch")}
+            copiedLabel={t("copied")}
+            copyLinkLabel={t("copyLink")}
+            emptyText={t("empty")}
+            items={items}
+            searchPlaceholder={t("searchPlaceholder")}
+          />
         </div>
       </div>
     </section>

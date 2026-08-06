@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Pencil, Trash2 } from "lucide-react";
+import { Monitor, Pencil, Smartphone, Tablet, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -20,13 +20,41 @@ function StatusBadge({ active }) {
 }
 
 function HeroImage({ item, className }) {
+  const previewUrl = item.image?.url || item.imageTablet?.url || item.imageMobile?.url;
+
   return (
     <div className={cn("overflow-hidden rounded-md border border-line bg-surface", className)}>
-      {item.image?.url ? (
-        <img alt="" className="aspect-video h-full w-full object-cover" src={item.image.url} />
+      {previewUrl ? (
+        <img alt="" className="aspect-video h-full w-full object-cover" src={previewUrl} />
       ) : (
         <div className="grid aspect-video place-items-center text-xs text-muted">Görsel yok</div>
       )}
+    </div>
+  );
+}
+
+function HeroDeviceBadges({ item }) {
+  const devices = [
+    { key: "mobile", label: "Mobil", Icon: Smartphone, ready: Boolean(item.imageMobile?.url || item.image?.url) },
+    { key: "tablet", label: "Tablet", Icon: Tablet, ready: Boolean(item.imageTablet?.url || item.image?.url) },
+    { key: "desktop", label: "Masaüstü", Icon: Monitor, ready: Boolean(item.image?.url) },
+  ];
+
+  return (
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      {devices.map(({ key, label, Icon, ready }) => (
+        <span
+          key={key}
+          className={cn(
+            "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-semibold",
+            ready ? "bg-secondary-soft text-secondary-dark" : "bg-surface text-muted",
+          )}
+          title={label}
+        >
+          <Icon aria-hidden="true" className="size-3" />
+          {label}
+        </span>
+      ))}
     </div>
   );
 }
@@ -51,6 +79,7 @@ function HeroSummary({ item }) {
           CTA: <span className="font-medium text-ink">{item.ctaHref}</span>
         </p>
       ) : null}
+      <HeroDeviceBadges item={item} />
     </div>
   );
 }

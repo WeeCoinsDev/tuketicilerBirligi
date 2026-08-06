@@ -76,6 +76,9 @@ function mapContent(row) {
 
 function mapHeroSlide(row, locale) {
   const isEnglish = locale === "en";
+  const desktopUrl = row.desktop_public_url || row.public_url || null;
+  const mobileUrl = row.mobile_public_url || desktopUrl;
+  const tabletUrl = row.tablet_public_url || desktopUrl;
 
   return {
     id: row.id,
@@ -83,7 +86,10 @@ function mapHeroSlide(row, locale) {
     summary: isEnglish ? row.summary_en : row.summary_tr,
     ctaLabel: isEnglish ? row.cta_label_en : row.cta_label_tr,
     href: row.cta_href,
-    image: row.public_url
+    image: desktopUrl,
+    imageMobile: mobileUrl,
+    imageTablet: tabletUrl,
+    imageDesktop: desktopUrl
   };
 }
 
@@ -115,9 +121,15 @@ const getHome = asyncHandler(async (req, res) => {
   const locale = req.query.locale || "tr";
   const settings = await readSettings(locale);
   const [heroRows] = await pool.execute(
-    `SELECT hs.*, ma.public_url
+    `SELECT
+       hs.*,
+       desktop.public_url AS desktop_public_url,
+       mobile.public_url AS mobile_public_url,
+       tablet.public_url AS tablet_public_url
      FROM hero_slides hs
-     JOIN media_assets ma ON ma.id = hs.media_id
+     JOIN media_assets desktop ON desktop.id = hs.media_id
+     LEFT JOIN media_assets mobile ON mobile.id = COALESCE(hs.media_mobile_id, hs.media_id)
+     LEFT JOIN media_assets tablet ON tablet.id = COALESCE(hs.media_tablet_id, hs.media_id)
      WHERE hs.is_active = 1
      ORDER BY hs.sort_order ASC, hs.id ASC
      LIMIT 8`

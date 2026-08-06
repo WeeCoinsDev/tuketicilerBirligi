@@ -94,6 +94,7 @@ export const publicNavigation = [
   { key: "applicationGuide", href: "/basvuru-rehberi", title: "Başvuru Rehberi" },
   { key: "applyNow", href: "/basvuru-yap", title: "Başvuru Yap" },
   { key: "provinceMap", href: "/tuketici-haritasi", title: "Tüketici Haritası" },
+  { key: "faq", href: "/sss", title: "Sıkça Sorulan Sorular" },
   { key: "contact", href: "/iletisim", title: "İletişim" }
 ];
 
@@ -154,6 +155,7 @@ export const adminNavigation = [
   { title: "Özet", href: "/admin" },
   { title: "Hero", href: "/admin/hero" },
   { title: "Harita", href: "/admin/harita" },
+  { title: "SSS", href: "/admin/sss" },
   { title: "İçerikler", href: "/admin/icerikler" },
   { title: "Formlar", href: "/admin/formlar" },
   { title: "Medya", href: "/admin/medya" },

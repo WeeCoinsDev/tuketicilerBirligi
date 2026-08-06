@@ -61,11 +61,146 @@ const contents = [
   },
   {
     type: "faq",
-    title: "Başvuru için ücret ödenir mi?",
-    summary:
-      "Bu cevap kurumun resmi prosedürüne göre içerik ekibi tarafından netleştirilmelidir.",
+    locale: "tr",
+    title: "Tüketici başvurusu yapmak için üye olmak gerekir mi?",
+    summary: "Başvuru",
     body:
-      "İçerik ekibi notu: Başvuru ücreti, belge gereklilikleri ve başvuru sonrasında izlenecek süreç açık şekilde yazılmalıdır.",
+      "Ön başvuru formunu doldurmak için üye olmanız gerekmez. Başvurunuz incelendikten sonra ekibimiz gerekli görülürse ek bilgi, belge veya üyelik süreci hakkında sizinle iletişime geçer.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "tr",
+    title: "Başvuru için ücret ödenir mi?",
+    summary: "Başvuru",
+    body:
+      "Ön başvuru göndermek için herhangi bir ödeme alınmaz. Olası resmi başvuru, harç veya ek işlem gereklilikleri konuya göre ayrıca değerlendirilir ve size açık şekilde bildirilir.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "tr",
+    title: "Başvuruda hangi belgeleri paylaşmalıyım?",
+    summary: "Belgeler",
+    body:
+      "Fatura, fiş, sözleşme, garanti belgesi, servis formu, kargo kaydı ve satıcıyla yapılan yazışmalar başvurunun daha hızlı değerlendirilmesine yardımcı olur. Elinizdeki belgeleri okunaklı şekilde yüklemeniz yeterlidir.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "tr",
+    title: "Başvuruma ne kadar sürede dönüş yapılır?",
+    summary: "Süreç",
+    body:
+      "Başvurular geliş sırasına ve konunun kapsamına göre incelenir. Eksik bilgi yoksa ekip en kısa sürede sizinle iletişime geçer; ek belge gerekiyorsa süreç hakkında ayrıca bilgilendirme yapılır.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "tr",
+    title: "Ayıplı mal veya hizmette ilk olarak ne yapmalıyım?",
+    summary: "Haklar",
+    body:
+      "Öncelikle satın alma belgenizi ve yaşadığınız sorunu gösteren kayıtları saklayın. Satıcı veya sağlayıcıya yazılı başvuru yapmanız, sonraki değerlendirme ve resmi süreçlerde delil niteliği taşıyabilir.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "tr",
+    title: "E-ticaret alışverişlerinde cayma hakkımı nasıl kullanırım?",
+    summary: "Haklar",
+    body:
+      "Mesafeli satışlarda cayma hakkı, ürün ve hizmet türüne göre değişebilen istisnalara tabidir. Satıcıya süresi içinde yazılı bildirim yapmanız ve iade koşullarını belgeleyerek ilerlemeniz önerilir.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "tr",
+    title: "Başvuru yaptıktan sonra bilgilerimi güncelleyebilir miyim?",
+    summary: "Süreç",
+    body:
+      "Başvurunuzla ilgili ek belge veya açıklama paylaşmanız gerekiyorsa iletişim kanallarımızdan bize ulaşabilirsiniz. Ekibimiz başvuru kaydınızı güncellemeniz için sizi doğru kanala yönlendirir.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "tr",
+    title: "Kişisel verilerim nasıl korunur?",
+    summary: "Gizlilik",
+    body:
+      "Başvuru ve iletişim süreçlerinde paylaştığınız kişisel veriler yalnızca ilgili talebin değerlendirilmesi, sizinle iletişim kurulması ve yasal yükümlülüklerin yerine getirilmesi amacıyla işlenir.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "Do I need to be a member to submit a consumer application?",
+    summary: "Application",
+    body:
+      "You do not need to be a member to submit the preliminary application form. After review, our team may contact you for additional information, documents, or membership-related guidance if needed.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "Is there a fee for submitting an application?",
+    summary: "Application",
+    body:
+      "No payment is required to send a preliminary application. Any official application, fee, or additional procedural requirement is assessed according to the case and explained to you clearly.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "Which documents should I share with my application?",
+    summary: "Documents",
+    body:
+      "Invoices, receipts, contracts, warranty documents, service forms, shipping records, and correspondence with the seller help us review the issue faster. Uploading readable copies of the documents you have is enough.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "How soon will I receive a response?",
+    summary: "Process",
+    body:
+      "Applications are reviewed in order and according to the scope of the issue. If no information is missing, our team will contact you as soon as possible; if more documents are needed, you will be informed.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "What should I do first for defective goods or services?",
+    summary: "Rights",
+    body:
+      "Keep your purchase documents and records that show the issue. A written request to the seller or provider can be useful evidence for later review and official procedures.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "How can I use my withdrawal right for online purchases?",
+    summary: "Rights",
+    body:
+      "Withdrawal rights in distance sales may vary depending on the product or service and related exceptions. We recommend notifying the seller in writing within the legal period and documenting the return process.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "Can I update my information after submitting an application?",
+    summary: "Process",
+    body:
+      "If you need to provide additional documents or explanations, you can contact us through our communication channels. Our team will guide you to the correct channel for updating your application record.",
+    isFeatured: false
+  },
+  {
+    type: "faq",
+    locale: "en",
+    title: "How is my personal data protected?",
+    summary: "Privacy",
+    body:
+      "Personal data shared during application and communication processes is processed only to evaluate the relevant request, contact you, and fulfil legal obligations.",
     isFeatured: false
   }
 ];
@@ -175,11 +310,12 @@ async function seedSettings() {
 async function seedContent() {
   for (const item of contents) {
     const slug = slugify(item.title);
+    const locale = item.locale || "tr";
 
     await pool.execute(
       `INSERT INTO content_items
         (type, locale, title, slug, summary, body, status, is_featured, published_at, meta_title, meta_description)
-       VALUES (?, 'tr', ?, ?, ?, ?, 'published', ?, NOW(), ?, ?)
+       VALUES (?, ?, ?, ?, ?, ?, 'published', ?, NOW(), ?, ?)
        ON DUPLICATE KEY UPDATE
         summary = VALUES(summary),
         body = VALUES(body),
@@ -189,6 +325,7 @@ async function seedContent() {
         meta_description = VALUES(meta_description)`,
       [
         item.type,
+        locale,
         item.title,
         slug,
         item.summary,
@@ -225,8 +362,9 @@ async function seedHeroSlides() {
   for (const item of heroSlides) {
     await pool.execute(
       `INSERT INTO hero_slides
-        (title_tr, title_en, summary_tr, summary_en, cta_label_tr, cta_label_en, cta_href, media_id, is_active, sort_order)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?)`,
+        (title_tr, title_en, summary_tr, summary_en, cta_label_tr, cta_label_en, cta_href,
+         media_id, media_mobile_id, media_tablet_id, is_active, sort_order)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)`,
       [
         item.titleTr,
         item.titleEn,
@@ -235,6 +373,8 @@ async function seedHeroSlides() {
         item.ctaLabelTr,
         item.ctaLabelEn,
         item.ctaHref,
+        mediaRows[0].id,
+        mediaRows[0].id,
         mediaRows[0].id,
         item.sortOrder
       ]

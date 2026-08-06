@@ -116,8 +116,14 @@ export const heroSlideSchema = z.object({
       message: "Bağlantı yalnızca iç bağlantı olabilir ve / ile başlamalı."
     }),
   mediaId: z.coerce.number({
-    invalid_type_error: "Hero görseli seçmelisiniz."
-  }).int().min(0, "Hero görseli seçmelisiniz."),
+    invalid_type_error: "Masaüstü görseli seçmelisiniz."
+  }).int().min(0, "Masaüstü görseli seçmelisiniz."),
+  mediaMobileId: z.coerce.number({
+    invalid_type_error: "Mobil görseli seçmelisiniz."
+  }).int().min(0, "Mobil görseli seçmelisiniz."),
+  mediaTabletId: z.coerce.number({
+    invalid_type_error: "Tablet görseli seçmelisiniz."
+  }).int().min(0, "Tablet görseli seçmelisiniz."),
   isActive: z.boolean().default(true),
   sortOrder: z.coerce
     .number()

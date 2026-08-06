@@ -17,6 +17,8 @@ const heroSlideSchema = z.object({
   ctaLabelEn: z.string().trim().max(80).optional().or(z.literal("")),
   ctaHref: z.string().trim().max(500).optional().or(z.literal("")),
   mediaId: z.coerce.number().int().positive(),
+  mediaMobileId: z.coerce.number().int().positive(),
+  mediaTabletId: z.coerce.number().int().positive(),
   isActive: z.boolean().optional().default(true),
   sortOrder: z.coerce.number().int().min(0).max(999).optional().default(0)
 });
@@ -29,6 +31,16 @@ const translateSchema = z.object({
   targetLocale: z.enum(["tr", "en"]).default("en")
 });
 
+function mapMediaImage(id, publicUrl, altText) {
+  if (!id || !publicUrl) return null;
+
+  return {
+    id,
+    url: publicUrl,
+    altText: altText || null
+  };
+}
+
 function mapHeroRow(row) {
   return {
     id: row.id,
@@ -40,15 +52,13 @@ function mapHeroRow(row) {
     ctaLabelEn: row.cta_label_en,
     ctaHref: row.cta_href,
     mediaId: row.media_id,
+    mediaMobileId: row.media_mobile_id,
+    mediaTabletId: row.media_tablet_id,
     isActive: Boolean(row.is_active),
     sortOrder: row.sort_order,
-    image: row.public_url
-      ? {
-          id: row.media_id,
-          url: row.public_url,
-          altText: row.alt_text
-        }
-      : null,
+    image: mapMediaImage(row.media_id, row.desktop_public_url, row.desktop_alt_text),
+    imageMobile: mapMediaImage(row.media_mobile_id, row.mobile_public_url, row.mobile_alt_text),
+    imageTablet: mapMediaImage(row.media_tablet_id, row.tablet_public_url, row.tablet_alt_text),
     createdAt: row.created_at,
     updatedAt: row.updated_at
   };
@@ -66,6 +76,14 @@ async function ensureMediaExists(mediaId) {
   if (!rows[0]) {
     throw httpError(422, "Seçilen görsel bulunamadı.");
   }
+}
+
+async function ensureHeroMediaExists({ mediaId, mediaMobileId, mediaTabletId }) {
+  await Promise.all([
+    ensureMediaExists(mediaId),
+    ensureMediaExists(mediaMobileId),
+    ensureMediaExists(mediaTabletId)
+  ]);
 }
 
 async function ensureSlideLimit(ignoreId = null) {
@@ -140,11 +158,24 @@ async function translateText(text, sourceLocale, targetLocale) {
   return translatedText;
 }
 
+const HERO_LIST_SELECT = `
+  SELECT
+    hs.*,
+    desktop.public_url AS desktop_public_url,
+    desktop.alt_text AS desktop_alt_text,
+    mobile.public_url AS mobile_public_url,
+    mobile.alt_text AS mobile_alt_text,
+    tablet.public_url AS tablet_public_url,
+    tablet.alt_text AS tablet_alt_text
+  FROM hero_slides hs
+  JOIN media_assets desktop ON desktop.id = hs.media_id
+  LEFT JOIN media_assets mobile ON mobile.id = hs.media_mobile_id
+  LEFT JOIN media_assets tablet ON tablet.id = hs.media_tablet_id
+`;
+
 const listHeroSlides = asyncHandler(async (req, res) => {
   const [rows] = await pool.execute(
-    `SELECT hs.*, ma.public_url, ma.alt_text
-     FROM hero_slides hs
-     JOIN media_assets ma ON ma.id = hs.media_id
+    `${HERO_LIST_SELECT}
      ORDER BY hs.sort_order ASC, hs.id ASC`
   );
 
@@ -158,13 +189,14 @@ const createHeroSlide = asyncHandler(async (req, res) => {
   const values = heroSlideSchema.parse(req.body);
 
   await ensureSlideLimit();
-  await ensureMediaExists(values.mediaId);
+  await ensureHeroMediaExists(values);
 
   const [result] = await pool.execute(
     `INSERT INTO hero_slides
       (title_tr, title_en, summary_tr, summary_en, cta_label_tr, cta_label_en,
-       cta_href, media_id, is_active, sort_order, created_by, updated_by)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       cta_href, media_id, media_mobile_id, media_tablet_id, is_active, sort_order,
+       created_by, updated_by)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       values.titleTr,
       values.titleEn,
@@ -174,6 +206,8 @@ const createHeroSlide = asyncHandler(async (req, res) => {
       values.ctaLabelEn || null,
       values.ctaHref || null,
       values.mediaId,
+      values.mediaMobileId,
+      values.mediaTabletId,
       values.isActive ? 1 : 0,
       values.sortOrder,
       req.user.id,
@@ -198,10 +232,6 @@ const updateHeroSlide = asyncHandler(async (req, res) => {
     throw httpError(404, "Hero kaydı bulunamadı.");
   }
 
-  if (values.mediaId !== undefined) {
-    await ensureMediaExists(values.mediaId);
-  }
-
   const current = rows[0];
 
   const next = {
@@ -213,16 +243,20 @@ const updateHeroSlide = asyncHandler(async (req, res) => {
     ctaLabelEn: values.ctaLabelEn ?? current.cta_label_en,
     ctaHref: values.ctaHref ?? current.cta_href,
     mediaId: values.mediaId ?? current.media_id,
+    mediaMobileId: values.mediaMobileId ?? current.media_mobile_id ?? current.media_id,
+    mediaTabletId: values.mediaTabletId ?? current.media_tablet_id ?? current.media_id,
     isActive:
       values.isActive === undefined ? current.is_active : values.isActive ? 1 : 0,
     sortOrder: values.sortOrder ?? current.sort_order
   };
 
+  await ensureHeroMediaExists(next);
+
   await pool.execute(
     `UPDATE hero_slides
      SET title_tr = ?, title_en = ?, summary_tr = ?, summary_en = ?, cta_label_tr = ?,
-         cta_label_en = ?, cta_href = ?, media_id = ?, is_active = ?, sort_order = ?,
-         updated_by = ?
+         cta_label_en = ?, cta_href = ?, media_id = ?, media_mobile_id = ?, media_tablet_id = ?,
+         is_active = ?, sort_order = ?, updated_by = ?
      WHERE id = ?`,
     [
       next.titleTr,
@@ -233,6 +267,8 @@ const updateHeroSlide = asyncHandler(async (req, res) => {
       next.ctaLabelEn || null,
       next.ctaHref || null,
       next.mediaId,
+      next.mediaMobileId,
+      next.mediaTabletId,
       next.isActive,
       next.sortOrder,
       req.user.id,

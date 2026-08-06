@@ -154,6 +154,36 @@ export function updateFormSubmission(id, values) {
   });
 }
 
+export function listContentItems({ type = "", locale = "" } = {}) {
+  const params = new URLSearchParams();
+
+  if (type) params.set("type", type);
+  if (locale) params.set("locale", locale);
+
+  const query = params.toString();
+  return adminRequest(`/api/admin/content${query ? `?${query}` : ""}`);
+}
+
+export function createContentItem(values) {
+  return adminRequest("/api/admin/content", {
+    method: "POST",
+    body: JSON.stringify(values)
+  });
+}
+
+export function updateContentItem(id, values) {
+  return adminRequest(`/api/admin/content/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(values)
+  });
+}
+
+export function deleteContentItem(id) {
+  return adminRequest(`/api/admin/content/${id}`, {
+    method: "DELETE"
+  });
+}
+
 export function listPublicContent({ locale = "tr", limit = 50 } = {}) {
   const params = new URLSearchParams({
     locale,

@@ -2,8 +2,7 @@ export const fallbackSettings = {
   locale: "tr",
   organizationName: "Tüketiciler Birliği",
   shortName: "Tüketiciler Birliği",
-  description:
-    "Kurum tanıtımı, ekip ve çalışma alanları için özgün metinler içerik ekibi tarafından hazırlanacaktır.",
+  description: "Kurum tanıtımı, ekip ve çalışma alanları için özgün metinler içerik ekibi tarafından hazırlanacaktır.",
   phone: "Telefon bilgisi eklenecek",
   email: "iletisim@ornek-domain.org",
   kep: "KEP adresi eklenecek",
@@ -14,8 +13,8 @@ export const fallbackSettings = {
     x: "",
     facebook: "",
     instagram: "",
-    youtube: ""
-  }
+    youtube: "",
+  },
 };
 
 export const fallbackContents = [
@@ -25,13 +24,11 @@ export const fallbackContents = [
     locale: "tr",
     title: "Ayıplı Mal ve Hizmet Başvuruları",
     slug: "ayipli-mal-ve-hizmet-basvurulari",
-    summary:
-      "Bu rehberin nihai metni hukuk ve içerik ekibi tarafından özgün olarak hazırlanacaktır.",
-    body:
-      "İçerik ekibi notu: Başvuru şartları, gerekli belgeler, süreler ve tüketicinin izleyeceği adımlar sade bir dille anlatılmalıdır.",
+    summary: "Bu rehberin nihai metni hukuk ve içerik ekibi tarafından özgün olarak hazırlanacaktır.",
+    body: "İçerik ekibi notu: Başvuru şartları, gerekli belgeler, süreler ve tüketicinin izleyeceği adımlar sade bir dille anlatılmalıdır.",
     status: "published",
     is_featured: true,
-    published_at: "2026-07-01T09:00:00.000Z"
+    published_at: "2026-07-01T09:00:00.000Z",
   },
   {
     id: 2,
@@ -39,13 +36,11 @@ export const fallbackContents = [
     locale: "tr",
     title: "Mesafeli Satışlarda Cayma Hakkı",
     slug: "mesafeli-satislarda-cayma-hakki",
-    summary:
-      "E-ticaret alışverişlerinde cayma hakkına dair özgün kurum içeriği için yer tutucu.",
-    body:
-      "İçerik ekibi notu: Cayma hakkı süresi, istisnalar, iade süreci ve başvuru kanalları netleştirilmelidir.",
+    summary: "E-ticaret alışverişlerinde cayma hakkına dair özgün kurum içeriği için yer tutucu.",
+    body: "İçerik ekibi notu: Cayma hakkı süresi, istisnalar, iade süreci ve başvuru kanalları netleştirilmelidir.",
     status: "published",
     is_featured: true,
-    published_at: "2026-07-02T09:00:00.000Z"
+    published_at: "2026-07-02T09:00:00.000Z",
   },
   {
     id: 3,
@@ -53,13 +48,11 @@ export const fallbackContents = [
     locale: "tr",
     title: "Tüketici Hakları Bilgilendirme İçerikleri Hazırlanıyor",
     slug: "tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
-    summary:
-      "Haber alanı için örnek kayıt. Yayına alınmadan önce kurumun gerçek haberiyle değiştirilmelidir.",
-    body:
-      "Bu alan, kurumun güncel haber ve faaliyet metinleri için ayrılmıştır. Görseller ve metinler ekip tarafından sağlanacaktır.",
+    summary: "Haber alanı için örnek kayıt. Yayına alınmadan önce kurumun gerçek haberiyle değiştirilmelidir.",
+    body: "Bu alan, kurumun güncel haber ve faaliyet metinleri için ayrılmıştır. Görseller ve metinler ekip tarafından sağlanacaktır.",
     status: "published",
     is_featured: true,
-    published_at: "2026-07-10T09:00:00.000Z"
+    published_at: "2026-07-10T09:00:00.000Z",
   },
   {
     id: 4,
@@ -67,28 +60,204 @@ export const fallbackContents = [
     locale: "tr",
     title: "İletişim Kanalları Güncellenecek",
     slug: "iletisim-kanallari-guncellenecek",
-    summary:
-      "Telefon, e-posta, KEP, adres ve sosyal medya bilgileri admin panelinden tamamlanmalıdır.",
-    body:
-      "İletişim bilgilerinin açık, doğrulanmış ve her sayfadan erişilebilir olması ilk sürümün ana kabul kriteridir.",
+    summary: "Telefon, e-posta, KEP, adres ve sosyal medya bilgileri admin panelinden tamamlanmalıdır.",
+    body: "İletişim bilgilerinin açık, doğrulanmış ve her sayfadan erişilebilir olması ilk sürümün ana kabul kriteridir.",
     status: "published",
     is_featured: true,
-    published_at: "2026-07-12T09:00:00.000Z"
+    published_at: "2026-07-12T09:00:00.000Z",
   },
   {
     id: 5,
     type: "faq",
     locale: "tr",
-    title: "Başvuru için ücret ödenir mi?",
-    slug: "basvuru-icin-ucret-odenir-mi",
-    summary:
-      "Bu cevap kurumun resmi prosedürüne göre içerik ekibi tarafından netleştirilmelidir.",
-    body:
-      "İçerik ekibi notu: Başvuru ücreti, belge gereklilikleri ve başvuru sonrasında izlenecek süreç açık şekilde yazılmalıdır.",
+    title: "Tüketici başvurusu yapmak için üye olmak gerekir mi?",
+    slug: "tuketici-basvurusu-yapmak-icin-uye-olmak-gerekir-mi",
+    summary: "Başvuru",
+    body: "Ön başvuru formunu doldurmak için üye olmanız gerekmez. Başvurunuz incelendikten sonra ekibimiz gerekli görülürse ek bilgi, belge veya üyelik süreci hakkında sizinle iletişime geçer.",
     status: "published",
     is_featured: false,
-    published_at: "2026-07-12T09:00:00.000Z"
-  }
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 6,
+    type: "faq",
+    locale: "tr",
+    title: "Başvuru için ücret ödenir mi?",
+    slug: "basvuru-icin-ucret-odenir-mi",
+    summary: "Başvuru",
+    body: "Ön başvuru göndermek için herhangi bir ödeme alınmaz. Olası resmi başvuru, harç veya ek işlem gereklilikleri konuya göre ayrıca değerlendirilir ve size açık şekilde bildirilir.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 7,
+    type: "faq",
+    locale: "tr",
+    title: "Başvuruda hangi belgeleri paylaşmalıyım?",
+    slug: "basvuruda-hangi-belgeleri-paylasmaliyim",
+    summary: "Belgeler",
+    body: "Fatura, fiş, sözleşme, garanti belgesi, servis formu, kargo kaydı ve satıcıyla yapılan yazışmalar başvurunun daha hızlı değerlendirilmesine yardımcı olur. Elinizdeki belgeleri okunaklı şekilde yüklemeniz yeterlidir.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 8,
+    type: "faq",
+    locale: "tr",
+    title: "Başvuruma ne kadar sürede dönüş yapılır?",
+    slug: "basvuruma-ne-kadar-surede-donus-yapilir",
+    summary: "Süreç",
+    body: "Başvurular geliş sırasına ve konunun kapsamına göre incelenir. Eksik bilgi yoksa ekip en kısa sürede sizinle iletişime geçer; ek belge gerekiyorsa süreç hakkında ayrıca bilgilendirme yapılır.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 9,
+    type: "faq",
+    locale: "tr",
+    title: "Ayıplı mal veya hizmette ilk olarak ne yapmalıyım?",
+    slug: "ayipli-mal-veya-hizmette-ilk-olarak-ne-yapmaliyim",
+    summary: "Haklar",
+    body: "Öncelikle satın alma belgenizi ve yaşadığınız sorunu gösteren kayıtları saklayın. Satıcı veya sağlayıcıya yazılı başvuru yapmanız, sonraki değerlendirme ve resmi süreçlerde delil niteliği taşıyabilir.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 10,
+    type: "faq",
+    locale: "tr",
+    title: "E-ticaret alışverişlerinde cayma hakkımı nasıl kullanırım?",
+    slug: "e-ticaret-alisverislerinde-cayma-hakkimi-nasil-kullanirim",
+    summary: "Haklar",
+    body: "Mesafeli satışlarda cayma hakkı, ürün ve hizmet türüne göre değişebilen istisnalara tabidir. Satıcıya süresi içinde yazılı bildirim yapmanız ve iade koşullarını belgeleyerek ilerlemeniz önerilir.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 11,
+    type: "faq",
+    locale: "tr",
+    title: "Başvuru yaptıktan sonra bilgilerimi güncelleyebilir miyim?",
+    slug: "basvuru-yaptiktan-sonra-bilgilerimi-guncelleyebilir-miyim",
+    summary: "Süreç",
+    body: "Başvurunuzla ilgili ek belge veya açıklama paylaşmanız gerekiyorsa iletişim kanallarımızdan bize ulaşabilirsiniz. Ekibimiz başvuru kaydınızı güncellemeniz için sizi doğru kanala yönlendirir.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 12,
+    type: "faq",
+    locale: "tr",
+    title: "Kişisel verilerim nasıl korunur?",
+    slug: "kisisel-verilerim-nasil-korunur",
+    summary: "Gizlilik",
+    body: "Başvuru ve iletişim süreçlerinde paylaştığınız kişisel veriler yalnızca ilgili talebin değerlendirilmesi, sizinle iletişim kurulması ve yasal yükümlülüklerin yerine getirilmesi amacıyla işlenir.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 13,
+    type: "faq",
+    locale: "en",
+    title: "Do I need to be a member to submit a consumer application?",
+    slug: "do-i-need-to-be-a-member-to-submit-a-consumer-application",
+    summary: "Application",
+    body: "You do not need to be a member to submit the preliminary application form. After review, our team may contact you for additional information, documents, or membership-related guidance if needed.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 14,
+    type: "faq",
+    locale: "en",
+    title: "Is there a fee for submitting an application?",
+    slug: "is-there-a-fee-for-submitting-an-application",
+    summary: "Application",
+    body: "No payment is required to send a preliminary application. Any official application, fee, or additional procedural requirement is assessed according to the case and explained to you clearly.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 15,
+    type: "faq",
+    locale: "en",
+    title: "Which documents should I share with my application?",
+    slug: "which-documents-should-i-share-with-my-application",
+    summary: "Documents",
+    body: "Invoices, receipts, contracts, warranty documents, service forms, shipping records, and correspondence with the seller help us review the issue faster. Uploading readable copies of the documents you have is enough.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 16,
+    type: "faq",
+    locale: "en",
+    title: "How soon will I receive a response?",
+    slug: "how-soon-will-i-receive-a-response",
+    summary: "Process",
+    body: "Applications are reviewed in order and according to the scope of the issue. If no information is missing, our team will contact you as soon as possible; if more documents are needed, you will be informed.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 17,
+    type: "faq",
+    locale: "en",
+    title: "What should I do first for defective goods or services?",
+    slug: "what-should-i-do-first-for-defective-goods-or-services",
+    summary: "Rights",
+    body: "Keep your purchase documents and records that show the issue. A written request to the seller or provider can be useful evidence for later review and official procedures.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 18,
+    type: "faq",
+    locale: "en",
+    title: "How can I use my withdrawal right for online purchases?",
+    slug: "how-can-i-use-my-withdrawal-right-for-online-purchases",
+    summary: "Rights",
+    body: "Withdrawal rights in distance sales may vary depending on the product or service and related exceptions. We recommend notifying the seller in writing within the legal period and documenting the return process.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 19,
+    type: "faq",
+    locale: "en",
+    title: "Can I update my information after submitting an application?",
+    slug: "can-i-update-my-information-after-submitting-an-application",
+    summary: "Process",
+    body: "If you need to provide additional documents or explanations, you can contact us through our communication channels. Our team will guide you to the correct channel for updating your application record.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
+  {
+    id: 20,
+    type: "faq",
+    locale: "en",
+    title: "How is my personal data protected?",
+    slug: "how-is-my-personal-data-protected",
+    summary: "Privacy",
+    body: "Personal data shared during application and communication processes is processed only to evaluate the relevant request, contact you, and fulfil legal obligations.",
+    status: "published",
+    is_featured: false,
+    published_at: "2026-07-12T09:00:00.000Z",
+  },
 ];
 
 const fallbackProvinceEntries = [
@@ -105,7 +274,7 @@ const fallbackProvinceEntries = [
     linkHref: "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
     eventDate: "2026-07-10",
     status: "published",
-    sortOrder: 0
+    sortOrder: 0,
   },
   {
     id: "fallback-province-2",
@@ -120,7 +289,7 @@ const fallbackProvinceEntries = [
     linkHref: "/hak-rehberleri/ayipli-mal-ve-hizmet-basvurulari",
     eventDate: "2026-07-01",
     status: "published",
-    sortOrder: 1
+    sortOrder: 1,
   },
   {
     id: "fallback-province-3",
@@ -135,7 +304,7 @@ const fallbackProvinceEntries = [
     linkHref: "/hak-rehberleri/mesafeli-satislarda-cayma-hakki",
     eventDate: "2026-07-02",
     status: "published",
-    sortOrder: 2
+    sortOrder: 2,
   },
   {
     id: "fallback-province-4",
@@ -150,7 +319,7 @@ const fallbackProvinceEntries = [
     linkHref: "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
     eventDate: "2026-07-12",
     status: "published",
-    sortOrder: 3
+    sortOrder: 3,
   },
   {
     id: "fallback-province-5",
@@ -165,12 +334,12 @@ const fallbackProvinceEntries = [
     linkHref: "/duyurular",
     eventDate: "2026-07-12",
     status: "published",
-    sortOrder: 4
-  }
+    sortOrder: 4,
+  },
 ];
 
-export function getFallbackContent(type) {
-  return fallbackContents.filter((content) => content.type === type);
+export function getFallbackContent(type, locale = "tr") {
+  return fallbackContents.filter((content) => content.type === type && content.locale === locale);
 }
 
 export function getFallbackHeroSlides(locale = "tr") {
@@ -179,30 +348,30 @@ export function getFallbackHeroSlides(locale = "tr") {
   return [
     {
       id: "fallback-hero-1",
-      title: isEnglish
-        ? "Consumer Rights Information Content Is Being Prepared"
-        : "Tüketici Hakları Bilgilendirme İçerikleri Hazırlanıyor",
+      title: isEnglish ? "Consumer Rights Information Content Is Being Prepared" : "Tüketici Hakları Bilgilendirme İçerikleri Hazırlanıyor",
       summary: isEnglish
         ? "Sample hero content for the homepage. It should be replaced with real editorial copy from the admin panel."
         : "Ana sayfa için örnek hero içeriği. Yönetim panelinden gerçek editoryal içerikle güncellenmelidir.",
       ctaLabel: isEnglish ? "Read More" : "Devamını Oku",
-      href: isEnglish
-        ? "/news/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor"
-        : "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
-      image: null
+      href: isEnglish ? "/news/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor" : "/haberler/tuketici-haklari-bilgilendirme-icerikleri-hazirlaniyor",
+      image: "/ornek-hero.png",
+      imageMobile: "/ornek-hero.png",
+      imageTablet: "/ornek-hero.png",
+      imageDesktop: "/ornek-hero.png",
     },
     {
       id: "fallback-hero-2",
-      title: isEnglish
-        ? "Application Guidance Will Be Managed From The Admin Panel"
-        : "Başvuru Rehberi İçeriği Yönetim Panelinden Yönetilecek",
+      title: isEnglish ? "Application Guidance Will Be Managed From The Admin Panel" : "Başvuru Rehberi İçeriği Yönetim Panelinden Yönetilecek",
       summary: isEnglish
         ? "Hero slides will become independently manageable with bilingual copy, image selection, and ordering."
         : "Hero slaytları çift dilli metin, görsel seçimi ve sıralama desteğiyle bağımsız olarak yönetilebilecek.",
       ctaLabel: isEnglish ? "Application Guide" : "Başvuru Rehberi",
       href: "/basvuru-rehberi",
-      image: null
-    }
+      image: "/ornek-hero-2.png",
+      imageMobile: "/ornek-hero-2.png",
+      imageTablet: "/ornek-hero-2.png",
+      imageDesktop: "/ornek-hero-2.png",
+    },
   ];
 }
 
@@ -216,7 +385,7 @@ export function getFallbackProvinceMap() {
       code,
       name: firstEntry?.provinceName || "",
       count: entries.length,
-      entries
+      entries,
     };
   });
 
@@ -232,8 +401,8 @@ export function getFallbackProvinceMap() {
         news: 1,
         announcement: 1,
         guide: 2,
-        activity: 1
-      }
-    }
+        activity: 1,
+      },
+    },
   };
 }

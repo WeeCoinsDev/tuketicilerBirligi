@@ -21,57 +21,58 @@ const PATHS = [
   {
     gradient: "small1",
     delay: 0.7,
-    maskWidth: 38,
-    maskD: `
-      M435 675
-      C450 680 468 690 480 705
-      C488 714 488 722 480 728
-    `,
+    reveal: "wipe",
+    wipe: {
+      x: 400,
+      y: 640,
+      width: 140,
+      height: 125,
+      direction: "down",
+    },
     d: `M463.71,672.9c1.64-.99,3.3-1.96,4.92-2.97,9.35-5.83,22.89-1.31,26.45,9.07,.54,1.57,.07,4.31-1.02,5.48-3.68,3.94-8.11,7.18-11.79,11.13-6.83,7.33-13.49,14.83-19.85,22.57-1.48,1.81-1.48,4.83-2.31,7.81-8.08,3.35-20.55-5.54-19.6-14.91,.09-.9,.4-2.18,1.04-2.57,11.58-7.13,17.56-19.35,26.04-27.68-1.51-3.33-2.59-5.74-3.68-8.14,0,0-.21,.21-.21,.21Z`,
   },
   {
     gradient: "small2",
     delay: 0.78,
-    maskWidth: 34,
-    maskD: `
-      M470 705
-      C485 712 498 722 510 738
-    `,
+    reveal: "wipe",
+    wipe: {
+      x: 440,
+      y: 670,
+      width: 120,
+      height: 105,
+      direction: "down",
+    },
     d: `M480.38,743.8c-6.08,.02-13.13-4.98-14.78-10.85-.42-1.48-.32-3.79,.58-4.85,9.14-10.76,18.49-21.34,27.77-31.99,.64-.74,1.17-1.58,1.71-2.4,1.76-2.63,2.4-6.83,7.06-5.58,6.07,1.62,11.14,5.16,12.5,11.3,.55,2.47-2.16,6.14-4.18,8.62-6.7,8.25-13.83,16.15-20.62,24.33-1.05,1.26-1.41,3.25-1.69,4.97-.79,4.85-3.81,6.59-8.36,6.44Z`,
   },
   {
     gradient: "small3",
     delay: 0.86,
-    maskWidth: 26,
-    maskD: `
-      M515 736
-      C520 738 523 741 526 745
-    `,
+    reveal: "wipe",
+    wipe: {
+      x: 495,
+      y: 720,
+      width: 55,
+      height: 50,
+      direction: "down",
+    },
     d: `M516.17,744.15c1.85-2.57,3.3-5.05,5.24-7.07,.72-.75,3.15-1.02,3.74-.44,.82,.82,1.25,2.91,.77,3.97-1.77,3.88-4.97,5.01-9.74,3.54Z`,
   },
   {
     gradient: "center",
     delay: 0.38,
-    maskWidth: 55,
-    maskD: `
-    M485 375
-    L485 530
-
-    M485 375
-    L565 375
-    C600 375 615 392 615 415
-    C615 438 600 450 575 455
-
-    M575 455
-    C605 460 620 478 620 505
-    C620 535 598 550 565 550
-    L485 550
-  `,
+    reveal: "wipe",
+    wipe: {
+      x: 420,
+      y: 355,
+      width: 225,
+      height: 200,
+      direction: "down",
+    },
     d: `M513.15,531.76c-1.86-1.39-3.19-3.31-4.64-5.07-7.71-9.33-15.3-18.74-23-28.08-1.05-1.27-1.01-2.63-1.01-4.07,0-30.13,0-60.27,0-90.4,0-3.75,0-3.77-3.83-3.74-10.17,.08-20.34,.25-30.5,.23-4.24,0-8.48-.24-12.72-.03-2.16,.11-3.08-.78-3.04-3.13,.14-7.53,.13-15.07,.01-22.6-.03-2.31,.75-3.08,3.04-3.06,9.62,.08,19.23,.03,28.85,.03,35.02-.01,70.05-.04,105.07-.02,8.78,0,17.21,1.67,25.02,5.86,11.72,6.29,18.85,15.98,20.87,29.14,1.83,11.9-.68,22.79-8.79,32.03-1.05,1.2-2.28,2.25-3.48,3.31-2.17,1.91-2.17,1.86,.27,3.21,6.11,3.39,10.89,8.1,14.18,14.3,10.55,19.85,3.3,50.11-22.84,60.32-6.04,2.36-12.31,3.76-18.74,3.83-16.19,.19-32.38,.08-48.57,.16-2.07,.01-2.58-.87-2.57-2.75,.07-7.29,.1-14.59-.01-21.88-.04-2.3,.73-3.07,3.03-3.05,13.38,.08,26.77,.02,40.15,.04,3.15,0,6.25-.32,9.27-1.15,8.13-2.23,13.07-8.62,13.09-16.88,.02-7.92-4.88-14.17-12.93-16.46-3.49-.99-7.08-1.35-10.7-1.36-12.82-.03-25.65,0-38.47,0-3.38,0-3.41-.02-3.41-3.29,0-6.73,0-13.46,0-20.2,0-3.63,.02-3.64,3.56-3.64,12.42,0,24.85,.01,37.27-.02,4.66,0,9.12-.88,12.91-3.78,5.36-4.1,6.74-9.8,5.82-16.1-.84-5.8-4.34-9.66-9.79-11.77-2.73-1.06-5.56-1.48-8.47-1.48-17.39,0-34.78,.02-52.17-.07-2.22-.01-1.99,1.25-1.99,2.63,0,16.27,0,32.54,0,48.81,0,23.16,.01,46.32,.02,69.49,0,3.51,0,7.02,0,10.53-.26,.06-.52,.12-.78,.18Z`,
   },
 ];
 
-export function MainLogo({ className = "", drawOnMount = false, drawOnHover = false, drawDuration = 2 }) {
+export function MainLogo({ className = "", drawOnMount = false, drawOnHover = false, drawDuration = 3 }) {
   const reduceMotion = useReducedMotion();
   const id = useId().replace(/:/g, "");
 
@@ -106,10 +107,9 @@ export function MainLogo({ className = "", drawOnMount = false, drawOnHover = fa
 
     hover: {
       pathLength: [0, 1],
-      opacity: 1,
+      opacity: [0, 1],
     },
   };
-
   return (
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
@@ -143,38 +143,62 @@ export function MainLogo({ className = "", drawOnMount = false, drawOnHover = fa
         {shouldAnimate &&
           PATHS.map((path, index) => (
             <mask key={index} id={`${id}-mask-${index}`} maskUnits="userSpaceOnUse" x="240" y="190" width="600" height="600">
-              {/*
-                Siyah = gizli
-                Beyaz = görünür
-
-                Önce tüm alanı siyah yapıyoruz.
-              */}
               <rect x="240" y="190" width="600" height="600" fill="black" />
 
-              {/*
-                Bu stroke ekranda ASLA görünmüyor.
-                Sadece orijinal fill'in nerede açılacağını belirliyor.
-              */}
-              <motion.path
-                d={path.maskD ?? path.d}
-                fill="none"
-                stroke="white"
-                strokeWidth={path.maskWidth ?? 110}
-                strokeLinecap="butt"
-                strokeLinejoin="round"
-                variants={maskVariants}
-                transition={{
-                  pathLength: {
-                    duration: drawDuration,
-                    delay: path.delay ?? 0,
-                    ease: [0.22, 1, 0.36, 1],
-                  },
-                  opacity: {
-                    duration: 0.01,
-                    delay: path.delay ?? 0,
-                  },
-                }}
-              />
+              {path.reveal === "wipe" ? (
+                <motion.rect
+                  x={path.wipe.x}
+                  width={path.wipe.width}
+                  fill="white"
+                  variants={{
+                    hidden: {
+                      y: path.wipe.direction === "up" ? path.wipe.y + path.wipe.height : path.wipe.y,
+                      height: 0,
+                      opacity: 0,
+                    },
+
+                    visible: {
+                      y: path.wipe.y,
+                      height: path.wipe.height,
+                      opacity: 1,
+                    },
+
+                    hover: {
+                      y: path.wipe.direction === "up" ? [path.wipe.y + path.wipe.height, path.wipe.y] : path.wipe.y,
+
+                      height: [0, path.wipe.height],
+                      opacity: [0, 1],
+                    },
+                  }}
+                />
+              ) : (
+                <motion.path
+                  d={path.d}
+                  fill="none"
+                  stroke="white"
+                  strokeWidth={110}
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                  variants={maskVariants}
+                  transition={{
+                    pathLength: {
+                      duration: drawDuration,
+                      delay: path.delay ?? 0,
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+
+                    opacity: {
+                      duration: 0,
+                      delay: path.delay ?? 0,
+                    },
+
+                    visibility: {
+                      duration: 0,
+                      delay: path.delay ?? 0,
+                    },
+                  }}
+                />
+              )}
             </mask>
           ))}
       </defs>

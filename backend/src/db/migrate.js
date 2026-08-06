@@ -109,6 +109,8 @@ const statements = [
     cta_label_en VARCHAR(80) NULL,
     cta_href VARCHAR(500) NULL,
     media_id BIGINT UNSIGNED NOT NULL,
+    media_mobile_id BIGINT UNSIGNED NOT NULL,
+    media_tablet_id BIGINT UNSIGNED NOT NULL,
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     sort_order INT NOT NULL DEFAULT 0,
     created_by BIGINT UNSIGNED NULL,
@@ -118,6 +120,8 @@ const statements = [
     INDEX idx_hero_sort (sort_order, id),
     INDEX idx_hero_active_sort (is_active, sort_order, id),
     CONSTRAINT fk_hero_media FOREIGN KEY (media_id) REFERENCES media_assets(id) ON DELETE RESTRICT,
+    CONSTRAINT fk_hero_media_mobile FOREIGN KEY (media_mobile_id) REFERENCES media_assets(id) ON DELETE RESTRICT,
+    CONSTRAINT fk_hero_media_tablet FOREIGN KEY (media_tablet_id) REFERENCES media_assets(id) ON DELETE RESTRICT,
     CONSTRAINT fk_hero_created_by FOREIGN KEY (created_by) REFERENCES admin_users(id) ON DELETE SET NULL,
     CONSTRAINT fk_hero_updated_by FOREIGN KEY (updated_by) REFERENCES admin_users(id) ON DELETE SET NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
@@ -190,6 +194,40 @@ async function addUniqueIndexIfMissing(table, indexName, column) {
   await pool.execute(`ALTER TABLE \`${table}\` ADD UNIQUE KEY \`${indexName}\` (\`${column}\`)`);
 }
 
+async function addForeignKeyIfMissing(table, constraintName, column, refTable, refColumn, onDelete) {
+  const [rows] = await pool.execute(
+    `SELECT COUNT(*) AS total
+     FROM information_schema.TABLE_CONSTRAINTS
+     WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME = ?
+       AND CONSTRAINT_NAME = ?
+       AND CONSTRAINT_TYPE = 'FOREIGN KEY'`,
+    [table, constraintName]
+  );
+
+  if (Number(rows[0]?.total || 0) > 0) return;
+
+  await pool.execute(
+    `ALTER TABLE \`${table}\`
+     ADD CONSTRAINT \`${constraintName}\`
+     FOREIGN KEY (\`${column}\`) REFERENCES \`${refTable}\`(\`${refColumn}\`)
+     ON DELETE ${onDelete}`
+  );
+}
+
+async function backfillHeroResponsiveMedia() {
+  await pool.execute(
+    `UPDATE hero_slides
+     SET media_mobile_id = media_id
+     WHERE media_mobile_id IS NULL`
+  );
+  await pool.execute(
+    `UPDATE hero_slides
+     SET media_tablet_id = media_id
+     WHERE media_tablet_id IS NULL`
+  );
+}
+
 async function migrate() {
   for (const statement of statements) {
     await pool.execute(statement);
@@ -204,6 +242,34 @@ async function migrate() {
     "form_submissions",
     "uq_submission_application_number",
     "application_number"
+  );
+
+  await addColumnIfMissing(
+    "hero_slides",
+    "media_mobile_id",
+    "BIGINT UNSIGNED NULL AFTER media_id"
+  );
+  await addColumnIfMissing(
+    "hero_slides",
+    "media_tablet_id",
+    "BIGINT UNSIGNED NULL AFTER media_mobile_id"
+  );
+  await backfillHeroResponsiveMedia();
+  await addForeignKeyIfMissing(
+    "hero_slides",
+    "fk_hero_media_mobile",
+    "media_mobile_id",
+    "media_assets",
+    "id",
+    "RESTRICT"
+  );
+  await addForeignKeyIfMissing(
+    "hero_slides",
+    "fk_hero_media_tablet",
+    "media_tablet_id",
+    "media_assets",
+    "id",
+    "RESTRICT"
   );
 }
 
