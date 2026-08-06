@@ -71,14 +71,13 @@ export function SiteSearch({
         <button
           aria-label={t("trigger")}
           className={cn(
-            "focus-ring inline-flex h-9 cursor-pointer items-center gap-2 px-1 text-ink/70 transition-colors hover:text-ink sm:h-10 sm:px-1.5 sm:pr-2",
+            "focus-ring inline-flex size-8 cursor-pointer items-center justify-center text-ink/70 transition-colors hover:text-ink sm:size-9 lg:size-8 xl:size-9",
             triggerClassName,
           )}
           onClick={openSearch}
           type="button"
         >
-          <Search aria-hidden="true" className="size-4 sm:size-[18px]" strokeWidth={1.75} />
-          <kbd className="pointer-events-none hidden font-sans text-[10px] font-medium tracking-wide text-muted xl:inline-flex">⌘K</kbd>
+          <Search aria-hidden="true" className="size-3.5 sm:size-4 lg:size-3.5 xl:size-4" strokeWidth={1.75} />
         </button>
       ) : null}
 

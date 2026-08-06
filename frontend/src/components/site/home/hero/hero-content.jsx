@@ -36,7 +36,7 @@ export function HeroContent({ slide, labels, priority = false }) {
 
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 left-0 w-full lg:w-[65%] bg-linear-to-tr from-card-foreground/70 from-45% to-transparent lg:[mask-image:linear-gradient(to_right,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_35%,rgba(0,0,0,.9)_55%,rgba(0,0,0,.5)_75%,transparent_100%)]
+        className="absolute inset-y-0 left-0 w-full lg:w-[70%] bg-linear-to-tr from-card-foreground/70 from-45% to-transparent lg:[mask-image:linear-gradient(to_right,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_35%,rgba(0,0,0,.9)_55%,rgba(0,0,0,.5)_75%,transparent_100%)]
     lg:[-webkit-mask-image:linear-gradient(to_right,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_35%,rgba(0,0,0,.9)_55%,rgba(0,0,0,.5)_75%,transparent_100%)]"
       />
 
