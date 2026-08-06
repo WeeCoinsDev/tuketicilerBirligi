@@ -114,6 +114,12 @@
     "copyLink": "Bağlantıyı kopyala",
     "copied": "Kopyalandı"
   },
+  "AccessRestricted": {
+    "eyebrow": "Geçici erişim",
+    "title": "Bu sayfa şu anda yapım aşamasında.",
+    "description": "Müşteri sunumu için sitenin yalnızca belirli bölümleri erişime açık bırakıldı. Kısa süre sonra bu alan da yayına alınacak.",
+    "homeCta": "Anasayfaya dön"
+  },
   "Footer": {
     "navLabel": "Site haritası",
     "brandHome": "Anasayfaya git",
