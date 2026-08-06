@@ -11,7 +11,7 @@ export function ApplicationCta() {
   return (
     <ExpandableScreen contentRadius="20px" layoutId="application-form-screen">
       <ExpandableScreenTrigger>
-        <button className="focus-ring cursor-pointer inline-flex rounded-full bg-secondary px-5 py-2.5 font-sans text-sm font-semibold text-white transition hover:bg-secondary-dark" type="button">
+        <button className="focus-ring inline-flex cursor-pointer rounded-full bg-secondary px-3.5 py-2 font-sans text-[13px] font-semibold text-white transition hover:bg-secondary-dark lg:px-3.5 lg:py-2 xl:px-5 xl:py-2.5 xl:text-sm" type="button">
           {t("cta")}
         </button>
       </ExpandableScreenTrigger>

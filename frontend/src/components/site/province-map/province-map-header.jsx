@@ -5,6 +5,7 @@ import NumberFlow from "@number-flow/react";
 import { Filter, Search } from "lucide-react";
 import { useInView, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { SectionEyebrow } from "@/components/ui/section-eyebrow";
 import { cn } from "@/lib/utils";
 import { DENSITY_FILTERS, PROVINCE_MAP_COLORS } from "./province-map-utils";
 
@@ -69,10 +70,7 @@ export function ProvinceMapHeader({ activeProvinceCount, categoryCount, densityF
   return (
     <header className="grid gap-5 sm:gap-6 md:gap-6 lg:gap-7 2xl:gap-8">
       <div className="max-w-3xl">
-        <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-2.5 py-1 text-[10px] font-medium text-muted shadow-[0_6px_18px_rgba(22,32,51,0.04)] sm:px-3 sm:text-[11px]">
-          <span aria-hidden="true" className="size-1.5 rounded-full bg-secondary" />
-          İl bazlı içerik ağı
-        </span>
+        <SectionEyebrow>İl bazlı içerik ağı</SectionEyebrow>
         <h2 className="mt-3 max-w-3xl text-balance font-heading text-2xl font-semibold leading-[1.08] tracking-normal text-ink sm:mt-3.5 sm:text-[1.85rem] md:mt-4 md:text-3xl lg:text-[2.15rem] xl:text-4xl 2xl:text-5xl">
           Türkiye Tüketici Bilgilendirme Haritası
         </h2>
